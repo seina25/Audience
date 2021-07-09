@@ -3,7 +3,12 @@ class Member < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+  
+  has_many :program_favorites, dependent: :destroy
+  has_many :cast_favorites, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :contacts, dependent: :destroy
+
   validates :last_name, presence: true, length: { in: 1..10 }
   validates :first_name, presence: true, length: { in: 1..10 }
   validates :kana_sei, presence: true, length: { in: 1..10 }, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
@@ -13,7 +18,7 @@ class Member < ApplicationRecord
   validates :prefecture, presence: true
   validates :line_id, uniqueness: true
   # validates :deleted_at, presence: true
-  
-  attachment :profile_image_id
+
   enum gender: { man: 0, woman: 1, other: 2 }
+  attachment :profile_image_id
 end
