@@ -35,21 +35,23 @@ class AddDeviseToMembers < ActiveRecord::Migration[5.2]
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false
-      t.string :last_name, null: false
-      t.string :first_name, null: false
-      t.string :kana_sei, null: false
-      t.string :kana_mei, null: false
-      t.string :nickname, null: false
+      t.string :last_name
+      t.string :first_name
+      t.string :kana_sei
+      t.string :kana_mei
+      t.string :nickname
       t.integer :gender, null: false, default: 0
       t.string :profile_image_id
-      t.string :prefecture, null: false
+      t.string :prefecture
       t.string :line_id
       t.datetime :deleted_at
     end
 
     add_index :members, :email,                unique: true
     add_index :members, :reset_password_token, unique: true
-    add_index members, [:last_name, :first_name, :kana_sei, :kana_mei, :nickname, :prefecture, :deleted_at]
+    add_index :members, [:last_name, :first_name]
+    add_index :members, [:kana_sei, :kana_mei]
+    add_index :members, [:nickname, :prefecture, :deleted_at]
     # add_index :members, :confirmation_token,   unique: true
     # add_index :members, :unlock_token,         unique: true
   end
