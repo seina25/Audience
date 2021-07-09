@@ -1,0 +1,2 @@
+class CastFavorite < ApplicationRecord
+end
