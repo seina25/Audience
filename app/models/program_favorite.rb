@@ -1,0 +1,2 @@
+class ProgramFavorite < ApplicationRecord
+end
