@@ -1,67 +1,58 @@
 Rails.application.routes.draw do
-  namespace :admins do
-    get 'searches/search'
-  end
-  namespace :admins do
-    get 'members/index'
-    get 'members/show'
-    get 'members/edit'
-  end
-  namespace :admins do
-    get 'casts/new'
-    get 'casts/index'
-    get 'casts/show'
-    get 'casts/edit'
-  end
-  namespace :members do
-    get 'casts/new'
-    get 'casts/index'
-    get 'casts/show'
-    get 'casts/edit'
-  end
-  namespace :admins do
-    get 'programs/new'
-    get 'programs/index'
-    get 'programs/show'
-    get 'programs/edit'
-  end
-  namespace :admins do
-    get 'homes/top'
-    get 'homes/analysis'
-  end
-  namespace :members do
-    get 'contacts/new'
-    get 'contacts/confirm'
-    get 'contacts/thanks'
-    get 'contacts/index'
-  end
-  namespace :members do
-    get 'searches/search'
-  end
-  namespace :members do
-    get 'reviews/show'
-    get 'reviews/edit'
-  end
-  namespace :members do
-    get 'casts/show'
-  end
-  namespace :members do
-    get 'programs/index'
-    get 'programs/show'
-  end
-  namespace :members do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  devise_for :admins, controllers: {
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords'
-  }
-  
+
+  # ==== 会員側 =================================================================
+
   devise_for :members, controllers:{
     sessions: 'members/sessions',
     passwords: 'members/passwords',
     registrations: 'members/registrations'
   }
+
+  scope module: :members do
+    root 'homes#top'
+    get 'about' => 'homes#about', as: :about
+    resource :member, only: [:update]
+    get 'my_page/edit' => 'members#edit', as: :my_page_edit
+    get 'my_page' => 'members#show', as: :my_page
+    get 'line' => 'members#line', as: :line
+    get 'unsubscribe' => 'menbers#unsubscribe', as: :unsubscribe
+    patch 'withdraw' => 'members#withdraw', as: :withdraw
+    post 'line_events/client' => 'line_events#client', as: :client
+    post 'line_events/recieve' => 'line_events#recieve', as: :recieve
+    post 'line_events/about' => 'line_events#about'#, as: :line_events_about
+    resources :programs, only: [:index, :show] do
+      resource :program_favorite, only: [:create, :destroy]
+    end
+    resources :casts, only: [:show] do
+      resource :cast_favorite, only: [:create, :destroy]
+    end
+    resources :reviews, only: [:show, :create, :edit, :update, :destroy]
+    get 'search' => 'searches#search', as: :search
+    resources :contacts, only: [:new, :index]
+    post 'contacts/confirm' => 'contacts#confirm'
+    post 'contacts/thanks' => 'contacts#thanks'
+  end
+
+  # ============================================================================
+
+  # ==== 管理者側 ==============================================================
+
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords'
+  }
+
+  namespace :admins do
+    root 'homes#top'
+    get 'analysis' => 'homes#analysis', as: :analysis
+    resources :programs, only: [:index, :new, :create, :show, :edit, :update]
+    resources :casts, only: [:index, :new, :create, :show, :edit, :update]
+    resources :members, only: [:index, :show, :edit, :update]
+    get 'search' => 'searches#search', as: :search
+  end
+
+   # ===========================================================================
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
