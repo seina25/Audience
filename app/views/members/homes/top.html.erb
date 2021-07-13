@@ -1,2 +1,11 @@
-<h1>Members::Homes#top</h1>
-<p>Find me in app/views/members/homes/top.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-9">
+        <h4 class="text-center">top page</h4>
+    </div>
+    <div class="col-3">
+        <p>検索フォーム</p>
+        <%= render 'members/searches/search', search: @search %>
+    </div>
+  </div>
+</div>
