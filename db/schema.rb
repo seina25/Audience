@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.datetime "updated_at", null: false
     t.bigint "member_id"
     t.index ["member_id"], name: "index_contacts_on_member_id"
-    t.index ["title", "message"], name: "index_contacts_on_title_and_message"
   end
 
   create_table "members", force: :cascade do |t|
