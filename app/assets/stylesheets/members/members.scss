@@ -1,3 +1,21 @@
 // Place all the styles related to the members/Members controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// me_page
+.mymenu-box-list{
+  margin: 50px 0 0 ;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.mymenu-box-item{
+  width: 30%;
+  height: 180px;
+  background-color: #D9E5FF;
+  box-shadow: 10px 10px 0 #CCCCCC 10%;
+  border-radius: 10px;
+  margin: 0 0 50px 0;
+}
