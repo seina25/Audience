@@ -1,0 +1,2 @@
+module Members::LineEventsHelper
+end

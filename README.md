@@ -2,21 +2,21 @@
 
 ### サイト概要
 
-#### 🤔💭あの番組誰が出てたっけ？  
-#### 👗💭好きなアイドルが出ている番組情報は全て把握したい！  
+#### 🤔💭あの番組誰が出てたっけ？
+#### 👗💭好きなアイドルが出ている番組情報は全て把握したい！
 #### 🤦‍♀️💭また見逃しちゃった！リアルタイムで見たかったなぁ
-  
+
 そんな時に役に立つアプリがAudienceです!!
-  
-Audience　=　視聴者　　
-  
+
+Audience　=　視聴者
+
 視聴者の目線に立って、番組情報を確認することができます！
-  
-  
-見逃し防止のLINE通知機能やキーワードひとつで番組が見つけられたり、好きな番組の閲覧案内情報がくる！？  
-  
+
+
+見逃し防止のLINE通知機能やキーワードひとつで番組が見つけられたり、好きな番組の閲覧案内情報がくる！？
+
 これまでになかったけどあったらいいなを実現してみました。
-　　
+
 
 ### サイトテーマ
 キーワードから気軽に検索できる番組情報アプリ
@@ -39,13 +39,13 @@ Audience　=　視聴者　　
 - お気に入りの番組が始まる前に見逃し防止のため通知してほしい
 
 ## 設計書
-ER図  
-![ER図](https://user-images.githubusercontent.com/82795561/124361924-d733b180-dc6c-11eb-9de9-831e65d25ec2.png)
+ER図
+![ER図](https://user-images.githubusercontent.com/82795561/125033899-e8484c80-e0ca-11eb-9621-bac5b3291e39.png)
 
-テーブル定義書  
-https://docs.google.com/spreadsheets/d/1Df6zRwkIvCw0OX-CbGG-QQCWzKroyov41UnnDpSktmY/edit?usp=sharing　　
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1Df6zRwkIvCw0OX-CbGG-QQCWzKroyov41UnnDpSktmY/edit?usp=sharing
 
-アプリケーション詳細設計  
+アプリケーション詳細設計
 https://drive.google.com/file/d/1AdkZ4bX8zOfsY_ib6sP5XYHx_HiZzfh2/view?usp=sharing
 
 
