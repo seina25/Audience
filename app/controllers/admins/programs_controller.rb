@@ -22,6 +22,7 @@ class Admins::ProgramsController < ApplicationController
 
     # 番組表からurl取得
     begin
+    @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
     @urls.first(3).each do |url|
@@ -31,7 +32,7 @@ class Admins::ProgramsController < ApplicationController
     # d.manage.timeouts.implicit_wait = @timeout
     # wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
 
-    sleep 2
+    sleep(rand(5))
 
     cur_url = driver.current_url
     p cur_url
@@ -42,13 +43,13 @@ class Admins::ProgramsController < ApplicationController
     cast = driver.find_element(:class, "programCastInformationList").text
     date = driver.find_element(:class, "schedule").text
     channel = driver.find_element(:class, "channelText").text
-    #binding.pry
+    # save入れる
     p title
     p cast
     p date
     p channel
 
-    @programs = title + cast + date + channel
+    @programs.push({ 'title': title, 'cast': cast, 'date': date, 'channel': channel })
     p @program
     rescue Selenium::WebDriver::Error::NoSuchElementError
     p 'no such element error!!'
