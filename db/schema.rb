@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_034215) do
+ActiveRecord::Schema.define(version: 2021_07_14_112211) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -78,14 +78,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
-  create_table "program_casts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "program_id"
-    t.integer "cast_id"
-    t.index ["cast_id"], name: "index_program_casts_on_cast_id"
-    t.index ["program_id"], name: "index_program_casts_on_program_id"
-  end
+# Could not dump table "program_casts" because of following StandardError
+#   Unknown type 'bignt' for column 'program_id'
 
   create_table "program_favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
