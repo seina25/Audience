@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_112211) do
+ActiveRecord::Schema.define(version: 2021_07_09_034215) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2021_07_14_112211) do
   create_table "cast_favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "cast_id"
+    t.bigint "member_id"
+    t.bigint "cast_id"
     t.index ["cast_id"], name: "index_cast_favorites_on_cast_id"
     t.index ["member_id"], name: "index_cast_favorites_on_member_id"
   end
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_07_14_112211) do
     t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
+    t.bigint "member_id"
     t.index ["member_id"], name: "index_contacts_on_member_id"
     t.index ["title", "message"], name: "index_contacts_on_title_and_message"
   end
@@ -78,14 +78,20 @@ ActiveRecord::Schema.define(version: 2021_07_14_112211) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
-# Could not dump table "program_casts" because of following StandardError
-#   Unknown type 'bignt' for column 'program_id'
+  create_table "program_casts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "program_id"
+    t.bigint "cast_id"
+    t.index ["cast_id"], name: "index_program_casts_on_cast_id"
+    t.index ["program_id"], name: "index_program_casts_on_program_id"
+  end
 
   create_table "program_favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "program_id"
+    t.bigint "member_id"
+    t.bigint "program_id"
     t.index ["member_id"], name: "index_program_favorites_on_member_id"
     t.index ["program_id"], name: "index_program_favorites_on_program_id"
   end
@@ -110,8 +116,8 @@ ActiveRecord::Schema.define(version: 2021_07_14_112211) do
     t.float "score", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "program_id"
+    t.bigint "member_id"
+    t.bigint "program_id"
     t.index ["member_id"], name: "index_reviews_on_member_id"
     t.index ["program_id"], name: "index_reviews_on_program_id"
   end

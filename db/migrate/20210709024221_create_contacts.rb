@@ -6,7 +6,7 @@ class CreateContacts < ActiveRecord::Migration[5.2]
       t.text :message, null: false
       t.timestamps
       
-      t.references :member, foreign_key: true
+      t.references :member, type: :bigint, foreign_key: true
     end
     
     add_index :contacts, [:title, :message]
