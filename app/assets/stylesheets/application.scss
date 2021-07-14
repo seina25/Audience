@@ -16,3 +16,9 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+*{
+  padding: 0;
+  margin: 0;
+  boxsizing: border-box;
+}
