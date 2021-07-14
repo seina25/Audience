@@ -1,0 +1,108 @@
+<div class="container m-5">
+  <div class="row mt-4">
+    <div class="col-9 mx-auto">
+      <h4>新規登録</h4>
+      <%= render "members/shared/error_messages", resource: resource %>
+      <%= form_with model: @member, url: registration_path(resource_name),id: 'new_member', class: 'new_member', local: true do |f| %>
+
+      <div class="form-group row">
+      <div class="col-md-3">
+        <%= f.label  "氏名（姓・名）", class: "col-from-label" %>
+      </div>
+      <div class="col-md-7">
+        <div style="display:inline-flex">
+          <div>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control", placeholder: "田中" %>
+          </div>
+          <div class="mx-3">
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", placeholder: "太郎" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="form-group row">
+      <div class="col-md-3 d-flex align-items-center">
+        <%= f.label  "フリガナ（セイ・メイ）", class: "form-group-label" %>
+      </div>
+      <div class="col-md-7">
+        <div style="display:inline-flex">
+          <div>
+            <%= f.text_field :kana_sei, autofocus: true, autocomplete: "kana_sei", class: "form-control", placeholder: "タナカ" %>
+          </div>
+          <div class="mx-3">
+            <%= f.text_field :kana_mei, autofocus: true, autocomplete: "kana_mei", class: "form-control", placeholder: "タロウ" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="form-group row">
+      <div class="col-md-3 d-flex align-items-center">
+        <%= f.label "ニックネーム", class: "form-group-label" %>
+      </div>
+      <div class="col-md-7">
+        <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "form-control", placeholder: "タロー" %>
+      </div>
+    </div>
+
+      <!--<div class="form-group row">-->
+      <!--<div class="col-md-3 d-flex align-items-center">-->
+        <%#= f.label "性別", class: "form-group-label" %>
+      <!--</div>-->
+      <!--<div class="col-md-7">-->
+        <%#= f.select :gender, Member.genders.keys, class: "form-control" %>
+    <!--  </div>-->
+    <!--</div>-->
+
+      <div class="form-group row">
+      <div class="col-md-3 d-flex align-items-center">
+        <%= f.label "出身地", class: "form-group-label" %>
+      </div>
+      <div class="col-md-7">
+        <%= f.text_field :prefecture, autofocus: true, autocomplete: "prefecture", class: "form-control", placeholder: "東京都" %>
+      </div>
+    </div>
+
+      <div class="form-group row">
+      <div class="col-md-3 d-flex align-items-center">
+      <%= f.label "メールアドレス", class: "form-group-label" %>
+      </div>
+      <div class="col-md-7">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sanple@gmail.com" %>
+      </div>
+    </div>
+
+      <div class="form-group row">
+      <div class="col-md-3 d-flex align-items-center">
+        <%= f.label "パスワード", class: "form-group-label" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+      </div>
+      <div class="col-md-7">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "６文字以上で入力してください"  %>
+      </div>
+    </div>
+
+      <div class="form-group row">
+      <div class="col-md-3 d-flex align-items-center">
+        <%= f.label "パスワード（確認用）", class: "form-group-label" %>
+      </div>
+      <div class="col-md-7">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "６文字以上で入力してください" %>
+      </div>
+    </div>
+
+      <div class="form-group-row">
+      <div class="col-10 text-right">
+      <%= f.submit "新規登録", class: "btn" %>
+    </div>
+    <% end %>
+
+  <%= render "members/shared/links" %>
+    </div>
+
+    </div>
+  </div>
+</div>

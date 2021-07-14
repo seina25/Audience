@@ -4,12 +4,38 @@
     <title>Audience</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/c5c1bb451e.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <ul>
+          <% if member_signed_in? %>
+            <li>ユーザー</li>
+            <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+          <% elsif admin_signed_in? %>
+            <li>管理者</li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+          <% else %>
+            <li>ゲストユーザー</li>
+            <li><%= link_to "新規登録", new_member_registration_path %></li>
+            <li><%= link_to "ログイン", new_member_session_path %></li>
+            <li><%= link_to "トップ", root_path %></li>
+            <li><%= link_to "アバウト", about_path %></li>
+            <li><%= link_to "仮program index", admins_programs_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+
+    </footer>
+
   </body>
 </html>
