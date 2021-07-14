@@ -14,7 +14,7 @@ class Program < ApplicationRecord
   validates :program_image_id, presence: true
   validates :status, presence: true
   validates :goods, presence: true
-  
+
   enum by_weekday: { sun: 0, mon: 1, thu: 2, wed: 3, ted: 4, fry: 5, sat: 6 }
   enum status: { 放送未定: 0, 放送中: 1, 放送終了:2 }
   attachment :program_image_id
