@@ -4,8 +4,8 @@ class CreateCastFavorites < ActiveRecord::Migration[5.2]
 
       t.timestamps
 
-      t.references :member, foreign_key: true
-      t.references :cast, foreign_key: true
+      t.references :member, type: :bigint, foreign_key: true
+      t.references :cast, type: :bigint, foreign_key: true
     end
   end
 end
