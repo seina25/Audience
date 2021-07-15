@@ -25,7 +25,7 @@ class Admins::ProgramsController < ApplicationController
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(3).each do |url|
+    @urls.first(4).each do |url|
       p url
     driver.navigate.to(url)
     # d = Selenium::WebDriver.for :chrome, options: options
