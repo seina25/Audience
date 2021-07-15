@@ -1,25 +1,39 @@
 <div class="conteiner m-5">
   <div class="row mt-4">
     <div class="col-9">
-        <h4 class="text-center">番組一覧</h4>
-        <div class="mt-3">
-          <% @programs.each do |program|%>
-          <h4>番組情報</h4><br>
-          <h5>番組名：<%= program[:title] %></h5><br>
-          <p>サブタイトル：<%= program[:second_title] %></p><br>
-          <p>放送カテゴリー：<%= program[:category] %></p><br>
-          <p>出演者情報1：<%= program[:cast1] %></p><br>
-          <p>出演者情報2：<%= program[:cast2] %></p><br>
-          <p>出演者情報3：<%= program[:cast3] %></p><br>
-          <p>放送局：<%= program[:channel] %></p><br>
-          <p>放送日時：<%= program[:date] %>  <%=program[:by_weekday] %>曜日 <%= program[:start_time]%>〜<%= program[:end_time]%></p><br>
-
+      <div class="mt-3">
+        <h4 class="">番組一覧</h4>
+        <% @programs.each do |program|%>
+        <h5><%= program[:title] %>の概要</h5>
+          <table class="table">
+            <tr>
+              <th class="col-4">番組名</th>
+              <th><%= program[:title] %></th>
+            </tr>
+            <tr>
+              <th>サブタイトル</th>
+              <th><%= program[:second_title] %></th>
+            </tr>
+            <tr>
+              <th>放送カテゴリー</th>
+              <th><%= program[:category] %></th>
+            </tr>
+            <tr>
+              <th>出演者情報</th>
+              <th><%= program[:cast] %></th>
+            </tr>
+            <th>放送局</th>
+              <th><%= program[:channel] %></th>
+            </tr>
+            <tr>
+              <th>放送日時</th>
+              <th><%= program[:date] %>　 <%= program[:by_weekday] %>曜日　<%= program[:start_time] %>〜<%= program[:end_time] %></th>
+            </tr>
+          </table><br><br>
           <% end %>
-        </div>
-    </div>
-    <div class="col-3">
-        <p>検索フォーム</p>
-        <%= render 'admins/searches/search' %>
-    </div>
+         </div>
+      </div>
+      <div class="col-3">
+      </div>
   </div>
 </div>
