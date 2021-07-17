@@ -3,6 +3,7 @@ class CreatePrograms < ActiveRecord::Migration[5.2]
     create_table :programs do |t|
 
       t.string :title, null: false
+      t.string :second_title, null
       t.text :description, null: false
       t.datetime :start_date, null: false
       t.datetime :end_date, null: false
