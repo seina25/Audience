@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
   create_table "cast_favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "cast_id"
+    t.bigint "member_id"
+    t.bigint "cast_id"
     t.index ["cast_id"], name: "index_cast_favorites_on_cast_id"
     t.index ["member_id"], name: "index_cast_favorites_on_member_id"
   end
@@ -48,9 +48,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
+    t.bigint "member_id"
     t.index ["member_id"], name: "index_contacts_on_member_id"
-    t.index ["title", "message"], name: "index_contacts_on_title_and_message"
   end
 
   create_table "members", force: :cascade do |t|
@@ -81,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
   create_table "program_casts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "program_id"
-    t.integer "cast_id"
+    t.bigint "program_id"
+    t.bigint "cast_id"
     t.index ["cast_id"], name: "index_program_casts_on_cast_id"
     t.index ["program_id"], name: "index_program_casts_on_program_id"
   end
@@ -90,25 +89,25 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
   create_table "program_favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "program_id"
+    t.bigint "member_id"
+    t.bigint "program_id"
     t.index ["member_id"], name: "index_program_favorites_on_member_id"
     t.index ["program_id"], name: "index_program_favorites_on_program_id"
   end
 
   create_table "programs", force: :cascade do |t|
     t.string "title", null: false
-    t.text "description", null: false
-    t.datetime "start_date", null: false
-    t.datetime "end_date", null: false
+    t.string "second_title", null: false
+    t.string "category", null: false
+    t.string "cast"
+    t.string "channel", null: false
+    t.datetime "start_datetime", null: false
+    t.datetime "end_datetime", null: false
     t.integer "by_weekday", default: 0, null: false
-    t.time "by_time", default: "2000-01-01 00:00:00", null: false
-    t.string "program_image_id", null: false
-    t.integer "status", null: false
-    t.string "goods", null: false
+    t.string "program_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["by_weekday", "by_time"], name: "index_programs_on_by_weekday_and_by_time"
+    t.index ["channel", "start_datetime"], name: "index_programs_on_channel_and_start_datetime", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -116,8 +115,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.float "score", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "program_id"
+    t.bigint "member_id"
+    t.bigint "program_id"
     t.index ["member_id"], name: "index_reviews_on_member_id"
     t.index ["program_id"], name: "index_reviews_on_program_id"
   end

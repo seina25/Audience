@@ -1,0 +1,46 @@
+<!--<div id="program-list" style="display:none;">-->
+<%# byebug %>
+<% programs.each do |program| %><br>
+<h5><%= program.title %>の概要</h5>
+<%# binding.pry %>
+<table class="table program">
+  <tr>
+    <th>放送状況</th>
+    <th>
+      <% if Time.zone.now <= program.start_datetime %>
+        <%= "放送予定" %>
+      <% elsif Time.zone.now.between?(program.start_datetime, program.end_datetime) %>
+      <%= "放送中" %>
+      <% elsif program.end_datetime <= Time.zone.now %>
+      <%= "放送終了" %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+    <th class="col-4">番組名</th>
+    <th><%= program.title %></th>
+  </tr>
+  <tr>
+    <th>サブタイトル</th>
+    <th><%= program.second_title %></th>
+  </tr>
+  <tr>
+    <th>放送カテゴリー</th>
+    <th><%= program.category %></th>
+  </tr>
+  <tr>
+    <th>出演者情報</th>
+    <th><%= program.cast %></th>
+  </tr>
+  <th>放送局</th>
+    <th><%= program.channel %></th>
+  </tr>
+  <tr>
+    <th>放送日時</th>
+    <% weeks = ["月","火","水","木","金","土","日"] %>
+    <% index = program.start_datetime.strftime("%u").to_i %>
+    <th><%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %> 〜 <%= program.end_datetime.strftime("%-H:%M") %></th>
+  </tr>
+</table><br><br>
+<% end %>
+<!--</div>-->

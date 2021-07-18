@@ -1,90 +1,27 @@
 class Admins::ProgramsController < ApplicationController
-  require 'selenium-webdriver'
-  def index
+  #require 'selenium-webdriver'
 
-    @wait_time = 3
-    @timeout = 4
+  include ProgramScrapesConcern
 
-    # Seleniumの初期化
-    # class ref: https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Chrome
-    Selenium::WebDriver.logger.output = File.join("./", "selenium.log")
-    Selenium::WebDriver.logger.level = :warn
 
-    options = Selenium::WebDriver::Chrome::Options.new
-    options.add_argument('--headless')
-    driver = Selenium::WebDriver.for :chrome, options: options
-    driver.manage.timeouts.implicit_wait = @timeout
-    wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
-
-    # Yahoo番組表を開く
-    driver.get('https://tv.yahoo.co.jp/listings')
-    sleep 2
-
-    # 番組表からurl取得
-    begin
-    elements = driver.find_elements(:class, "listingTablesTextLink")
-    @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(3).each do |url|
-      p url
-    driver.navigate.to(url)
-    # d = Selenium::WebDriver.for :chrome, options: options
-    # d.manage.timeouts.implicit_wait = @timeout
-    # wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
-
-    sleep 2
-
-    cur_url = driver.current_url
-    p cur_url
-
-    # 番組データを取得
-    #binding.pry
-    title = driver.find_element(:class, "programRatingContentTitle").text
-    cast = driver.find_element(:class, "programCastInformationList").text
-    date = driver.find_element(:class, "schedule").text
-    channel = driver.find_element(:class, "channelText").text
-    #binding.pry
-    p title
-    p cast
-    p date
-    p channel
-
-    @programs = title + cast + date + channel
-    p @program
-    rescue Selenium::WebDriver::Error::NoSuchElementError
-    p 'no such element error!!'
-
-    end
-
-    # 番組名を取得
-    # @title = driver.find_elements(:class, "programListItemTitleLink")
-    # @description = driver.find_element(:class, "programListItemDescription").text
-    # @date = driver.find_element(:class, "schedule").text
-    # @channel = driver.find_element(:class, "channel").text
-    # @titles = []
-    # @title.each do |title|
-    # @titles.push(title.text)
-    # end
-
-    # データをデータベースに保存
-    # for i in 0..@titles.count
-    # program = Program.new
-    # program.title = @titles[i]
-    # program.date = @dates[i]
-    # program.save
-
-    # ドライバーを閉じる
-    driver.quit
-    end
+  def scrape
+    @time = Time.zone.now
+    set_scrape
+    redirect_to admins_programs_path
+    # @program = Program.find(program_params)
   end
 
   def new
-    @program = Program.new
   end
 
-  def create
+  def index
+    @time = Time.zone.now
+    @programs = Program.all.page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def show
+    @time = Time.zone.now
+    @program = Program.where(id: params[:id])
   end
 
   def edit
@@ -92,5 +29,13 @@ class Admins::ProgramsController < ApplicationController
 
   def update
   end
-end
 
+
+private
+
+  def program_params
+    params.require(:program).permit(:title, :second_title, :category, :cast, :channel,
+    :start_datetime, :end_datetime, :by_weekday, :profile_image_id)
+  end
+
+end
