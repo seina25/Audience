@@ -44,14 +44,11 @@ class AddDeviseToMembers < ActiveRecord::Migration[5.2]
       t.string :profile_image_id
       t.string :prefecture
       t.string :line_id
-      t.datetime :deleted_at
+      t.boolean :is_valid, null: false, default: true
     end
 
     add_index :members, :email,                unique: true
     add_index :members, :reset_password_token, unique: true
-    add_index :members, [:last_name, :first_name]
-    add_index :members, [:kana_sei, :kana_mei]
-    add_index :members, [:nickname, :prefecture, :deleted_at]
     # add_index :members, :confirmation_token,   unique: true
     # add_index :members, :unlock_token,         unique: true
   end
