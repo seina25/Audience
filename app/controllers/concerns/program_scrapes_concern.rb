@@ -44,7 +44,6 @@ extend ActiveSupport::Concern
     p cur_url
 
     # 番組データを取得
-    #binding.pry
     begin
     title = driver.find_element(:class, "programRatingContentTitle").text
     rescue Selenium::WebDriver::Error::NoSuchElementError
@@ -75,6 +74,7 @@ extend ActiveSupport::Concern
     category = ""
     end
 
+
     # 取得元のdatetimeの表記が12h制なのでdateとtimeを分けて取得　dateは属性値からdate情報のみ抽出、timeはtextから取得
     # start_datetime
     begin
@@ -91,7 +91,7 @@ extend ActiveSupport::Concern
 
     # end_datetime
     begin
-    end_date = driver.find_element(:xpath, "//p[contains(text(), '放送日時・内容')]/following-sibling::div[1]/time[2]").attribute("datetime")
+    end_date = driver.find_element(:xpath, "//p[contains(text(), '放送日時・内容')]/following-sibling::div[1]/time[2]").attribute("datetime").slice(0..9)
     rescue Selenium::WebDriver::Error::NoSuchElementError
     end_date = ""
     end
@@ -101,6 +101,7 @@ extend ActiveSupport::Concern
     rescue Selenium::WebDriver::Error::NoSuchElementError
     end_time = ""
     end
+
 
     # 取得したdate、timeを結合、タイムゾーンをJSTに変更
       # 放送開始時間
@@ -124,20 +125,11 @@ extend ActiveSupport::Concern
         "放送終了"
       end
 
-
-
     @programs.push( 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel, 'category': category,
     'start_datetime': start_datetime, 'end_datetime': end_datetime, 'status': status, 'by_weekday': by_weekday )
-
-    p @programs
-
-
     end
     # ドライバーを閉じる
     driver.quit
-    @programs
-
-
   end
 
   def programs_save
@@ -147,14 +139,6 @@ extend ActiveSupport::Concern
       @program.assign_attributes(program)
       @program.save
     end
-
-
-    # for i in 0..@titles.count
-    # program = Program.new
-    # program.title = @titles[i]
-    # program.date = @dates[i]
-    # program.save
-
     # 開始時刻
     # 時間
     # hour = datetime.hour
