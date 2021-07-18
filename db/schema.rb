@@ -97,17 +97,18 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
 
   create_table "programs", force: :cascade do |t|
     t.string "title", null: false
-    t.text "description", null: false
-    t.datetime "start_date", null: false
-    t.datetime "end_date", null: false
+    t.string "second_title", null: false
+    t.string "category", null: false
+    t.string "cast"
+    t.string "channel", null: false
+    t.datetime "start_datetime", null: false
+    t.datetime "end_datetime", null: false
     t.integer "by_weekday", default: 0, null: false
-    t.time "by_time", default: "2000-01-01 00:00:00", null: false
-    t.string "program_image_id", null: false
-    t.integer "status", null: false
-    t.string "goods", null: false
+    t.string "program_image_id"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["by_weekday", "by_time"], name: "index_programs_on_by_weekday_and_by_time"
+    t.index ["channel", "start_datetime"], name: "index_programs_on_channel_and_start_datetime", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
