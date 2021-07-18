@@ -1,10 +1,20 @@
 <!--<div id="program-list" style="display:none;">-->
+<%# byebug %>
 <% programs.each do |program| %><br>
 <h5><%= program.title %>の概要</h5>
+<%# binding.pry %>
 <table class="table program">
   <tr>
     <th>放送状況</th>
-    <th><%= program.status %></th>
+    <th>
+      <% if Time.zone.now <= program.start_datetime %>
+        <%= "放送予定" %>
+      <% elsif Time.zone.now.between?(program.start_datetime, program.end_datetime) %>
+      <%= "放送中" %>
+      <% elsif program.end_datetime <= Time.zone.now %>
+      <%= "放送終了" %>
+      <% end %>
+    </th>
   </tr>
   <tr>
     <th class="col-4">番組名</th>

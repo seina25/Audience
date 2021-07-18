@@ -6,8 +6,8 @@ class Admins::ProgramsController < ApplicationController
 
   def scrape
     @time = Time.zone.now
-    program_information_acquisition
-    render :scrape
+    set_scrape
+    redirect_to admins_programs_path
     # @program = Program.find(program_params)
   end
 
@@ -16,7 +16,12 @@ class Admins::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-    @programs = Program.all
+    @programs = Program.all.page(params[:page]).per(20).order(created_at: :desc)
+  end
+
+  def show
+    @time = Time.zone.now
+    @program = Program.where(id: params[:id])
   end
 
   def edit
@@ -30,7 +35,7 @@ private
 
   def program_params
     params.require(:program).permit(:title, :second_title, :category, :cast, :channel,
-    :start_datetime, :end_datetime, :by_weekday, :profile_image_id, :status)
+    :start_datetime, :end_datetime, :by_weekday, :profile_image_id)
   end
 
 end
