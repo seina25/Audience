@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   scope module: :members do
     root 'homes#top'
     get 'about' => 'homes#about', as: :about
-    resource :member, only: [:update]
     get 'my_page/edit' => 'members#edit', as: :my_page_edit
     get 'my_page' => 'members#show', as: :my_page
     get 'line' => 'members#line', as: :line
+    resource :member, only: [:update]
     get 'unsubscribe' => 'members#unsubscribe', as: :unsubscribe
     patch 'withdraw' => 'members#withdraw', as: :withdraw
     post 'line_events/client' => 'line_events#client', as: :client

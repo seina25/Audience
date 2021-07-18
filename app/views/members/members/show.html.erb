@@ -1,4 +1,6 @@
 <div class="container-fluid">
+  <h2>こんにちは！<%= current_member.nickname %>さん</h2>
+  <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
   <div class="row mt-5">
     <div class="col-2">
       <h2>menu</h2>
@@ -7,13 +9,12 @@
       <section id="mymenu-box">
         <h2 class="text-center">会員専用マイページ</h2>
         <div class="mymenu-box-list">
-
-          <%= link_to "お気に入り番組", { anchor: "myfav-program" }, class: "mymenu-box-item" %>
-          <%= link_to "お気に入りキャスト", { anchor: "myfav-cast" }, class: "mymenu-box-item" %>
+          <%= link_to "お気に入り番組", { anchor: "myfavorite" }, class: "mymenu-box-item" %>
           <%= link_to "口コミ一覧", { anchor: "myreview" }, class: "mymenu-box-item" %>
-          <%= link_to "お問い合わせ", { anchor: "mycontact" }, class: "mymenu-box-item" %>
-          <%= link_to "LINE登録", { anchor: "myline" }, class: "mymenu-box-item" %>
-          <%= link_to "プロフィール変更・退会", { anchor: "mypage-edit" }, class: "mymenu-box-item" %>
+          <%= link_to "お問い合わせ", new_contact_path, class: "mymenu-box-item" %>
+          <%= link_to "LINE登録", line_events_about_path, method: :post, class: "mymenu-box-item" %>
+          <%= link_to "プロフィール変更", my_page_edit_path, class: "mymenu-box-item" %>
+          <%= link_to "退会画面", unsubscribe_path, class: "mymenu-box-item" %>
         </div>
       </section>
       <section id="myfav-program"></section>
