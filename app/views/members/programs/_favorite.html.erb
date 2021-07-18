@@ -1,0 +1,13 @@
+<% if @program.favorited_by?(current_member) %>
+  <p>
+    <%= link_to program_program_favorite(@program), method: :delete do %>
+      <%= @program.favorites.count %> 💖
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to program_program_favorite(@program), method: :post do %>
+      <%= @program.favorites.count %> 🖤
+    <% end %>
+  </p>
+<% end %>
