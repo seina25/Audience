@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.datetime "end_datetime", null: false
     t.integer "by_weekday", default: 0, null: false
     t.string "program_image_id"
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel", "start_datetime"], name: "index_programs_on_channel_and_start_datetime", unique: true

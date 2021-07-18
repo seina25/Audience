@@ -1,1 +1,28 @@
-<h1>program#show</h1>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-3">
+      <%= link_to '番組情報を更新する', class: 'btn btn-outline-danger' %>
+      <%#= link_to "番組情報を取得する", '#', id: 'display-program-list' %>
+      <%#= link_to "番組情報を取得する", admins_scrape_path, remote: true, id: 'get-data', style: 'display:none;' %>
+    </div>
+    <div class="col-9">
+      <h4 class="">番組詳細</h4>
+      <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
+      <div id="programs_area">
+        <%= render partial: 'admins/programs/information', locals: { programs: @program } %>
+      </div>
+      <%= link_to "Back", admins_programs_path, class: "btn btn-sm btn-danger" %>
+    </div>
+  </div>
+</div>
+
+<!--# 開始時刻-->
+<!--    # 時間-->
+<!--    # hour = datetime.hour-->
+<!--    # # 分-->
+<!--    # minute = datetime.minute-->
+
+<!--    # # 日付-->
+<!--    # year = datetime.year-->
+<!--    # month = datetime.month-->
+<!--    # date = datetime.day-->

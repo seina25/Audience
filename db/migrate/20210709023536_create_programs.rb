@@ -11,7 +11,6 @@ class CreatePrograms < ActiveRecord::Migration[5.2]
       t.datetime :end_datetime, null: false
       t.integer :by_weekday, null: false, default: 0
       t.string :program_image_id
-      t.integer :status, null: false, default: 0
       t.timestamps
     end
 

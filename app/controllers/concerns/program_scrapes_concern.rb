@@ -4,11 +4,6 @@ module ProgramScrapesConcern
 
 extend ActiveSupport::Concern
 
-  def program_information_acquisition
-    set_scrape
-    #execution_scrape
-    programs_save
-  end
 
   def set_scrape
     @wait_time = 3
@@ -35,7 +30,7 @@ extend ActiveSupport::Concern
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(1).each do |url|
+    @urls.first(20).each do |url|
     driver.navigate.to(url)
 
     sleep(rand(5))
@@ -104,53 +99,35 @@ extend ActiveSupport::Concern
 
 
     # 取得したdate、timeを結合、タイムゾーンをJSTに変更
-      # 放送開始時間
-      year, month, day = start_date.split('-').map(&:to_i)
-      hour, minute = start_time.split(':').map(&:to_i)
-      start_datetime = Time.zone.local(year, month, day, hour, minute)
-      # 放送終了時間
-      year, month, day = end_date.split('-').map(&:to_i)
-      hour, minute = end_time.split(':').map(&:to_i)
-      end_datetime = Time.zone.local(year, month, day, hour, minute)
+    # 放送開始時間
+    year, month, day = start_date.split('-').map(&:to_i)
+    hour, minute = start_time.split(':').map(&:to_i)
+    start_datetime = Time.zone.local(year, month, day, hour, minute)
+    # 放送終了時間
+    year, month, day = end_date.split('-').map(&:to_i)
+    hour, minute = end_time.split(':').map(&:to_i)
+    end_datetime = Time.zone.local(year, month, day, hour, minute)
 
-      # 曜日取得
-      by_weekday = start_datetime.wday
+    # 曜日取得
+    by_weekday = start_datetime.wday
 
-      # 放送時間に含まれるか判断
-      status = if Time.zone.now <= start_datetime
-        "放送予定"
-      elsif Time.zone.now.between?(start_datetime, end_datetime)
-        "放送中"
-      elsif end_datetime <= Time.zone.now
-        "放送終了"
-      end
 
     @programs.push( 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel, 'category': category,
-    'start_datetime': start_datetime, 'end_datetime': end_datetime, 'status': status, 'by_weekday': by_weekday )
+    'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
     end
+
     # ドライバーを閉じる
     driver.quit
-  end
 
-  def programs_save
     # データをデータベースに保存
     @programs.each do |program|
-      @program = Program.new
-      @program.assign_attributes(program)
-      @program.save
+      @program = Program.find_or_initialize_by(channel: program[:channel], start_datetime: program[:start_datetime] )
+      if @program.new_record?
+      Program.create(program)
+      else
+      @program.update_columns(program)
+      end
     end
-    # 開始時刻
-    # 時間
-    # hour = datetime.hour
-    # # 分
-    # minute = datetime.minute
 
-    # # 日付
-    # year = datetime.year
-    # month = datetime.month
-    # date = datetime.day
-
-    # # 曜日 （0：日 〜 6：土）
-    # by_weekday = datetime.wday
   end
 end
