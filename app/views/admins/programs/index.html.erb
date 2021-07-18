@@ -1,20 +1,41 @@
 <div class="conteiner m-5">
   <div class="row mt-4">
     <div class="col-9">
-        <h4 class="text-center">番組一覧</h4>
-        <div class="mt-3">
-          <% @programs.each do |program|%>
-          <h4>番組情報</h4>
-          <p>番組名：<%= program[:title] %></p><br>
-          <p>出演者情報：<%= program[:cast] %></p><br>
-          <p>放送時間：<%= program[:date] %></p><br>
-          <p>局：<%= program[:channel] %></p><br>
+      <div class="mt-3">
+        <h4 class="">番組一覧</h4>
+        <% @programs.each do |program| %>
+        <h5><%= program[:title] %>の概要</h5>
+          <table class="table">
+            <tr>
+              <th class="col-4">番組名</th>
+              <th><%= program[:title] %></th>
+            </tr>
+            <tr>
+              <th>サブタイトル</th>
+              <th><%= program[:second_title] %></th>
+            </tr>
+            <tr>
+              <th>放送カテゴリー</th>
+              <th><%= program[:category] %></th>
+            </tr>
+            <tr>
+              <th>出演者情報</th>
+              <th><%= program[:cast] %></th>
+            </tr>
+            <th>放送局</th>
+              <th><%= program[:channel] %></th>
+            </tr>
+            <tr>
+              <th>放送日時</th>
+              <% weeks = ["月","火","水","木","金","土","日"] %>
+              <% index = program[:start_datetime].strftime("%u").to_i %>
+              <th><%= program[:start_datetime].strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %> 〜 <%= program[:end_datetime].strftime("%-H:%M") %></th>
+            </tr>
+          </table><br><br>
           <% end %>
-        </div>
-    </div>
-    <div class="col-3">
-        <p>検索フォーム</p>
-        <%= render 'admins/searches/search' %>
-    </div>
+         </div>
+      </div>
+      <div class="col-3">
+      </div>
   </div>
 </div>
