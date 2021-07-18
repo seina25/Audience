@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html
 <html>
   <head>
     <title>Audience</title>
+    <meta charset="utf-8" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/c5c1bb451e.js" crossorigin="anonymous"></script>
@@ -26,6 +27,7 @@
             <li><%= link_to "トップ", root_path %></li>
             <li><%= link_to "アバウト", about_path %></li>
             <li><%= link_to "仮program index", admins_programs_path %></li>
+            <li><%= link_to "仮番組取得画面", admins_scrape_path %></li>
           <% end %>
         </ul>
       </nav>

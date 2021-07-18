@@ -48,7 +48,8 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'homes#top'
     get 'analysis' => 'homes#analysis', as: :analysis
-    resources :programs, only: [:index, :new, :create, :show, :edit, :update]
+    get 'programs/scrape' => 'programs#scrape', as: :scrape
+    resources :programs, only: [:index, :new, :create, :edit, :update, :show]
     resources :casts, only: [:index, :new, :create, :show, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
     get 'search' => 'searches#search', as: :search
