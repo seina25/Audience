@@ -1,2 +1,70 @@
-<h1>Admins::Members#show</h1>
-<p>Find me in app/views/admins/members/show.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+  <% @member.each do |member| %>
+    <div class="col-2">
+      <%= attachment_image_tag member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%><br><br>
+      <%= link_to "編集する", edit_admins_member_path, class: "btn btn-success" %><br><br>
+      <%= link_to "会員一覧へ戻る", admins_members_path, class: "btn btn-info" %>
+    </div>
+    <div class="col-10">
+      <h4>会員詳細画面</h4>
+      <h5><%= member.first_name %>  様の詳細ページ</h5>
+        <table class="table member">
+           <tr>
+            <th>会員ID</th>
+            <th><%= member.id %></th>
+          </tr>
+          <tr>
+          <tr>
+            <th>ステータス</th>
+            <th><%#= member.deleted_at %></th>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <th><%= member.first_name + member.last_name %></th>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <th><%= member.kana_sei + member.kana_mei %></th>
+          </tr>
+          <tr>
+            <th>ニックネーム</th>
+            <th><%= member.nickname %></th>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <th><%= member.gender %></th>
+          </tr>
+          <tr>
+            <th>出身地</th>
+            <th><%= member.prefecture %></th>
+          </tr>
+          <th>メールアドレス</th>
+            <th><%= member.email %></th>
+          </tr>
+          <tr>
+            <th>週間いいね数</th>
+            <th><%#= member.favorite.count %>いいね</th>
+          </tr>
+          <tr>
+            <th>アクセス数</th>
+            <th><%#= member.acssece.count %>/月</th>
+          </tr>
+          <tr>
+            <th>口コミ数</th>
+            <th><%#= member.reviews.count %></th>
+          </tr>
+          <tr>
+            <th>お問い合わせ</th>
+            <th>
+              <%#=link_to contacts_path(member), do%>
+                <%#= member.contacts.count %>
+              <%# end %>
+            </th>
+          </tr>
+        </table><br><br>
+      </div>
+    </div>
+   <% end %>
+ </div>
+</div>
