@@ -1,2 +1,48 @@
-<h1>Admins::Members#index</h1>
-<p>Find me in app/views/admins/members/index.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-3">
+    </div>
+    <div class="col-9">
+      <h4>会員一覧</h4>
+      <table class="table program">
+        <thead>
+          <tr>
+            <th></th>
+            <th>氏名</th>
+            <th>フリガナ</th>
+            <th>出身地</th>
+            <th>いいねクリック数</th>
+            <th>アクセス数</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <th class="align-middle">
+              <%= attachment_image_tag member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "60x60"%>
+            </th>
+            <th class="align-middle">
+              <%= link_to  admins_member_path(member.id)  do %>
+                <%= member.first_name + member.last_name %>
+              <% end %>
+            </th>
+            <th class="align-middle">
+              <%= member.kana_mei + member.kana_sei %>
+            </th>
+            <th class="align-middle">
+              <%= member.prefecture %>
+            </th>
+            <th class="align-middle">
+              <%#= member.favorite.count %>3いいね
+            </th>
+            <th class="align-middle">
+              <%#= member.acssece.cout <%>23回/月
+            </th>
+          </tr>
+          <% end %>
+        </tboby>
+      </table>
+      <%= paginate @members %>
+    </div>
+  </div>
+</div>

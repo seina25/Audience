@@ -1,2 +1,117 @@
-<h1>Admins::Members#edit</h1>
-<p>Find me in app/views/admins/members/edit.html.erb</p>
+<div class="container m-5">
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <%= link_to "会員詳細へ戻る", admins_member_path(@member), method: :put, class: "btn btn-info" %>
+    </div>
+    <div class="col-10 mx-auto">
+      <h4> 会員情報更新 </h4>
+      <%= form_with model: @member, local: true, method: :put do |f| %>
+      <%#= form_with model: current_member, url:member_path, local: true, method: :put do |f| %>
+      <div class="form-group row">
+        <div class="col-md-3">
+          <%= f.label  "氏名（姓・名）", class: "col-from-label" %>
+        </div>
+        <div class="col-md-7">
+          <div style="display:inline-flex">
+            <div>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+            </div>
+            <div class="mx-3">
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= f.label  "フリガナ（セイ・メイ）", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <div style="display:inline-flex">
+            <div>
+              <%= f.text_field :kana_sei, autofocus: true, autocomplete: "kana_sei", class: "form-control" %>
+            </div>
+            <div class="mx-3">
+              <%= f.text_field :kana_mei, autofocus: true, autocomplete: "kana_mei", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= f.label "ニックネーム", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= f.label "性別", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+        <%= f.select :gender, Member.genders.keys, class: "form-control,required='required'" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= f.label "出身地", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :prefecture, autofocus: true, autocomplete: "prefecture", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+        <%= f.label "メールアドレス", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
+          <%= f.label "プロフィールイメージ", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= f.label "ステータス", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.text_field :prefecture, autofocus: true, autocomplete: "prefecture", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div>
+          <%= f.radio_button :is_valid, true %>
+          <%= f.label :is_valid, '退会済み', value: true, class: "form-group-label" %>
+        </div>
+        <div>
+          <%= f.radio_button :is_valid, false %>
+          <%= f.label :is_valid, '有効', value: false, class: "form-group-label" %>
+        </div>
+      </div>
+
+      <div class="form-group-row">
+        <div class="col-10 text-right">
+        <%= f.submit "更新する", class: "btn btn-info" %>
+        </div>
+      </div>
+
+     <% end %>
+    </div>
+  </div>
+</div>
