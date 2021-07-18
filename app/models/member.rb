@@ -5,7 +5,6 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :program_favorites, dependent: :destroy
-  has_many :cast_favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :contacts, dependent: :destroy
 
