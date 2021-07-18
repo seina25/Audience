@@ -1,0 +1,36 @@
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-3">
+      <!--<div class="btn btn-outline-info">-->
+      <!--  <span id="display-program-list">番組一覧を表示する</span>-->
+      <!--</div><br>-->
+      <%#= link_to '番組情報を更新する', admins_scrape_path, class: 'btn btn-outline-danger' %>
+      <%#= link_to "番組情報を取得する", '#', id: 'display-program-list' %>
+      <%#= link_to "番組情報を取得する", admins_scrape_path, remote: true, id: 'get-data', style: 'display:none;' %>
+    </div>
+    <div class="col-9">
+      <h4 class="">番組一覧</h4>
+      <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
+      <div id="programs_area">
+        <%= render partial: 'admins/programs/information', locals: { programs: @programs } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<script>-->
+<!--  $(function(){-->
+      /*$('#get-data').click();
+      $('body').append($('#loading').css({'height': '100%', 'width': '100%', 'background-color': '#888'}).text('loading...'));
+      var timer = setInterval(function(){
+        if( $('#program-list .program').length > 0){
+          clearInterval(timer);
+          $('#loading').remove();
+        }
+      }, 10);*/
+<!--      $('#display-program-list').on('click', function(){-->
+<!--          $('#program-list').show();-->
+<!--      });-->
+<!--  });-->
+<!--</script>-->

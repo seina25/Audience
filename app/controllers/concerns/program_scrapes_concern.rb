@@ -3,9 +3,11 @@ require 'selenium-webdriver'
 module ProgramScrapesConcern
 
 extend ActiveSupport::Concern
-  def set_program_site
+
+
+  def set_scrape
     @wait_time = 3
-    @timeout = 4
+    @timeout = 5
 
     # Seleniumの初期化
     # class ref: https://www.rubydoc.info/gems/selenium-webdriver/Selenium/WebDriver/Chrome
@@ -28,7 +30,7 @@ extend ActiveSupport::Concern
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(2).each do |url|
+    @urls.first(20).each do |url|
     driver.navigate.to(url)
 
     sleep(rand(5))
@@ -52,7 +54,7 @@ extend ActiveSupport::Concern
     begin
     cast = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
     rescue Selenium::WebDriver::Error::NoSuchElementError
-    cast = ""
+    cast = "※ 情報がありません"
     end
 
     begin
@@ -67,9 +69,11 @@ extend ActiveSupport::Concern
     category = ""
     end
 
+
+    # 取得元のdatetimeの表記が12h制なのでdateとtimeを分けて取得　dateは属性値からdate情報のみ抽出、timeはtextから取得
     # start_datetime
     begin
-    start_date = driver.find_element(:xpath, "//p[contains(text(), '放送日時・内容')]/following-sibling::div[1]/time[1]").attribute("datetime").to_datetime.strftime("%Y-%m-%d")
+    start_date = driver.find_element(:xpath, "//p[contains(text(), '放送日時・内容')]/following-sibling::div[1]/time[1]").attribute("datetime").slice(0..9)
     rescue Selenium::WebDriver::Error::NoSuchElementError
     start_date = ""
     end
@@ -82,7 +86,7 @@ extend ActiveSupport::Concern
 
     # end_datetime
     begin
-    end_date = driver.find_element(:xpath, "//p[contains(text(), '放送日時・内容')]/following-sibling::div[1]/time[2]").attribute("datetime").to_datetime.strftime("%Y-%m-%d")
+    end_date = driver.find_element(:xpath, "//p[contains(text(), '放送日時・内容')]/following-sibling::div[1]/time[2]").attribute("datetime").slice(0..9)
     rescue Selenium::WebDriver::Error::NoSuchElementError
     end_date = ""
     end
@@ -93,50 +97,37 @@ extend ActiveSupport::Concern
     end_time = ""
     end
 
-    p title
-    p second_title
-    p cast
-    p channel
-    p category
-    p start_date
-    p start_time
-    p end_date
-    p end_time
 
-    # 取得したdatetimeデータが12h表記なので文字列で24h表記に修正後datetimeに戻す
-    start_datetime_string = start_date + " " + start_time
-    start_datetime = start_datetime_string.to_datetime
+    # 取得したdate、timeを結合、タイムゾーンをJSTに変更
+    # 放送開始時間
+    year, month, day = start_date.split('-').map(&:to_i)
+    hour, minute = start_time.split(':').map(&:to_i)
+    start_datetime = Time.zone.local(year, month, day, hour, minute)
+    # 放送終了時間
+    year, month, day = end_date.split('-').map(&:to_i)
+    hour, minute = end_time.split(':').map(&:to_i)
+    end_datetime = Time.zone.local(year, month, day, hour, minute)
 
-    end_datetime_string = end_date + " " + end_time
-    end_datetime = end_datetime_string.to_datetime
+    # 曜日取得
+    by_weekday = start_datetime.wday
 
-    # save入れる
-    @programs.push({ 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel,
-    'category': category, 'start_datetime': start_datetime, 'end_datetime': end_datetime })
 
-    p @programs
-    # データをデータベースに保存
-    # for i in 0..@titles.count
-    # program = Program.new
-    # program.title = @titles[i]
-    # program.date = @dates[i]
-    # program.save
+    @programs.push( 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel, 'category': category,
+    'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
     end
+
     # ドライバーを閉じる
     driver.quit
 
-    # 開始時刻
-    # 時間
-    # hour = datetime.hour
-    # # 分
-    # minute = datetime.minute
+    # データをデータベースに保存
+    @programs.each do |program|
+      @program = Program.find_or_initialize_by(channel: program[:channel], start_datetime: program[:start_datetime] )
+      if @program.new_record?
+      Program.create(program)
+      else
+      @program.update_columns(program)
+      end
+    end
 
-    # # 日付
-    # year = datetime.year
-    # month = datetime.month
-    # date = datetime.day
-
-    # # 曜日 （0：日 〜 6：土）
-    # by_weekday = datetime.wday
   end
 end

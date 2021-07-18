@@ -1,3 +1,20 @@
 // Place all the styles related to the admins/Programs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// /*ページネーション*/=======
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+/* 表示しているページ番号 */
+.pagination>.active>a {
+  background: #93c9ff;
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+}
+
+// ===========================

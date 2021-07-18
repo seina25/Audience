@@ -75,6 +75,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
 gem 'selenium-webdriver'
+gem 'activerecord-import'
 
 gem 'dotenv-rails'
 group :production do
