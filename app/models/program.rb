@@ -1,9 +1,11 @@
 class Program < ApplicationRecord
-  has_many :program_favorites, dependent: :destroy
-  has_many :review, dependent: :destroy
 
-  has_many :casts, through: :program_casts
-  has_many :program_casts, dependent: :destroy
+  has_many :review, dependent: :destroy
+  has_many :program_favorites, dependent: :destroy
+
+  def favorited_by?(member)
+    favorites.where(member_id: member.id).exists?
+  end
 
   validates :title, presence: true
   validates :second_title, presence: true
