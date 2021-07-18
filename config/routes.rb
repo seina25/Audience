@@ -24,9 +24,6 @@ Rails.application.routes.draw do
     resources :programs, only: [:index, :show] do
       resource :program_favorite, only: [:create, :destroy]
     end
-    resources :casts, only: [:show] do
-      resource :cast_favorite, only: [:create, :destroy]
-    end
     resources :reviews, only: [:show, :create, :edit, :update, :destroy]
     get 'search' => 'searches#search', as: :search
     resources :contacts, only: [:new, :index]
@@ -50,7 +47,6 @@ Rails.application.routes.draw do
     get 'analysis' => 'homes#analysis', as: :analysis
     get 'programs/scrape' => 'programs#scrape', as: :scrape
     resources :programs, only: [:index, :new, :create, :edit, :update, :show]
-    resources :casts, only: [:index, :new, :create, :show, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
     get 'search' => 'searches#search', as: :search
   end
