@@ -1,2 +1,14 @@
-<h1>member#unsubscribe</h1>
-<p>退会確認画面</p>
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div>
+      <h2>本当に退会しますか？</h2>
+      <div>
+        <p>退会する場合は、『退会する』をクリックしてください。</p>
+      </div>
+      <div>
+        <%= link_to '退会しない', my_page_path(@member) %>
+        <%= link_to "退会する", withdraw_path(@member), method: :patch %>
+      </div>
+    </div>
+  </div>
+</div>

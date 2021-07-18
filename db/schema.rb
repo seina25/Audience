@@ -69,11 +69,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.string "profile_image_id"
     t.string "prefecture"
     t.string "line_id"
-    t.datetime "deleted_at"
+    t.boolean "is_valid", default: true, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
-    t.index ["kana_sei", "kana_mei"], name: "index_members_on_kana_sei_and_kana_mei"
-    t.index ["last_name", "first_name"], name: "index_members_on_last_name_and_first_name"
-    t.index ["nickname", "prefecture", "deleted_at"], name: "index_members_on_nickname_and_prefecture_and_deleted_at"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 

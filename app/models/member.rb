@@ -17,8 +17,13 @@ class Member < ApplicationRecord
   validates :gender, presence: true
   validates :prefecture, presence: true
   #validates :line_id, uniqueness: true
-  # validates :deleted_at, presence: true
 
   enum gender: { man: 0, woman: 1, other: 2 }
   attachment :profile_image
+  
+  # 退会機能（退会済みnユーザのログイン阻止）
+  def active_for_authentication?
+    super && (self.is_valid == false)
+  end
+
 end

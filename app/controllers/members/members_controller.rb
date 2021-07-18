@@ -15,11 +15,16 @@ class Members::MembersController < ApplicationController
       render :edit
     end
   end
-
+  
   def unsubscribe
+    @member = current_member
   end
 
   def withdraw
+    @member = current_member
+    @member.update(is_valid: false)
+    reset_session
+    redirect_to root_path
   end
 
   def line

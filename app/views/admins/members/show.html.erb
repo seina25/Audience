@@ -17,7 +17,14 @@
           <tr>
           <tr>
             <th>ステータス</th>
-            <th><%#= member.deleted_at %></th>
+            <th>
+              <% if member.is_valid == false %>
+                <div class="text-success align-middle">有効</div>
+              <% else %>
+                <div class="text-secondary aline-middle">退会</div>
+              <% end %>
+            </td>
+            </th>
           </tr>
           <tr>
             <th>氏名</th>
