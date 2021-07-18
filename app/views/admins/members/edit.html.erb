@@ -1,11 +1,11 @@
 <div class="container m-5">
   <div class="row justify-content-center">
     <div class="col-2">
-      <%= link_to "会員詳細へ戻る", admins_member_path(@member), class: "btn btn-info" %>
+      <%= link_to "会員詳細へ戻る", admins_member_path(@member), method: :put, class: "btn btn-info" %>
     </div>
     <div class="col-10 mx-auto">
       <h4> 会員情報更新 </h4>
-      <%= form_with model: @member, url:edit_admins_member_path, local: true, method: :put do |f| %>
+      <%= form_with model: @member, local: true, method: :put do |f| %>
       <%#= form_with model: current_member, url:member_path, local: true, method: :put do |f| %>
       <div class="form-group row">
         <div class="col-md-3">
@@ -91,6 +91,17 @@
         </div>
         <div class="col-md-7">
           <%= f.text_field :prefecture, autofocus: true, autocomplete: "prefecture", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div>
+          <%= f.radio_button :is_valid, true %>
+          <%= f.label :is_valid, '退会済み', value: true, class: "form-group-label" %>
+        </div>
+        <div>
+          <%= f.radio_button :is_valid, false %>
+          <%= f.label :is_valid, '有効', value: false, class: "form-group-label" %>
         </div>
       </div>
 

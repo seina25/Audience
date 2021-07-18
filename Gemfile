@@ -77,8 +77,6 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'selenium-webdriver'
 gem 'activerecord-import'
 
-gem 'paranoia'
-
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

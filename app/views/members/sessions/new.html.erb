@@ -2,6 +2,7 @@
   <div class="row mt-4">
     <div class="col-8 mx-auto">
       <%= flash[:notice] %>
+      <%= flash[:error] %>
       <h2>会員様ログイン</h2>
       <%= form_with model: @member, url: session_path(resource_name), local: true do |f| %>
 
