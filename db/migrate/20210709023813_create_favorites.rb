@@ -1,6 +1,6 @@
-class CreateProgramFavorites < ActiveRecord::Migration[5.2]
+class CreateFavorites < ActiveRecord::Migration[5.2]
   def change
-    create_table :program_favorites do |t|
+    create_table :favorites do |t|
 
       t.timestamps
 

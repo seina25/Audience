@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.index ["member_id"], name: "index_contacts_on_member_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "member_id"
+    t.bigint "program_id"
+    t.index ["member_id"], name: "index_favorites_on_member_id"
+    t.index ["program_id"], name: "index_favorites_on_program_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,15 +62,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.boolean "is_valid", default: true, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
-  end
-
-  create_table "program_favorites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "member_id"
-    t.bigint "program_id"
-    t.index ["member_id"], name: "index_program_favorites_on_member_id"
-    t.index ["program_id"], name: "index_program_favorites_on_program_id"
   end
 
   create_table "programs", force: :cascade do |t|

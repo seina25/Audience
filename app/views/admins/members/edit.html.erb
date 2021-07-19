@@ -6,7 +6,7 @@
     <div class="col-10 mx-auto">
       <h4> 会員情報更新 </h4>
       <%= form_with model: @member, local: true, method: :put do |f| %>
-      <%#= form_with model: current_member, url:member_path, local: true, method: :put do |f| %>
+      <%#= form_with model: @member, url: admins_member_path, local: true, method: :put do |f| %>
       <div class="form-group row">
         <div class="col-md-3">
           <%= f.label  "氏名（姓・名）", class: "col-from-label" %>

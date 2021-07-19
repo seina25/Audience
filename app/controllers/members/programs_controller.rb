@@ -8,7 +8,6 @@ class Members::ProgramsController < ApplicationController
   def show
     @time = Time.zone.now
     @program = Program.where(id: params[:id])
-    @member = current_member
   end
 
   private
