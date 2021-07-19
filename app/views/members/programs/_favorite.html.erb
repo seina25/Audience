@@ -1,12 +1,12 @@
 <% if program.favorited_by?(member) %>
 <p>
-  <%= link_to program_favorite_path(program), method: :delete do %>
+  <%= link_to program_favorite_path(program), method: :delete, remote: true do %>
     <%= program.favorites.count %> 💖
   <% end %>
 </p>
 <% else %>
 <p>
-  <%= link_to program_favorite_path(program), method: :post do %>
+  <%= link_to program_favorite_path(program), method: :post, remote: true do %>
     <%= program.favorites.count %> 🖤
   <% end %>
   </p>
