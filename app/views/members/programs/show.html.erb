@@ -4,23 +4,10 @@
       <h4 class="">番組詳細</h4>
       <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
       <div id="programs_area">
-        <%= render partial: 'layouts/information', locals: { programs: @program } %>
+        <%= render partial: 'layouts/information', locals: { program: @program } %>
       </div>
       <div>
-        <%#= render partial: 'members/programs/favorite', locals: { program: @program, member: @member, favarite: @favorite } %>
-        <% if @program.favorited_by? %>
-        <p>
-          <%= link_to program_favorite_path(@program), method: :delete do %>
-            <%= @program.favorites.count %> 💖
-          <% end %>
-        </p>
-        <% else %>
-        <p>
-          <%= link_to program_favorite_path(@program), method: :post do %>
-            <%= @program.favorites.count %> 🖤
-          <% end %>
-        </p>
-        <% end %>
+        <%= render partial: 'members/programs/favorite', locals: { program: @program, member: @member } %>
       </div>
       <%= link_to "Back", programs_path, class: "btn btn-sm btn-danger" %>
     </div>

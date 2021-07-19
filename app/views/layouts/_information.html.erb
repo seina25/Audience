@@ -1,5 +1,4 @@
 <!--<div id="program-list" style="display:none;">-->
-<% programs.each do |program| %><br>
 <h5><%= program.title %>の概要</h5>
 <table class="table program">
   <tr>
@@ -40,5 +39,4 @@
     <th><%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %> 〜 <%= program.end_datetime.strftime("%-H:%M") %></th>
   </tr>
 </table><br><br>
-<% end %>
 <!--</div>-->

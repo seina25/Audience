@@ -1,14 +1,13 @@
-<%# binding.pry %>
-<% if @member.already_fovorited?(@program)  %>
+<% if program.favorited_by?(member) %>
 <p>
-  <%= link_to program_favorite_path(@program), method: :delete do %>
-    <%= @program.favorites.count %> 💖
+  <%= link_to program_favorite_path(program), method: :delete do %>
+    <%= program.favorites.count %> 💖
   <% end %>
 </p>
 <% else %>
 <p>
-  <%= link_to program_favorite_path(@program), method: :post do %>
-    <%= @program.favorites.count %> 🖤
+  <%= link_to program_favorite_path(program), method: :post do %>
+    <%= program.favorites.count %> 🖤
   <% end %>
-</p>
+  </p>
 <% end %>

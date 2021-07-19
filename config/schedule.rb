@@ -32,11 +32,12 @@ rails_env = Rails.env.to_sym
 # 出力先のログファイルの指定（エラー内容）
 set :output, '#{Rails.root}log/crontab.log'
 
-# ジョブの実行環境の指定
-# 開発環境
-set :environment, ENV['RAILS_ENV'] or set :environment, rails_env or set :environment, :development
+# ジョブの実行環境の指定（環境で切り替える）
+# 開発環境(本番環境行ったらOFFにする)
+set :environment, rails_env
+
 # 本番環境
-set :environment, :production
+# set :environment, :production
 
 # =======================================================
 
