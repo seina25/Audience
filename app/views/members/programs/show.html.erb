@@ -8,7 +8,6 @@
       </div>
       <div>
         <%#= render partial: 'members/programs/favorite', locals: { program: @program, member: @member, favarite: @favorite } %>
-        <% binding.pry %>
         <% if @program.favorited_by? %>
         <p>
           <%= link_to program_favorite_path(@program), method: :delete do %>
