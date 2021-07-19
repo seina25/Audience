@@ -6,6 +6,9 @@
       <div id="programs_area">
         <%= render partial: 'layouts/information', locals: { programs: @program } %>
       </div>
+      <div>
+        <%= render partial: 'members/programs/favorite', locals: { program: @program } %>
+      </div>
       <%= link_to "Back", programs_path, class: "btn btn-sm btn-danger" %>
     </div>
     <div class="col-3">
