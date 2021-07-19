@@ -21,7 +21,7 @@ class Admins::ProgramsController < ApplicationController
 
   def show
     @time = Time.zone.now
-    @program = Program.where(id: params[:id])
+    @program = Program.find([:id])
   end
 
   def edit

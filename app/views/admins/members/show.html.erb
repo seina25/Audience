@@ -19,10 +19,10 @@
             <th>ステータス</th>
             <th>
               <!--trueなら有効、falseなら退会-->
-              <% if member.is_valid == false %>
-                <div class="text-success align-middle">退会</div>
+              <% if member.is_valid == '有効' %>
+                <div class="text-success align-middle">有効</div>
               <% else %>
-                <div class="text-secondary aline-middle">有効</div>
+                <div class="text-secondary aline-middle">退会済</div>
               <% end %>
             </td>
             </th>

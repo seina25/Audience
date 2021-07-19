@@ -15,7 +15,7 @@ class Admins::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to admins_members_path # snotice: '会員情報を更新しました。'
+      redirect_to admins_member_path(@member), notice: '会員情報を更新しました'
     else
       render :edit
     end
