@@ -9,7 +9,7 @@
       <h4 class="">番組詳細</h4>
       <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
       <div id="programs_area">
-        <%= render partial: 'admins/programs/information', locals: { programs: @program } %>
+        <%= render partial: 'layouts/information', locals: { programs: @program } %>
       </div>
       <%= link_to "Back", admins_programs_path, class: "btn btn-sm btn-danger" %>
     </div>
