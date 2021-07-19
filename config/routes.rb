@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'analysis' => 'homes#analysis', as: :analysis
     get 'programs/scrape' => 'programs#scrape', as: :scrape
-    resources :programs, only: [:index, :new, :create, :edit, :update, :show]
+    resources :programs, only: [:index, :new, :create, :edit, :update, :show, :destroy]
     resources :members, only: [:index, :show, :edit, :update]
     get 'search' => 'searches#search', as: :search
   end

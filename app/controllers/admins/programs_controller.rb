@@ -21,13 +21,23 @@ class Admins::ProgramsController < ApplicationController
 
   def show
     @time = Time.zone.now
-    @program = Program.find([:id])
+    @program = Program.find(params[:id])
   end
 
   def edit
+    @program = Program.find(params[:id])
   end
 
   def update
+    @program = Program.find(params[:id])
+    @program.update(program_params)
+    redirect_to admins_program_path(@program)
+  end
+
+  def destroy
+    @program = Program.find(params[:id])
+    @program.destroy
+    redirect_to admins_programs_path
   end
 
 
