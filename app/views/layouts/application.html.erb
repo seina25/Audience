@@ -26,8 +26,8 @@
             <li><%= link_to "ログイン", new_member_session_path %></li>
             <li><%= link_to "トップ", root_path %></li>
             <li><%= link_to "アバウト", about_path %></li>
-            <li><%= link_to "仮program index", admins_programs_path %></li>
-            <li><%= link_to "仮番組取得画面", admins_scrape_path %></li>
+            <li><%= link_to "(仮)会員側の番組一覧", programs_path, class: 'btn btn-secondary' %></li>
+            <li><%= link_to "(仮)番組取得ボタン", admins_scrape_path, class: 'btn btn-warning' %></li>
           <% end %>
         </ul>
       </nav>

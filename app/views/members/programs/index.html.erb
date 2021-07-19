@@ -1,2 +1,47 @@
-<h1>Members::Programs#index</h1>
-<p>Find me in app/views/members/programs/index.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-9">
+      <h4>番組一覧</h4>
+      <p>😲<%= @time.strftime("%-H:%M") %>の情報です</p>
+      <table class="table program">
+        <thead>
+          <tr>
+            <th>放送状況</th>
+            <th>番組名</th>
+            <th>放送局</th>
+            <th>放送日時</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @programs.each do |program| %>
+          <tr>
+            <th>
+              <% if Time.zone.now <= program.start_datetime %>
+                <%= "放送予定" %>
+              <% elsif Time.zone.now.between?(program.start_datetime, program.end_datetime) %>
+              　<%= "放送中" %>
+              <% elsif program.end_datetime <= Time.zone.now %>
+              　<%= "放送終了" %>
+              <% end %>
+            </th>
+            <th>
+              <%= link_to program.title, program_path(program) %>
+            </th>
+            <th>
+              <%= program.channel %>
+            </th>
+            <th>
+              <% weeks = ["月","火","水","木","金","土","日"] %>
+              <% index = program.start_datetime.strftime("%u").to_i %>
+              <%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %>
+            </th>
+          </tr>
+          <% end %>
+        </tboby>
+      </table>
+      <%= paginate @programs %>
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>

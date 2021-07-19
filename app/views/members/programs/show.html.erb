@@ -1,1 +1,14 @@
-
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-9">
+      <h4 class="">番組詳細</h4>
+      <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
+      <div id="programs_area">
+        <%= render partial: 'layouts/information', locals: { programs: @program } %>
+      </div>
+      <%= link_to "Back", programs_path, class: "btn btn-sm btn-danger" %>
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>
