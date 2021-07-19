@@ -7,7 +7,21 @@
         <%= render partial: 'layouts/information', locals: { programs: @program } %>
       </div>
       <div>
-        <%= render partial: 'members/programs/favorite', locals: { program: @program } %>
+        <%#= render partial: 'members/programs/favorite', locals: { program: @program, member: @member, favarite: @favorite } %>
+        <% binding.pry %>
+        <% if @program.favorited_by? %>
+        <p>
+          <%= link_to program_favorite_path(@program), method: :delete do %>
+            <%= @program.favorites.count %> 💖
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to program_favorite_path(@program), method: :post do %>
+            <%= @program.favorites.count %> 🖤
+          <% end %>
+        </p>
+        <% end %>
       </div>
       <%= link_to "Back", programs_path, class: "btn btn-sm btn-danger" %>
     </div>

@@ -1,4 +1,4 @@
-class Members::ProgramFavoritesController < ApplicationController
+class Members::FavoritesController < ApplicationController
   def create
     @program = Program.where(id: params[:id])
     @favorite = current_member.favorites.new(program_id: program.id)
@@ -8,7 +8,7 @@ class Members::ProgramFavoritesController < ApplicationController
 
   def destroy
     @program = Program.where(id: params[:id])
-    @favorite = current_member.favorite.find_by(program_id: program.id)
+    @favorite = current_member.favorites.find_by(program_id: program.id)
     @favorite.destroy
     redirect_back(fallback_location: root_path)
   end

@@ -4,9 +4,9 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :program_favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :contacts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :last_name, presence: true, length: { in: 1..10 }
   validates :first_name, presence: true, length: { in: 1..10 }
@@ -17,12 +17,14 @@ class Member < ApplicationRecord
   validates :prefecture, presence: true
   #validates :line_id, uniqueness: true
 
+
   enum gender: { man: 0, woman: 1, other: 2 }
-  attachment :profile_image
-  
-  # 退会機能（退会済みnユーザのログイン阻止）
+
+  # ユーザの退会フラグ：is_validが有効であればtrueを返す
+  enum is_valid: { '有効': true, '退会済': false }
   def active_for_authentication?
-    super && (self.is_valid == false)
+    super && self.is_valid == '有効'
   end
 
+  attachment :profile_image
 end

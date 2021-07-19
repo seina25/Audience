@@ -17,6 +17,8 @@
           <% if member_signed_in? %>
             <li>ユーザー</li>
             <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+            <li><%= link_to "(仮)会員側の番組一覧", programs_path, class: 'btn btn-secondary' %></li>
+            <li><%= link_to "マイページ", my_page_path, class: 'btn btn-warning' %></li>
           <% elsif admin_signed_in? %>
             <li>管理者</li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
@@ -28,6 +30,7 @@
             <li><%= link_to "アバウト", about_path %></li>
             <li><%= link_to "(仮)会員側の番組一覧", programs_path, class: 'btn btn-secondary' %></li>
             <li><%= link_to "(仮)番組取得ボタン", admins_scrape_path, class: 'btn btn-warning' %></li>
+            <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
           <% end %>
         </ul>
       </nav>

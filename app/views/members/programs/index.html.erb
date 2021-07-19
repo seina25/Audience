@@ -35,6 +35,10 @@
               <% index = program.start_datetime.strftime("%u").to_i %>
               <%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %>
             </th>
+            <th>👍</th>
+            <th>
+              <%#= render partial: 'members/programs/favorite', locals: { program: @program } %>
+            </th>
           </tr>
           <% end %>
         </tboby>

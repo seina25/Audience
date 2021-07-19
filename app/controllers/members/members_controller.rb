@@ -15,13 +15,13 @@ class Members::MembersController < ApplicationController
       render :edit
     end
   end
-  
+
   def unsubscribe
-    @member = current_member
+    @member = Member.find_by(email: params[:email])
   end
 
   def withdraw
-    @member = current_member
+    @member = Member.find_by(email: params[:email])
     @member.update(is_valid: false)
     reset_session
     redirect_to root_path
