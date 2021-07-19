@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     # ↓url直打ちでルートエラーになる（postをgetに変更した解消される状態）
     post 'line_events/about' => 'line_events#about'
     resources :programs, only: [:index, :show] do
-      resource :program_favorite, only: [:create, :destroy]
+      resource :favorite, only: [:create, :destroy]
     end
     resources :reviews, only: [:show, :create, :edit, :update, :destroy]
     get 'search' => 'searches#search', as: :search
