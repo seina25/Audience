@@ -1,2 +1,93 @@
-<h1>Admins::Programs#edit</h1>
-<p>Find me in app/views/admins/programs/edit.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row justify-content-center">
+    <div class="col-3">
+    </div>
+    <div class="col-9">
+    <h5><%= @program.title %>の情報編集</h5>
+      <%= form_with model: @program, url:admins_program_path(@program), local: true, method: :put do |f| %>
+
+      　<div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "番組名", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :title, autofocus: true, autocomplete: "title", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "サブタイトル", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :second_title, autofocus: true, autocomplete: "second_title", class: "form-control" %>
+          </div>
+      　</div>
+
+      　<div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "放送カテゴリー", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :category, autofocus: true, autocomplete: "category", class: "form-control" %>
+          </div>
+      　</div>
+
+      　<div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "出演者情報", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :cast, autofocus: true, autocomplete: "cast", class: "form-control" %>
+          </div>
+      　</div>
+
+      　<div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "放送局", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :channel, autofocus: true, autocomplete: "channel", class: "form-control" %>
+          </div>
+      　</div>
+
+      　<div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "放送日時(開始)", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.datetime_field :start_datetime, autofocus: true, autocomplete: "start_datetime", class: "form-control" %>
+          </div>
+      　</div>
+
+      　<div class="form-group row">
+          <div class="col-md-3 d-flex align-items-center">
+            <%= f.label "放送日時(終了)", class: "form-group-label" %>
+          </div>
+          <div class="col-md-7">
+            <%= f.datetime_field :end_datetime, autofocus: true, autocomplete: "end_datetime", class: "form-control" %>
+          </div>
+      　</div>
+
+      　<div class="form-group row">
+        <div class="col-md-3 d-flex align-items-center">
+          <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
+          <%= f.label "イメージ画像", class: "form-group-label" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.attachment_field :program_image, placeholder: "イメージ画像" %>
+        </div>
+      </div>
+
+      　<div class="form-group-row">
+          <div class="col-10 text-right">
+          <%= f.submit "更新する", class: "btn btn-info" %>
+          </div>
+        </div>
+
+      <% end %>
+
+      <%= link_to "Back", admins_programs_path, class: "btn btn-sm btn-danger" %>
+    </div>
+  </div>
+</div>
