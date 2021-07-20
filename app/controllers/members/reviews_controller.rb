@@ -1,11 +1,11 @@
 class Members::ReviewsController < ApplicationController
 
   def create
-    program = Program.find(params[:program_id])
-    comment = current_member.reviews.new(review_params)
-    comment.program_id = program.id
-    comment.save
-    redirect_to program_path(program)
+    @program = Program.find(params[:program_id])
+    @comment = current_member.reviews.new(review_params)
+    @comment.program_id = @program.id
+    @comment.save
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -20,7 +20,7 @@ class Members::ReviewsController < ApplicationController
 
   def destroy
     Review.find_by(id: params[:id], program_id: params[:program_id]).destroy
-    redirect_to program_path(params[:program_id])
+    redirect_back(fallback_location: root_path)
   end
 
   private
