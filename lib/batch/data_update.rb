@@ -1,11 +1,12 @@
 class Batch::DataUpdate
 require 'selenium-webdriver'
 
-module ProgramScrapesConcern
-extend ActiveSupport::Concern
+# module ProgramScrapesConcern
+# extend ActiveSupport::Concern
 
 
-  def set_scrape
+  def self.today_scrape(
+)
     @wait_time = 3
     @timeout = 5
 
@@ -30,7 +31,7 @@ extend ActiveSupport::Concern
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(20).each do |url|
+    @urls.first(2).each do |url|
     driver.navigate.to(url)
 
     sleep(rand(5))
@@ -123,13 +124,74 @@ extend ActiveSupport::Concern
     @programs.each do |program|
       @program = Program.find_or_initialize_by(channel: program[:channel], start_datetime: program[:start_datetime] )
       if @program.new_record?
-      Program.create(program)
+        puts "new record" + @program[:title]
+        Program.create(program)
       else
-      @program.update_columns(program)
+        puts "update record" + @program[:title]
+        @program.update_columns(program)
+      end
+      STDOUT.flush
+    end
+    # ARGVで指定された日付後の番組を検索する
+    ARGV.each do | argv |
+      search_date =  (Date.today + argv.to_i).strftime('%Y-%m-%d')
+      puts "search:" + search_date
+
+      options = Selenium::WebDriver::Chrome::Options.new
+      options.add_argument('--headless')
+      driver = Selenium::WebDriver.for :chrome, options: options
+      driver.manage.timeouts.implicit_wait = @timeout
+  
+      # 警告：割り当てられているが未使用の変数 -wait
+      wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
+      # １週間分
+      driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date.strftime('%Y-%m-%d') + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")
+      # 数値じゃなくなってるので数値だけ取り出してください。
+      sum = driver.find_element(:class, 'searchResultHeaderSumBox').text
+      title = driver.find_element(:class, "programRatingContentTitle").text
+
+      elements = driver.find_elements(:class, 'programListItemTitleLink')
+      @urls = elements.map { |element| element.attribute('href') }
+      @urls.first(11).each do |url|
+        driver.navigate.to(url)
+      # 番組データを取得
+        begin
+          title = driver.find_element(:class, "programRatingContentTitle").text
+        rescue Selenium::WebDriver::Error::NoSuchElementError
+          title = ""
+        end
+        # 登録
+      end
+
+
+      # ページ数分ループ
+      (1..((sum/10)+1)).each do |page|
+        options = Selenium::WebDriver::Chrome::Options.new
+        options.add_argument('--headless')
+        driver = Selenium::WebDriver.for :chrome, options: options
+        driver.manage.timeouts.implicit_wait = @timeout
+    
+        # 警告：割り当てられているが未使用の変数 -wait
+        wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
+        driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date.strftime('%Y-%m-%d') + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=" + page.to_s + "0")
+          
+        elements = driver.find_elements(:class, 'programListItemTitleLink')
+        @urls = elements.map { |element| element.attribute('href') }
+        @urls.first(11).each do |url|
+          driver.navigate.to(url)
+        # 番組データを取得
+          begin
+            title = driver.find_element(:class, "programRatingContentTitle").text
+          rescue Selenium::WebDriver::Error::NoSuchElementError
+            title = ""
+          end
+          # 登録
+        end
+
       end
     end
 
   end
 
-end
+# end
 end

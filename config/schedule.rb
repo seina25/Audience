@@ -48,7 +48,7 @@ set :environment, rails_env
 # ５分毎に（２件）実行するスケジューリング
 every 5.minute do
   begin
-    runner 'Batch::DataUpdate.set_scrape'
+    runner 'Batch::DataUpdate.today_scrape 3 7'
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e

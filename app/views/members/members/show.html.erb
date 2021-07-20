@@ -21,7 +21,7 @@
       <section id="myfav-program">
         <div class="col-8 mx-auto">
         <h3>お気に入り番組情報</h3>
-        <%= current_member.fav_programs.each do |program| %>
+        <% current_member.fav_programs.each do |program| %>
         <div class="row ml-5">
           <div class="col-8">
             <%= link_to program_path(program) do %>
