@@ -1,0 +1,38 @@
+<div class="new-review">
+<%= form_with(model:[program, review], remote: true) do |f| %>
+
+<!-- 星評価 -->
+  <div class="form-group row" id="star">
+    <%= f.label :score,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :score, id: :review_star %>
+  </div>
+
+  <!-- 星評価javascript -->
+  <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('review_star/star-off.png') %>',
+    starOn : '<%= asset_path('review_star/star-on.png') %>',
+    starHalf: '<%= asset_path('review_star/star-half.png') %>',
+    scoreName: 'review[score]',
+    half: true,
+  });
+  </script>
+
+  <!-- 口コミ -->
+  <div class="form-group row">
+    <%= f.label :content, 'レビュー内容', class:'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= f.text_area :comment,  class: "form-control", rows: '8', placeholder: "レビューを書いてください！投稿後編集もできます！" %>
+    </div>
+  </div>
+
+  <!-- 確認ボタン -->
+  <div class="form-group row justify-content-end">
+    <div class="col-md-9">
+      <%= f.submit '投稿する', class:"btn btn-success" %>
+    </div>
+  </div>
+
+<% end %>
+</div>
