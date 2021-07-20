@@ -11,6 +11,7 @@ class Members::ProgramsController < ApplicationController
     @program = Program.find(params[:id])
     @member = current_member
     @review = Review.new
+    @reviews = @program.review.order(created_at: :desc)
   end
 
   private

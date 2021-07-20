@@ -11,9 +11,11 @@
       <div id="favorite_buttons_<%= @program.id %>">
         <%= render partial: 'members/favorites/favorite', locals: { program: @program, member: @member } %>
       </div>
-      
+
       <!--レビュー一覧-->
-      <%= render partial: 'members/reviews/show_review', locals: { program: @program, member: @member } %>
+      <div id="comments_area">
+        <%= render partial: 'members/reviews/show_review', locals: { program: @program, member: @member, reviews: @reviews } %>
+      </div>
       <!--レビュー新規投稿-->
       <%= render partial: 'members/reviews/new_review', locals: { program: @program, review: @review } %>
 
