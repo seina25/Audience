@@ -13,6 +13,9 @@ module Audience
     # batch処理の読み込み設定
     config.paths.add 'lib', eager_load: true
 
+    config.autoload_paths += Dir["#{config.root}/lib"]
+    config.eager_load_paths += Dir["#{config.root}/lib/batch/"]
+
     # タイムゾーンを'東京'へ変更
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local

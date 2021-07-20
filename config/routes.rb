@@ -23,8 +23,8 @@ Rails.application.routes.draw do
     post 'line_events/about' => 'line_events#about'
     resources :programs, only: [:index, :show] do
       resource :favorite, only: [:create, :destroy]
+      resources :reviews, only: [:create, :edit, :update, :destroy]
     end
-    resources :reviews, only: [:show, :create, :edit, :update, :destroy]
     get 'search' => 'searches#search', as: :search
     resources :contacts, only: [:new, :index]
     # ↓url直打ちでルートエラーになる（postをgetに変更した解消される状態）
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'analysis' => 'homes#analysis', as: :analysis
     get 'programs/scrape' => 'programs#scrape', as: :scrape
-    resources :programs, only: [:index, :new, :create, :edit, :update, :show]
+    resources :programs, only: [:index, :new, :create, :edit, :update, :show, :destroy]
     resources :members, only: [:index, :show, :edit, :update]
     get 'search' => 'searches#search', as: :search
   end

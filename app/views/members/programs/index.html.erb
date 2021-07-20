@@ -6,10 +6,12 @@
       <table class="table program">
         <thead>
           <tr>
-            <th>放送状況</th>
-            <th>番組名</th>
-            <th>放送局</th>
-            <th>放送日時</th>
+            <th class="col-2">放送状況</th>
+            <th class="col-3">番組名</th>
+            <th class="col-2">放送局</th>
+            <th class="col-3">放送日時</th>
+            <th class="col-1">👍</th>
+            <th class="col-1">レビュー</th>
           </tr>
         </thead>
         <tbody>
@@ -35,9 +37,11 @@
               <% index = program.start_datetime.strftime("%u").to_i %>
               <%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %>
             </th>
-            <th>👍</th>
             <th>
-              <%#= render partial: 'members/programs/favorite', locals: { program: @program } %>
+              <%= render partial: 'members/favorites/favorite', locals: { program: program, member: @member } %>
+            </th>
+            <th>
+              <%= program.review.count %>
             </th>
           </tr>
           <% end %>
