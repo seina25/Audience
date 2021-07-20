@@ -39,10 +39,26 @@
       </section>
 
 
-      <section id="myreview"></section>
-      <section id="mycontact"></section>
-      <section id="myline"></section>
-      <section id="mypage-edit"></section>
+      <section id="myreview">
+        <div class="col-8 mx-auto">
+          <h3>口コミ一覧</h3>
+          <% @reviews.each do |review| %>
+            <div class="row ml-5">
+              <div class="col-8">
+                <%= link_to program_path(review.program) do %>
+                  <%= review.program.title %>
+                <% end %>
+              </div>
+              <div class="col-3">
+                <%= review.comment %>
+              </div>
+              <div class="col-1">
+                |  <%= review.score %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </section>
     </div>
   </div>
 </div>

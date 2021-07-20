@@ -2,6 +2,7 @@ class Members::MembersController < ApplicationController
   def show
     @member = current_member
     @favorites = Favorite.where(member_id: @member.id)
+    @reviews = @member.reviews.all
   end
 
   def edit
