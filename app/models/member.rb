@@ -7,6 +7,7 @@ class Member < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :fav_programs, through: :favorites, source: :program
 
   validates :last_name, presence: true, length: { in: 1..10 }
   validates :first_name, presence: true, length: { in: 1..10 }
