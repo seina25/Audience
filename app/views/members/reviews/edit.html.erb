@@ -1,5 +1,5 @@
 <div class="edit-review">
-<%= form_with url: program_review_path(@comment), local: true, method: :put do |f| %>
+<%= form_with model: @review, url: program_review_path(id: @review.id, program_id: @review.program_id), local: true, method: :put do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "感想をここに" %>
   <%= f.submit "更新する" %>
 <% end %>

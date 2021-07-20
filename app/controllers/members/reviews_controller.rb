@@ -9,13 +9,13 @@ class Members::ReviewsController < ApplicationController
   end
 
   def edit
-    @comment = Review.find_by(id: params[:id], program_id: params[:program_id])
+    @review = Review.find_by(id: params[:id], program_id: params[:program_id])
   end
 
   def update
-    @comment = Review.find_by(id: params[:id], program_id: params[:program_id])
-    @comment.update(review_params)
-    redirect_to program_path(program)
+    @review = Review.find_by(id: params[:id], program_id: params[:program_id])
+    @review.update(review_params)
+    redirect_to program_path(params[:program_id])
   end
 
   def destroy

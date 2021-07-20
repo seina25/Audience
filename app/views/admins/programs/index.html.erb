@@ -16,6 +16,7 @@
             <th>番組名</th>
             <th>放送局</th>
             <th>放送日時</th>
+            <th>最終更新</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,10 @@
               <% weeks = ["月","火","水","木","金","土","日"] %>
               <% index = program.start_datetime.strftime("%u").to_i %>
               <%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %>
+            </th>
+            <th>
+              <p><%= program.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <p><%= time_ago_in_words(program.created_at) %>前</p>
             </th>
           </tr>
           <% end %>

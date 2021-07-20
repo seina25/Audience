@@ -182,6 +182,17 @@ extend ActiveSupport::Concern
     sum = driver.find_element(:class, 'searchResultHeaderSumBox').text
     p sum
 
+    # 地上波・30分以上のデータを取得
+    (Date.today..(Date.today+7)).each do |date|
+      # １週間分
+      driver.get("https://tv.yahoo.co.jp/search?t=3&g=&d=" + date.strftime('%Y-%m-%d') + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")
+      sum = driver.find_element(:class, 'searchResultHeaderSumBox').text
+      # ページ数分ループ
+      (1..((sum/10)+1)).each do |page|
+        driver.get("https://tv.yahoo.co.jp/search?t=3&g=&d=" + date.strftime('%Y-%m-%d') + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=" + page.to_s + "0")
+      end
+      
+    end
 
     # タイトルからurl一件ずつ取得
     2.times  do
