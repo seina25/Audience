@@ -1,2 +1,6 @@
-<h1>Members::Reviews#edit</h1>
-<p>Find me in app/views/members/reviews/edit.html.erb</p>
+<div class="edit-review">
+<%= form_with url: program_review_path(@comment), local: true, method: :put do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "感想をここに" %>
+  <%= f.submit "更新する" %>
+<% end %>
+</div>

@@ -6,9 +6,9 @@ class Admins::ProgramsController < ApplicationController
 
   def scrape
     @time = Time.zone.now
-    set_scrape
+    today_scrape
+    # weekend_scrape
     redirect_to admins_programs_path
-    # @program = Program.find(program_params)
   end
 
   def new
