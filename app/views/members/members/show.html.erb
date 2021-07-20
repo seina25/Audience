@@ -17,8 +17,28 @@
           <%= link_to "退会画面", unsubscribe_path, class: "mymenu-box-item" %>
         </div>
       </section>
-      <section id="myfav-program"></section>
-      <section id="myfav-cast"></section>
+
+      <section id="myfav-program">
+        <div class="col-8 mx-auto">
+        <h3>お気に入り番組情報</h3>
+        <%= current_member.fav_programs.each do |program| %>
+        <div class="row ml-5">
+          <div class="col-8">
+            <%= link_to program_path(program) do %>
+              <%= program[:title] %>
+            <% end %>
+          </div>
+          <div class="col-4">
+            <% weeks = ["月","火","水","木","金","土","日"] %>
+            <% index = program.start_datetime.strftime("%u").to_i %>
+            <%= program[:start_datetime].strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %>
+          </div>
+        </div>
+        <% end %>
+        </div>
+      </section>
+
+
       <section id="myreview"></section>
       <section id="mycontact"></section>
       <section id="myline"></section>
