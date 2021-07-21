@@ -50,6 +50,7 @@
       <%= paginate @programs %>
     </div>
     <div class="col-3">
+      <%= render partial: 'members/programs/search_form', locals: { program: @program } %>
     </div>
   </div>
 </div>

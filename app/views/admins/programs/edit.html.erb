@@ -71,7 +71,7 @@
 
       　<div class="form-group row">
         <div class="col-md-3 d-flex align-items-center">
-          <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
+          <%= attachment_image_tag @program, :program_image %>
           <%= f.label "イメージ画像", class: "form-group-label" %>
         </div>
         <div class="col-md-7">

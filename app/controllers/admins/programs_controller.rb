@@ -6,8 +6,8 @@ class Admins::ProgramsController < ApplicationController
 
   def scrape
     @time = Time.zone.now
-    test_scrape
-    # weekend_scrape
+    fivedays_later
+    # threedays_later
     # today_scrape
     redirect_to admins_programs_path
   end
