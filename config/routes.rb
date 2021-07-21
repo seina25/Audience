@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :programs, only: [:index, :show] do
       resource :favorite, only: [:create, :destroy]
       resources :reviews, only: [:create, :edit, :update, :destroy]
+      collection do
+      get 'search'
+      end
     end
     get 'search' => 'searches#search', as: :search
     resources :contacts, only: [:new, :index]

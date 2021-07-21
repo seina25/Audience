@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <h2>検索結果</h2>
+  <div class="row mt-5">
+    <div class="col-2">
+      <h2>menu</h2>
+      <%= link_to '一覧へ戻る', programs_path, class: 'btn btn-danger' %>
+    </div>
+    <div class="col-8">
+      <% if @program = ''.blank?  %>
+        <h2>検索結果はありません</h2>
+      <% else %>
+      <div class = "program-contents">
+        <ul class = "program-list">
+          <% @programs.each do |program| %>
+          <li class= "list">
+            <%= link_to program_path(program) do %>
+            <h3 class='post-title'><%= program.title %></h3><%= program.start_datetime %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-2">
+      <%= render partial: 'members/programs/search_form' %>
+    </div>
+  </div>
+</div>
+
+
