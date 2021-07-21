@@ -46,7 +46,7 @@ set :environment, rails_env
 # テスト用===============================================
 
 # 毎日 am1:30とam3:00のスケジューリング
-every 1.day,  at: ['1:30 am', '3:00 am'] do
+every 30.minute do
   begin
     runner 'Batch::DataUpdate.threedays_later'
   rescue => e
@@ -55,15 +55,15 @@ every 1.day,  at: ['1:30 am', '3:00 am'] do
   end
 end
 
-# 毎日 am2:30とam4:00のスケジューリング
-every 1.day,  at: ['2:30 am', '4:00 am'] do
-  begin
-    runner 'Batch::DataUpdate.fivedays_later'
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
-end
+# # 毎日 am2:30とam4:00のスケジューリング
+# every 1.day,  at: ['2:30 am', '4:00 am'] do
+#   begin
+#     runner 'Batch::DataUpdate.fivedays_later'
+#   rescue => e
+#     Rails.logger.error("aborted rails runner")
+#     raise e
+#   end
+# end
 
 
 

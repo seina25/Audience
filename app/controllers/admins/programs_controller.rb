@@ -1,6 +1,4 @@
 class Admins::ProgramsController < ApplicationController
-  #require 'selenium-webdriver'
-
   include ProgramScrapesConcern
 
 

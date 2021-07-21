@@ -24,7 +24,7 @@
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             <li><%= link_to "番組一覧", admins_programs_path %></li>
             <li><%= link_to "顧客情報", admins_members_path %></li>
-            <li><%= link_to "お問い合わせ一覧", admins_contacts_path %></li>
+            <li><%#= link_to "お問い合わせ一覧", admins_contacts_path %></li>
             <li><%= link_to "統計", admins_analysis_path %></li>
           <% else %>
             <li><h4>ゲストユーザー<h4></li>
@@ -39,7 +39,7 @@
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             <li><%= link_to "管理側番組一覧", admins_programs_path %></li>
             <li><%= link_to "顧客情報", admins_members_path %></li>
-            <li><%= link_to "お問い合わせ一覧", admins_contacts_path %></li>
+            <li><%#= link_to "お問い合わせ一覧", admins_contacts_path %></li>
             <li><%= link_to "統計", admins_analysis_path %></li>
             <li><h4>ユーザメニュー</h4></li>
             <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
