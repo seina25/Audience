@@ -29,9 +29,9 @@ Rails.application.routes.draw do
       end
     end
     get 'search' => 'searches#search', as: :search
-    resources :contacts, only: [:new, :index]
-    # ↓url直打ちでルートエラーになる（postをgetに変更した解消される状態）
+    resources :contacts, only: [:new, :index, :create]
     post 'contacts/confirm' => 'contacts#confirm'
+    post 'contacts/back'=> 'contacts#back'
     # ↓url直打ちでルートエラーになる（postをgetに変更した解消される状態）
     post 'contacts/thanks' => 'contacts#thanks'
   end
@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :programs, only: [:index, :new, :create, :edit, :update, :show, :destroy]
     resources :members, only: [:index, :show, :edit, :update]
     get 'search' => 'searches#search', as: :search
+    resources :contacts, only: [:index, :show]
   end
 
    # ===========================================================================

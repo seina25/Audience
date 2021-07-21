@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row m-4">
+    <div class="col-3">
+    </div>
+    <div class="col-8">
+      <table class="table program">
+        <thead>
+          <tr>
+            <th>受信日</th>
+            <th>会員ID</th>
+            <th>会員名</th>
+            <th>タイトル</th>
+            <th>お問合せ内容</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @members.each do |member| %>
+            <% member.contacts.each do |contact| %>
+              <tr>
+                <th>
+                  <%= contact.created_at.strftime("%Y年%m月%d日 ") %>
+                </th>
+                <th>
+                  <%= contact.member.id %>
+                </th>
+                <th>
+                  <%= contact.member.first_name + contact.member.last_name %>(<%= contact.member.nickname %>) 様
+                </th>
+                <th>
+                  <%= contact.title %>
+                </th>
+                <th>
+                  <%= contact.message %>
+                </th>
+              </tr>
+            <% end %>
+          <% end %>
+        </tboby>
+        <%= paginate @contacts %>
+    </div>
+  </div>
+</div>
