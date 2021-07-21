@@ -2,6 +2,7 @@ class Program < ApplicationRecord
 
   has_many :review, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :line_notices, dependent: :destroy
 
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
