@@ -24,8 +24,7 @@ class Program < ApplicationRecord
   # 番組検索の処理
   def self.search(search)
     if search != ""
-      Program.where(['title LIKE ? OR channnel LIKE ? OR category LIKE ? OR cast LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
-      #適切なオブジェクト名.where(['検索したいカラム名 ? OR 検索したいカラム名 LIKE ? OR 検索したいカラム名 LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
+      Program.where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR cast LIKE ? OR by_weekday LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
       #Review.where('gametitle LIKE ? OR title LIKE ?', "%#{search}%", "%#{search}%")
     else
       Program.all

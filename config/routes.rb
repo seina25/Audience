@@ -32,8 +32,7 @@ Rails.application.routes.draw do
     resources :contacts, only: [:new, :index, :create]
     post 'contacts/confirm' => 'contacts#confirm'
     post 'contacts/back'=> 'contacts#back'
-    # ↓url直打ちでルートエラーになる（postをgetに変更した解消される状態）
-    post 'contacts/thanks' => 'contacts#thanks'
+    get 'contacts/thanks' => 'contacts#thanks'
   end
 
   # ============================================================================

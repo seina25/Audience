@@ -6,7 +6,7 @@
       <%= link_to '一覧へ戻る', programs_path, class: 'btn btn-danger' %>
     </div>
     <div class="col-8">
-      <% if @program = ''.blank?  %>
+      <% if @programs.count == 0 %>
         <h2>検索結果はありません</h2>
       <% else %>
       <div class = "program-contents">

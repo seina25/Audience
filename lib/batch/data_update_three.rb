@@ -1,7 +1,9 @@
 class Batch::DataUpdate
 require 'selenium-webdriver'
 
-  def self.fivedays_later
+
+  #3日後のデータ取得
+  def self.threedays_later
 
     @wait_time = 3
     @timeout = 5
@@ -20,7 +22,7 @@ require 'selenium-webdriver'
     # ARGV.each do | argv |
     #   search_date =  (Date.today + argv.to_i).strftime('%Y-%m-%d')
     #   puts "search:" + search_date
-       search_date =  (Date.today + 5).strftime('%Y-%m-%d')
+       search_date =  (Date.today + 3).strftime('%Y-%m-%d')
 
       # 番組表のページを開く
       driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")
@@ -41,7 +43,7 @@ require 'selenium-webdriver'
         @programs = []
         elements = driver.find_elements(:class, 'programListItemTitleLink')
         @urls = elements.map { |element| element.attribute('href') }
-        @urls.each do |url|
+        @urls.first.each do |url|
           driver.navigate.to(url)
 
           sleep(rand(5))
@@ -144,8 +146,6 @@ require 'selenium-webdriver'
             end
             STDOUT.flush
           end
-
       end
   end
-
 end

@@ -1,2 +1,2 @@
-module Members::LineEventsHelper
+module Members::LineNoticesHelper
 end
