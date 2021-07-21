@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member_id: 1
+  admin_id: 1
+  program_id: 1
+  favorite_id: 1
+  checked: false
+
+two:
+  member_id: 1
+  admin_id: 1
+  program_id: 1
+  favorite_id: 1
+  checked: false
