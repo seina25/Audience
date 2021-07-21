@@ -158,9 +158,12 @@ extend ActiveSupport::Concern
 
       # 番組表のページを開く
       driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")
+      cur_url = driver.current_url
+      p cur_url
 
       # 検索結果数
       sum = driver.find_element(:class, 'searchResultHeaderSumResultNumber').text.to_i
+      p sum
 
       # ページ数分ループ
       (0..((sum/10)+1)).each do |page|
@@ -281,11 +284,11 @@ extend ActiveSupport::Concern
 
       end
   end
-  
-  
+
+
   # ====================================================================================================================
-  
-  
+
+
 
   # 5日後のデータ取得
   def fivedays_later
