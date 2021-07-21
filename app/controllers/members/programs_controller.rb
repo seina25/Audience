@@ -14,11 +14,15 @@ class Members::ProgramsController < ApplicationController
     @reviews = @program.review.order(created_at: :desc)
   end
 
+  def search
+    @programs = Program.search(params[:keyword])
+  end
+
   private
 
   def program_params
     params.require(:program).permit(:title, :second_title, :category, :cast, :channel,
-    :start_datetime, :end_datetime, :by_weekday, :profile_image_id)
+    :start_datetime, :end_datetime, :by_weekday, :program_image, :keyword)
   end
 
 end
