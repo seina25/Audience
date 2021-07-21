@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_085216) do
     t.string "title", null: false
     t.string "second_title", null: false
     t.string "category", null: false
-    t.string "cast"
+    t.string "talent"
     t.string "channel", null: false
     t.datetime "start_datetime", null: false
     t.datetime "end_datetime", null: false

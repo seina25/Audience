@@ -5,8 +5,8 @@ class Admins::ProgramsController < ApplicationController
   def scrape
     @time = Time.zone.now
     # fivedays_later
-    threedays_later
-    # today_scrape
+    # threedays_later
+    today_scrape
     redirect_to admins_programs_path
   end
 
@@ -43,7 +43,7 @@ class Admins::ProgramsController < ApplicationController
 private
 
   def program_params
-    params.require(:program).permit(:title, :second_title, :category, :cast, :channel,
+    params.require(:program).permit(:title, :second_title, :category, :talent, :channel,
     :start_datetime, :end_datetime, :by_weekday, :profile_image_id)
   end
 

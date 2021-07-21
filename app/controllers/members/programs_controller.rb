@@ -21,7 +21,7 @@ class Members::ProgramsController < ApplicationController
   private
 
   def program_params
-    params.require(:program).permit(:title, :second_title, :category, :cast, :channel,
+    params.require(:program).permit(:title, :second_title, :category, :talent, :channel,
     :start_datetime, :end_datetime, :by_weekday, :program_image, :keyword)
   end
 
