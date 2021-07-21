@@ -30,7 +30,7 @@ rails_env = Rails.env.to_sym
 
 
 # 出力先のログファイルの指定（エラー内容）
-set :output, '#{Rails.root}log/crontab.log'
+set :output, 'log/cron.log'
 
 # ジョブの実行環境の指定（環境で切り替える）
 # 開発環境(本番環境行ったらOFFにする)
@@ -41,29 +41,40 @@ set :environment, rails_env
 
 # =======================================================
 
-
+# UTCの時間なので-9hにする
 
 # テスト用===============================================
 
-# 毎日 am1:30とam3:00のスケジューリング
-every 30.minute do
+# 毎日 日本時間am01:25のスケジューリング
+
+# every 1.day, at: '16:25 pm' do
+#   begin
+#     runner 'Batch::Test.test'
+#   rescue => e
+#     Rails.logger.error("aborted rails runner")
+#     raise e
+#   end
+# end
+
+# 毎日 日本時間am02:10のスケジューリング
+every 1.day, at: '17:10 pm' do
   begin
-    runner 'Batch::DataUpdate.threedays_later'
+    runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e
   end
 end
 
-# # 毎日 am2:30とam4:00のスケジューリング
-# every 1.day,  at: ['2:30 am', '4:00 am'] do
-#   begin
-#     runner 'Batch::DataUpdate.fivedays_later'
-#   rescue => e
-#     Rails.logger.error("aborted rails runner")
-#     raise e
-#   end
-# end
+# 毎日 日本時間am02:35のスケジューリング
+every 1.day, at: '17:35 pm' do
+  begin
+    runner 'Batch::ThreedayslaterUpdate..threedayslater_update'
+  rescue => e
+    Rails.logger.error("aborted rails runner")
+    raise e
+  end
+end
 
 
 
@@ -84,6 +95,26 @@ end
 #   end
 # end
 
+# 毎日 am1:30とam3:00のスケジューリング
+# every 30.minute do
+#   begin
+#     runner 'Batch::DataUpdate.threedays_later'
+#   rescue => e
+#     Rails.logger.error("aborted rails runner")
+#     raise e
+#   end
+# end
+
+
+# # 毎日 am2:30とam4:00のスケジューリング
+# every 1.day,  at: ['2:30 am', '4:00 am'] do
+#   begin
+#     runner 'Batch::DataUpdate.fivedays_later'
+#   rescue => e
+#     Rails.logger.error("aborted rails runner")
+#     raise e
+#   end
+# end
 # ========================================================
 
 
