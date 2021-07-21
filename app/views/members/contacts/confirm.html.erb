@@ -1,2 +1,53 @@
-<h1>Members::Contacts#confirm</h1>
-<p>Find me in app/views/members/contacts/confirm.html.erb</p>
+<div class="container-fluid">
+  <div class="col-5 mx-auto">
+    <h2>お問い合わせフォーム</h2>
+  </div>
+  <div class="row m-5">
+    <div class="col-2">
+      <h2>menu</h2>
+      <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
+    </div>
+    <div class="col-10">
+      <table>
+        <tbody>
+          <tr>
+            <td class="text-center" style="width: 30%;">お名前</td>
+            <td>
+              <%= current_member.nickname %> 様
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">タイトル</td>
+            <td style="white-space: pre-wrap;">
+              <%= @contact.title %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">メッセージ</td>
+            <td style="white-space: pre-wrap;">
+              <%= @contact.message %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+        <%= form_with model: @contact, url: contacts_path, local: true, method: :post do |f| %>
+          <%= f.hidden_field :title %>
+          <%= f.hidden_field :message %>
+          <%= f.submit '送信', class: 'btn btn-info'%>
+        <% end %>
+        </div>
+
+        <div class="col-2">
+        <%= form_with model: @contact, url: contacts_back_path, local: true, method: :post do |f| %>
+          <%= f.hidden_field :title %>
+          <%= f.hidden_field :message %>
+          <%= f.submit '入力画面に戻る', class: 'btn btn-danger' %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
