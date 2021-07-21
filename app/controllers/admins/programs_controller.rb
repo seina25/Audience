@@ -3,10 +3,9 @@ class Admins::ProgramsController < ApplicationController
 
 
   def scrape
-    @time = Time.zone.now
-    # fivedays_later
+    fivedays_later
     # threedays_later
-    today_scrape
+    # today_scrape
     redirect_to admins_programs_path
   end
 
@@ -15,7 +14,7 @@ class Admins::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-    @programs = Program.all.page(params[:page]).per(20).order(created_at: :desc)
+    @programs = Program.all.page(params[:page]).per(20).order(updated_at: :desc)
   end
 
   def show

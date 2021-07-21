@@ -118,7 +118,7 @@ extend ActiveSupport::Concern
 
     p talent
 
-    p @program
+    p @programs
     end
 
     # ドライバーを閉じる
@@ -336,7 +336,7 @@ extend ActiveSupport::Concern
         @programs = []
         elements = driver.find_elements(:class, 'programListItemTitleLink')
         @urls = elements.map { |element| element.attribute('href') }
-        @urls.each do |url|
+        @urls.first(1).each do |url|
           driver.navigate.to(url)
 
           sleep(rand(5))
