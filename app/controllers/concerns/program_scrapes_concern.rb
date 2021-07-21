@@ -53,9 +53,9 @@ extend ActiveSupport::Concern
     end
 
     begin
-    cast = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
+    talent = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
     rescue Selenium::WebDriver::Error::NoSuchElementError
-    cast = "※ 情報がありません"
+    talent = "※ 情報がありません"
     end
 
     begin
@@ -113,8 +113,12 @@ extend ActiveSupport::Concern
     by_weekday = start_datetime.wday
 
 
-    @programs.push( 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel, 'category': category,
+    @programs.push( 'title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
     'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
+
+    p talent
+
+    p @program
     end
 
     # ドライバーを閉じる
@@ -128,6 +132,7 @@ extend ActiveSupport::Concern
       else
       @program.update_columns(program)
       end
+      STDOUT.flush
     end
 
   end
@@ -202,9 +207,9 @@ extend ActiveSupport::Concern
           end
 
           begin
-          cast = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
+          talent = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
           rescue Selenium::WebDriver::Error::NoSuchElementError
-          cast = "※ 情報がありません"
+          talent = "※ 情報がありません"
           end
 
           begin
@@ -263,7 +268,7 @@ extend ActiveSupport::Concern
           # 曜日取得
           by_weekday = start_datetime.wday
 
-          @programs.push( 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel, 'category': category,
+          @programs.push( 'title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
           'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
           #driver.navigate.back
           end
@@ -355,9 +360,9 @@ extend ActiveSupport::Concern
           end
 
           begin
-          cast = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
+          talent = driver.find_element(:xpath, "//h3[contains(text(), '出演者')]/following-sibling::p[1]").text
           rescue Selenium::WebDriver::Error::NoSuchElementError
-          cast = "※ 情報がありません"
+          talent = "※ 情報がありません"
           end
 
           begin
@@ -416,7 +421,7 @@ extend ActiveSupport::Concern
           # 曜日取得
           by_weekday = start_datetime.wday
 
-          @programs.push( 'title': title, 'second_title': second_title, 'cast': cast, 'channel': channel, 'category': category,
+          @programs.push( 'title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
           'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
           #driver.navigate.back
           end

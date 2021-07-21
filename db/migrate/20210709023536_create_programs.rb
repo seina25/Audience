@@ -5,7 +5,7 @@ class CreatePrograms < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.string :second_title, null: false
       t.string :category, null: false
-      t.string :cast
+      t.string :talent
       t.string :channel, null: false
       t.datetime :start_datetime, null: false
       t.datetime :end_datetime, null: false
