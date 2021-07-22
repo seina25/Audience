@@ -28,12 +28,12 @@ Rails.application.routes.draw do
       get 'search'
       end
     end
-    get 'search' => 'searches#search', as: :search
     resources :contacts, only: [:new, :index, :create]
     post 'contacts/confirm' => 'contacts#confirm'
     post 'contacts/back'=> 'contacts#back'
     get 'contacts/thanks' => 'contacts#thanks'
   end
+  resources :program_notifications, only: [:index]
 
   # ============================================================================
 

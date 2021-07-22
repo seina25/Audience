@@ -3,9 +3,9 @@ class Admins::ProgramsController < ApplicationController
 
 
   def scrape
-    fivedays_later
+    # fivedays_later
     # threedays_later
-    # today_scrape
+    today_scrape
     redirect_to admins_programs_path
   end
 
