@@ -32,7 +32,15 @@
   </tr>
   <tr>
     <th>放送カテゴリー</th>
-    <th><%= program.category %></th>
+    <!--カテゴリーは複数格納しているため配列をeachメソッドを使用して取得する-->
+    <!--カテゴリー別検索で個別で反映させるため-->
+    <th>
+      <%= program.category.split(' ') %>
+      <% byebug %>
+      <% program.category.each do |category| %>
+      <%= category %>
+      <% end %>
+      </th>
   </tr>
   <tr>
     <th>出演者情報</th>
