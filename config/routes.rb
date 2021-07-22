@@ -29,11 +29,11 @@ Rails.application.routes.draw do
       end
     end
     resources :contacts, only: [:new, :index, :create]
+    resources :program_notifications, only: [:index]
     post 'contacts/confirm' => 'contacts#confirm'
     post 'contacts/back'=> 'contacts#back'
     get 'contacts/thanks' => 'contacts#thanks'
   end
-  resources :program_notifications, only: [:index]
 
   # ============================================================================
 
