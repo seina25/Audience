@@ -1,6 +1,6 @@
-class CreateNotifications < ActiveRecord::Migration[5.2]
+class CreateContactNotifications < ActiveRecord::Migration[5.2]
   def change
-    create_table :notifications do |t|
+    create_table :contact_notifications do |t|
       t.integer :contact_id
       t.boolean :checked, default: false, null: false
 

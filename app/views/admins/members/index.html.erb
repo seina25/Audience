@@ -23,7 +23,7 @@
             </th>
             <th class="align-middle">
               <%= link_to  admins_member_path(member.id)  do %>
-                <%= member.first_name + member.last_name %>
+                <%= member.first_name + member.last_name %>(<%= member.nickname %>)
               <% end %>
             </th>
             <th class="align-middle">
