@@ -76,7 +76,7 @@ gem 'font-awesome-sass', '~> 5.13'
 
 gem 'selenium-webdriver'
 gem 'activerecord-import'
-
+gem 'line-bot-api'
 
 gem 'whenever', require: false
 

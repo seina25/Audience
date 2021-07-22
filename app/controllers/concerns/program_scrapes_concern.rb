@@ -5,7 +5,6 @@ extend ActiveSupport::Concern
 
 
   def today_scrape
-    @wait_time = 3
     @timeout = 5
 
     # Seleniumの初期化
@@ -18,26 +17,21 @@ extend ActiveSupport::Concern
     driver = Selenium::WebDriver.for :chrome, options: options
     driver.manage.timeouts.implicit_wait = @timeout
 
-    # 警告：割り当てられているが未使用の変数 -wait
-    wait = Selenium::WebDriver::Wait.new(timeout: @wait_time)
-
     # Yahoo番組表を開く
     sleep(rand(5))
     driver.get('https://tv.yahoo.co.jp/listings')
-
 
     # 番組表からurl一件ずつ取得
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(3).each do |url|
+    @urls.first(20).each do |url|
     driver.navigate.to(url)
 
     sleep(rand(5))
 
     cur_url = driver.current_url
     p cur_url
-
 
     # 番組データを取得
     begin
@@ -69,8 +63,6 @@ extend ActiveSupport::Concern
     rescue Selenium::WebDriver::Error::NoSuchElementError
     category = ""
     end
-
-
 
     # 取得元のdatetimeの表記が12h制なのでdateとtimeを分けて取得　dateは属性値からdate情報のみ抽出、timeはtextから取得
     # start_datetime
@@ -117,7 +109,6 @@ extend ActiveSupport::Concern
     'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
 
     p talent
-
     p @programs
     end
 
@@ -134,7 +125,6 @@ extend ActiveSupport::Concern
       end
       STDOUT.flush
     end
-
   end
 
   # ====================================================================================================================

@@ -1,4 +1,4 @@
-class Notification < ApplicationRecord
+class ContactNotification < ApplicationRecord
   belongs_to :contact
 
   def self.confirmed
