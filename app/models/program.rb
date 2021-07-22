@@ -1,7 +1,8 @@
 class Program < ApplicationRecord
 
-  has_many :review, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :memberes, through: :favorites
+  has_many :review, dependent: :destroy
   has_many :line_notices, dependent: :destroy
 
   def favorited_by?(member)
@@ -30,4 +31,9 @@ class Program < ApplicationRecord
       Program.all
     end
   end
+
+  # IDが一致
+  scope :id_is, -> id {
+    where(id: id)
+  }
 end
