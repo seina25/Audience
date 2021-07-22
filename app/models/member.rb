@@ -8,7 +8,7 @@ class Member < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fav_programs, through: :favorites, source: :program
-  #has_many :line_notices, dependent: :destroy
+  has_many :program_notifications, dependent: :destroy
 
   validates :last_name, presence: true, length: { in: 1..10 }
   validates :first_name, presence: true, length: { in: 1..10 }
@@ -29,7 +29,7 @@ class Member < ApplicationRecord
   end
 
   attachment :profile_image
-  
+
   # 引数(通知対象)の番組を'お気に入り'したことがある
   scope :has_favprogram_id, -> program_id {
     joins(:program).merge(Program.id_is program_id)

@@ -3,7 +3,7 @@ class Program < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :memberes, through: :favorites
   has_many :review, dependent: :destroy
-  has_many :line_notices, dependent: :destroy
+  has_many :program_notifications, dependent: :destroy
 
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
@@ -32,6 +32,9 @@ class Program < ApplicationRecord
     end
   end
 
+  def self.today
+    Program.where(start_datetime: Time.zone.now.all_day)
+  end
   # IDが一致
   scope :id_is, -> id {
     where(id: id)
