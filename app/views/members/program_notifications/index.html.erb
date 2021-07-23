@@ -5,3 +5,7 @@
 <% else %>
   <p>通知はありません</p>
 <% end %>
+<p>
+  現在、放送時間の<%= current_member.notification_time %>時間前に通知が来るように設定されています。
+  <%= link_to '通知時間の設定を変更する', notification_path %>
+</p>
