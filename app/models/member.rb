@@ -17,7 +17,6 @@ class Member < ApplicationRecord
   validates :nickname, presence: true, length: { in: 1..15 }
   validates :gender, presence: true
   validates :prefecture, presence: true
-  #validates :line_id, uniqueness: true
 
 
   enum gender: { man: 0, woman: 1, other: 2 }

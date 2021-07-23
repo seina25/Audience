@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_085216) do
     t.integer "gender", default: 0, null: false
     t.string "profile_image_id"
     t.string "prefecture"
-    t.string "line_id"
+    t.integer "notification_time", default: 0, null: false
     t.boolean "is_valid", default: true, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
@@ -73,13 +73,11 @@ ActiveRecord::Schema.define(version: 2021_07_21_085216) do
 
   create_table "program_notifications", force: :cascade do |t|
     t.integer "member_id", null: false
-    t.integer "admin_id", null: false
     t.integer "program_id", null: false
     t.integer "favorite_id", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_program_notifications_on_admin_id"
     t.index ["favorite_id"], name: "index_program_notifications_on_favorite_id"
     t.index ["member_id"], name: "index_program_notifications_on_member_id"
     t.index ["program_id"], name: "index_program_notifications_on_program_id"
