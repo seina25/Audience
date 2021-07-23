@@ -12,7 +12,7 @@
           <%= link_to "お気に入り番組", { anchor: "myfavorite" }, class: "mymenu-box-item" %>
           <%= link_to "口コミ一覧", { anchor: "myreview" }, class: "mymenu-box-item" %>
           <%= link_to "お問い合わせ", new_contact_path, class: "mymenu-box-item" %>
-          <%= link_to "LINE登録", line_events_about_path, method: :post, class: "mymenu-box-item" %>
+          <%= link_to "お知らせ", program_notifications_path, method: :get, class: "mymenu-box-item" %>
           <%= link_to "プロフィール変更", my_page_edit_path, class: "mymenu-box-item" %>
           <%= link_to "退会画面", unsubscribe_path, class: "mymenu-box-item" %>
         </div>
@@ -21,6 +21,10 @@
       <section id="myfav-program">
         <div class="col-8 mx-auto">
         <h3>お気に入り番組情報</h3>
+        <p>
+          現在、放送時間の<%= current_member.notification_time %>時間前に通知が来るように設定されています。
+          <%= link_to '通知時間の設定を変更する', notification_path %>
+        </p>
         <% current_member.fav_programs.each do |program| %>
         <div class="row ml-5">
           <div class="col-8">
