@@ -56,8 +56,8 @@ set :environment, rails_env
 #   end
 # end
 
-# 毎日 日本時間am02:10のスケジューリング
-every 1.day, at: '17:10 pm' do
+# 毎日 日本時間am02:15のスケジューリング
+every 1.day, at: '17:15 pm' do
   begin
     runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
   rescue => e
@@ -69,7 +69,7 @@ end
 # 毎日 日本時間am02:35のスケジューリング
 every 1.day, at: '17:35 pm' do
   begin
-    runner 'Batch::ThreedayslaterUpdate..threedayslater_update'
+    runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e

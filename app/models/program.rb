@@ -35,8 +35,10 @@ class Program < ApplicationRecord
   def self.today
     Program.where(start_datetime: Time.zone.now.all_day)
   end
+
   # IDが一致
   scope :id_is, -> id {
     where(id: id)
   }
+
 end
