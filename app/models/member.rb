@@ -31,6 +31,7 @@ class Member < ApplicationRecord
   attachment :profile_image
 
   # 引数(通知対象)の番組を'お気に入り'したことがある
+  
   scope :has_favprogram_id, -> program_id {
     joins(:program).merge(Program.id_is program_id)
   }
