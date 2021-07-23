@@ -17,7 +17,6 @@ class Member < ApplicationRecord
   validates :nickname, presence: true, length: { in: 1..15 }
   validates :gender, presence: true
   validates :prefecture, presence: true
-  #validates :line_id, uniqueness: true
 
 
   enum gender: { man: 0, woman: 1, other: 2 }
@@ -31,7 +30,6 @@ class Member < ApplicationRecord
   attachment :profile_image
 
   # 引数(通知対象)の番組を'お気に入り'したことがある
-  
   scope :has_favprogram_id, -> program_id {
     joins(:program).merge(Program.id_is program_id)
   }

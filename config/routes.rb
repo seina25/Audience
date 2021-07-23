@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: :about
     get 'my_page/edit' => 'members#edit', as: :my_page_edit
     get 'my_page' => 'members#show', as: :my_page
-    get 'line' => 'members#line', as: :line
+    get 'notification' => 'members#notification', as: :notification
     resource :member, only: [:update]
     get 'unsubscribe' => 'members#unsubscribe', as: :unsubscribe
     patch 'withdraw' => 'members#withdraw', as: :withdraw
