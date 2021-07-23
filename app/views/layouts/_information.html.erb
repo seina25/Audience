@@ -35,11 +35,11 @@
     <!--カテゴリーは複数格納しているため配列をeachメソッドを使用して取得する-->
     <!--カテゴリー別検索で個別で反映させるため-->
     <th>
-      <%= program.category.split(' ') %>
-      <% byebug %>
-      <% program.category.each do |category| %>
-      <%= category %>
-      <% end %>
+      <%= program.category %>
+      <%#= program.category.split(' ') %>
+      <%# program.category.each do |category| %>
+      <%#= category %>
+      <%# end %>
       </th>
   </tr>
   <tr>

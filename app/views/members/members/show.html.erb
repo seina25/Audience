@@ -41,8 +41,8 @@
 
       <section id="myreview">
         <div class="col-8 mx-auto">
-          <h3>口コミ一覧</h3>
-          <% @reviews.each do |review| %>
+          <h3>口コミ一覧 （<%= @reviews.count %>件）</h3>
+          <% @reviews.includes([:program]).each do |review| %>
             <div class="row ml-5">
               <div class="col-8">
                 <%= link_to program_path(review.program) do %>
