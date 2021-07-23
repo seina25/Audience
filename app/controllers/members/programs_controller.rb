@@ -2,7 +2,7 @@ class Members::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-    @programs = Program.all.page(params[:page]).per(20).order(created_at: :desc)
+    @programs = Program.all.page(params[:page]).per(5).order(created_at: :desc)
     @member = current_member
   end
 

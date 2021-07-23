@@ -14,7 +14,23 @@ class Admins::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-    @programs = Program.all.page(params[:page]).per(20).order(updated_at: :desc)
+    @programs = Program.all.page(params[:page]).per(20).order(params[:sort])
+    # @programs = Program.find(Review.group(:program_id).order('count(program_id) desc').pluck(:program_id))
+    # @all_ranks = Note.find(Like.group(:note_id).order('count(note_id) desc').limit(3).pluck(:note_id))
+
+    # レビューの評価平均値
+    @reviews = Review.group(:program_id).average(:score)
+    # レビューに紐づく番組を全て取得しレビューがない場合はnullで取得。distinctで重複レコードを回避し、配列を小さい順に並び替える
+    # @programs = Program.left_joins(:reviews).distinct.sort_by do |program|
+    #   reviews = program.reviews
+    #   if reviews.present?
+    #     # scoreの値だけ、追加していく
+    #     reviews.map(&:score).sum / reviews.size
+    #   else
+    #     0
+    #   end
+    # end
+
   end
 
   def show

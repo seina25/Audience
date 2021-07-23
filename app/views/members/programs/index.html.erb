@@ -11,7 +11,7 @@
             <th class="col-1">放送局</th>
             <th class="col-3">放送日時</th>
             <th class="col-2">カテゴリー</th>
-            <th class="col-1">👍</th>
+            <th class="col-1">💖</th>
             <th class="col-1">レビュー</th>
           </tr>
         </thead>
@@ -42,7 +42,7 @@
               <%= program.category %>
             </th>
             <th>
-              <%#= render partial: 'members/favorites/favorite', locals: { program: program, member: @member } %>
+              <%= render partial: 'members/favorites/favorite', locals: { program: program, member: @member } %>
             </th>
             <th>
               <%= program.review.count %>
