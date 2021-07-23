@@ -12,7 +12,7 @@ class Members::MembersController < ApplicationController
   def update
     @member = current_member
     if @member.update(member_params)
-      redirect_to my_page_path # snotice: '会員情報を更新しました。'
+      redirect_to my_page_path # notice: '会員情報を更新しました。'
     else
       render :edit
     end
@@ -29,13 +29,21 @@ class Members::MembersController < ApplicationController
     redirect_to root_path
   end
 
-  def line
+  def notification
+    @member = current_member
+  end
+
+  def notification_update
+    @member = current_member
+    @member.update(member_params)
+    redirect_to my_page_path
   end
 
   private
 
   def member_params
-    params.require(:member).permit(:last_name, :first_name, :kana_sei, :kana_mei, :nickname, :prefecture, :gender, :email, :password, :password_confirmation, :profile_image, :line_id)
+    params.require(:member).permit(:last_name, :first_name, :kana_sei, :kana_mei, :nickname,
+    :prefecture, :gender, :email, :password, :password_confirmation, :profile_image, :notification_time)
   end
 
 

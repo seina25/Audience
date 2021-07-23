@@ -43,7 +43,7 @@ class AddDeviseToMembers < ActiveRecord::Migration[5.2]
       t.integer :gender, null: false, default: 0
       t.string :profile_image_id
       t.string :prefecture
-      t.string :line_id
+      t.integer :notification_time, null: false, default: 0
       t.boolean :is_valid, null: false, default: true
     end
 
