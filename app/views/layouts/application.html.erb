@@ -15,10 +15,8 @@
       <nav>
         <ul>
           <% if member_signed_in? %>
-            <li>ユーザー</li>
-            <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
             <li><%= link_to "会員側の番組一覧", programs_path, class: 'btn btn-outline-secondary' %></li>
-            <li><%= link_to "マイページ", my_page_path, class: 'btn btn-warning' %></li>
+            <li><%= link_to "トップ", root_path, class: 'btn btn-outline-secondary' %></li>
           <% elsif admin_signed_in? %>
             <li>管理者</li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>

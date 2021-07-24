@@ -4,10 +4,9 @@
   </div>
   <div class="row m-5">
     <div class="col-2">
-      <h2>menu</h2>
-      <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
+      <%= render 'members/members/mymenu' %>
     </div>
-    <div class="col-10">
+    <div class="col-7 mx-auto">
       <%= link_to '履歴を見る', contacts_path, class: 'btn btn-outline-primary' %>
       <div class="mt-5">
       <%= form_with model: @contact, url: contacts_confirm_path, local: true, method: :post  do |f| %>

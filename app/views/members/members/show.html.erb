@@ -1,25 +1,89 @@
-<div class="container-fluid">
+<div class="container-fluid m-3">
   <h2>こんにちは！<%= current_member.nickname %>さん</h2>
-  <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
-  <div class="row mt-5">
+    <%= attachment_image_tag current_member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "100x100"%>
+  <h2 class="text-center">会員専用マイページ</h2>
+  <div class="row mt-5 m-3">
     <div class="col-2">
-      <h2>menu</h2>
+      <%= render 'members/members/mymenu' %>
     </div>
     <div class="col-10">
-      <section id="mymenu-box">
-        <h2 class="text-center">会員専用マイページ</h2>
-        <div class="mymenu-box-list">
-          <%= link_to "お気に入り番組", { anchor: "myfavorite" }, class: "mymenu-box-item" %>
-          <%= link_to "口コミ一覧", { anchor: "myreview" }, class: "mymenu-box-item" %>
-          <%= link_to "お問い合わせ", new_contact_path, class: "mymenu-box-item" %>
-          <%= link_to "お知らせ", program_notifications_path, method: :get, class: "mymenu-box-item" %>
-          <%= link_to "プロフィール変更", my_page_edit_path, class: "mymenu-box-item" %>
-          <%= link_to "退会画面", unsubscribe_path, class: "mymenu-box-item" %>
-        </div>
-      </section>
+    <section id="menubox" class="inner">
+      <div class="menu-list">
 
-      <section id="myfav-program">
-        <div class="col-8 mx-auto">
+        <div class="menu-box-item flipLeftTopTrigger flipLeftTop">
+          <div class="box-item">
+            <%= link_to  anchor: "myfavorite", class: "item" do %>
+              <div class="">
+                <i class="far fa-heart fa-5x"></i>
+                <h3>お気に入り番組</h3>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="menu-box-item flipLeftTopTrigger flipLeftTop">
+          <div class="box-item">
+            <%= link_to  anchor: "myreview" do %>
+              <div class="">
+                <i class="far fa-comments fa-5x"></i>
+                <h3>口コミ一覧</h3>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="menu-box-item flipLeftTopTrigger flipLeftTop">
+          <div class="box-item">
+            <%= link_to  new_contact_path do %>
+            <div>
+              <i class="far fa-envelope fa-5x"></i>
+              <h3>お問い合わせ</h3>
+            </div>
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="menu-box-item flipLeftTopTrigger flipLeftTop">
+          <% if unchecked_notifications.any? %>
+  		      <i class="fa fa-circle" style="color: gold;"></i>
+  		    <% end %>
+  		    <div class="box-item">
+            <%= link_to program_notifications_path, method: :get do %>
+              <div>
+                <i class="fas fa-tv fa-5x"></i>
+                <h3>お知らせ</h3>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="menu-box-item flipLeftTopTrigger flipLeftTop">
+          <div class="box-item">
+            <%= link_to my_page_edit_path do %>
+              <div>
+                <i class="fas fa-cogs fa-5x"></i>
+                <h3>プロフィール変更</h3>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="menu-box-item flipLeftTopTrigger flipLeftTop">
+          <div class="box-item">
+          <%= link_to unsubscribe_path do %>
+            <div class"">
+              <i class="fas fa-user-circle fa-5x"></i>
+              <h3>退会画面</h3>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="myfav-program">
+      <div class="col-8 mx-auto">
         <h3>お気に入り番組情報</h3>
         <p>
           現在、放送時間の<%= current_member.notification_time %>時間前に通知が来るように設定されています。
@@ -39,30 +103,30 @@
           </div>
         </div>
         <% end %>
-        </div>
-      </section>
+      </div>
+    </section>
 
 
-      <section id="myreview">
-        <div class="col-8 mx-auto">
-          <h3>口コミ一覧 （<%= @reviews.count %>件）</h3>
-          <% @reviews.includes([:program]).each do |review| %>
-            <div class="row ml-5">
-              <div class="col-8">
-                <%= link_to program_path(review.program) do %>
-                  <%= review.program.title %>
-                <% end %>
-              </div>
-              <div class="col-3">
-                <%= review.comment %>
-              </div>
-              <div class="col-1">
-                |  <%= review.score %>
-              </div>
+    <section id="myreview">
+      <div class="col-8 mx-auto">
+        <h3>口コミ一覧 （<%= @reviews.count %>件）</h3>
+        <% @reviews.includes([:program]).each do |review| %>
+          <div class="row ml-5">
+            <div class="col-8">
+              <%= link_to program_path(review.program) do %>
+                <%= review.program.title %>
+              <% end %>
             </div>
-          <% end %>
-        </div>
-      </section>
+            <div class="col-3">
+              <%= review.comment %>
+            </div>
+            <div class="col-1">
+              |  <%= review.score %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
     </div>
   </div>
 </div>

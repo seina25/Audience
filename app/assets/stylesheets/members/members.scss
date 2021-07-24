@@ -3,19 +3,108 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-// me_page
-.mymenu-box-list{
-  margin: 50px 0 0 ;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+// tab_menu
+
+.tab-area .area li a{
+  display: block;
+  border-bottom:1px solid #ccc;
+  padding: 10px 10px 10px 20px;
+  transition: all .3s;
 }
 
-.mymenu-box-item{
+.tab-area{
+  background:#fff;
+  border-radius: 10px;
+  padding:20px;
+}
+
+.tab-area .area li a:hover{
+  background:#efefef;
+}
+
+.tab{
+	display: flex;
+	flex-wrap: wrap;
+  padding: 0 0 20px 0;
+}
+
+.tab li{
+  width: 99%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tab li a{
+	display: block;
+  border-bottom:transparent 2px solid;
+	padding:10px 0;
+}
+
+.tab li.active a{
+	border-color:#808080;
+}
+
+
+ul,
+ol{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+a{
+	color: #333;
+	text-decoration: none;
+  outline: none;
+}
+
+a:hover{
+　text-decoration: none;
+}
+
+.sub-fix-block{
+    /*stickyで固定*/
+  position: -webkit-sticky;/*Safari*/
+	position: sticky;
+  top:20px;
+}
+
+
+// box_menu
+
+#menubox{
+    position:relative;
+    margin: 0 0 100px 0;
+}
+
+.inner{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.menu-list{
+	display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.menu-box-item{
   width: 30%;
   height: 180px;
   background-color: #D9E5FF;
-  box-shadow: 10px 10px 0 #CCCCCC 10%;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
   border-radius: 10px;
   margin: 0 0 50px 0;
+  position: relative;
+}
+
+.menu-list section:nth-child(2){
+     animation-delay: 0.2s;
+}
+.menu-list section:nth-child(3){
+     animation-delay: 0.4s;
+}
+
+.box-item{
+  text-align: center;
 }
