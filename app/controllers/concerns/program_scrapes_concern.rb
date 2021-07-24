@@ -105,11 +105,10 @@ extend ActiveSupport::Concern
     by_weekday = start_datetime.wday
 
 
-    @programs.push( 'title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
+    @programs.push('title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
     'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
 
     p talent
-    p @programs
     end
 
     # ドライバーを閉じる
@@ -149,7 +148,7 @@ extend ActiveSupport::Concern
     # ARGV.each do | argv |
     #   search_date =  (Date.today + argv.to_i).strftime('%Y-%m-%d')
     #   puts "search:" + search_date
-       search_date =  (Date.today + 3).strftime('%Y-%m-%d')
+       search_date =  (Date.today).strftime('%Y-%m-%d')
 
       # 番組表のページを開く
       driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")
@@ -260,7 +259,6 @@ extend ActiveSupport::Concern
 
           @programs.push( 'title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
           'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
-          #driver.navigate.back
           end
 
           # ドライバーを閉じる
