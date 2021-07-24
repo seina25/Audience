@@ -1,0 +1,36 @@
+<div class="tab-area">
+  <ul class="tab">
+		<li class="active"><a href="#use">MENU</a></li>
+	</ul>
+	<div id="use" class="area is-active">
+		<ul>
+		  <li>
+		    <%= link_to "マイページ", my_page_path(anchor: 'menubox') %>
+		  </li>
+		  <li>
+		    <%= link_to "お気に入り番組", my_page_path(anchor: "myfavorite") %>
+		  </li>
+		  <li>
+		    <%= link_to "口コミ一覧", my_page_path(anchor: "myreview") %>
+		  </li>
+		  <li>
+		    <%= link_to "お問い合わせ", new_contact_path %>
+		  </li>
+	    <% if unchecked_notifications.any? %>
+		    <i class="fa fa-circle" style="color: gold;"></i>
+		  <% end %>
+		  <li>
+		    <%= link_to "お知らせ", program_notifications_path, method: :get %>
+		  </li>
+		  <li>
+		    <%= link_to "プロフィール変更", my_page_edit_path %>
+		  </li>
+		  <li>
+		    <%= link_to "退会画面", unsubscribe_path %>
+		  </li>
+		  <li>
+		    <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+		  </li>
+		</ul>
+  </div>
+</div>
