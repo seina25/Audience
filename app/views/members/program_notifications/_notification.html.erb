@@ -1,4 +1,31 @@
-<% @notifications.each do |notification| %>
-  <p>本日は<%= notification.program.title %>が
-  <%= notification.program.start_datetime %>より放送します</p>
-<% end %>
+<h5>まもなくお気に入りした番組が放送されます！お見逃しなく♪</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-4">番組名</th>
+      <th class="col-2">放送開始時間</th>
+      <th class="col-6">出演者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notifications.each do |notification| %>
+    <tr>
+      <td>
+        <%= link_to program_path(notification) do %>
+         <%=  notification.program.title %>
+        <% end %>
+      </td>
+      <td>
+        <%= notification.program.start_datetime.strftime("%-m月%-d日 %-H時%-M分") %>
+      </td>
+      <td>
+        <%= notification.program.talent %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%#= link_to destroy_all_program_notifications_path, method: :delete do %>
+  <i class="fas fa-trash" style="color: black;"></i>
+  <h7 style="color: black;">全削除</h7>
+<%# end %>
