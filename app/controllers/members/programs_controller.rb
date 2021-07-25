@@ -8,10 +8,10 @@ class Members::ProgramsController < ApplicationController
 
   def show
     @time = Time.zone.now
-    @program = Program.find(params[:id])
     @member = current_member
+    @program = Program.find(params[:id])
     @review = Review.new
-    @reviews = @program.review.order(created_at: :desc)
+    @reviews = @program.reviews.order(created_at: :desc)
   end
 
   def search
@@ -22,7 +22,13 @@ class Members::ProgramsController < ApplicationController
 
   def program_params
     params.require(:program).permit(:title, :second_title, :category, :talent, :channel,
-    :start_datetime, :end_datetime, :by_weekday, :program_image, :keyword)
+    :start_datetime, :end_datetime, :by_weekday, :program_image, :keyword, :impressionist)
   end
 
 end
+# indexのviewでlink_to(remote: true)
+# If params[:sort] == “いいね順”
+# @programs = Program.all.いいね潤order
+# Elsif params[:sort] == “pv”
+# @programs = Program.all.pv潤
+# end

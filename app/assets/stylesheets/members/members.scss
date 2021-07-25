@@ -69,6 +69,9 @@ a:hover{
   top:20px;
 }
 
+.mymenu_notification{
+  background-color: red;
+}
 
 // box_menu
 
@@ -96,6 +99,10 @@ a:hover{
   border-radius: 10px;
   margin: 0 0 50px 0;
   position: relative;
+}
+
+.mymenubox_notification{
+  background-color: red;
 }
 
 .menu-list section:nth-child(2){

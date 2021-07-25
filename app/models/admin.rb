@@ -4,5 +4,5 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :program_notifications, dependent: :destroy
+  # has_many :program_notifications, dependent: :destroy
 end

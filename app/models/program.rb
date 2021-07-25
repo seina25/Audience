@@ -1,9 +1,10 @@
 class Program < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
+  has_many :fav_members, through: :favorites, source: :member
   has_many :memberes, through: :favorites
-  has_many :review, dependent: :destroy
-  has_many :program_notifications, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+
 
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
@@ -26,19 +27,23 @@ class Program < ApplicationRecord
   def self.search(search)
     if search != ""
       Program.where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?',"%#{search}%", "%#{search}%","%#{search}%","%#{search}%"])
-      #Review.where('gametitle LIKE ? OR title LIKE ?', "%#{search}%", "%#{search}%")
     else
       Program.all
     end
   end
 
-  def self.today
-    Program.where(start_datetime: Time.zone.now.all_day)
-  end
+  # def self.today
+  #   Program.where(start_datetime: Time.zone.now.all_day)
+  # end
 
-  # IDが一致
-  scope :id_is, -> id {
-    where(id: id)
-  }
+  # 評価の平均値
+  def average_score
+    if self.reviews.any? 
+      average_score = self.reviews.map{ |x| x.score }.sum / self.reviews.count
+      average_score.round(2)
+    else
+      return "レビューなし"
+    end
+  end
 
 end

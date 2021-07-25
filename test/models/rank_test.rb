@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LineNoticeTest < ActiveSupport::TestCase
+class RankTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

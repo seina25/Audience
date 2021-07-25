@@ -14,13 +14,10 @@ Rails.application.routes.draw do
     get 'my_page/edit' => 'members#edit', as: :my_page_edit
     get 'my_page' => 'members#show', as: :my_page
     get 'notification' => 'members#notification', as: :notification
+    put 'notification_update' => 'members#notification_update', as: :notification_update
     resource :member, only: [:update]
     get 'unsubscribe' => 'members#unsubscribe', as: :unsubscribe
     patch 'withdraw' => 'members#withdraw', as: :withdraw
-    post 'line_events/client' => 'line_events#client', as: :client
-    post 'line_events/recieve' => 'line_events#recieve', as: :recieve
-    # ↓url直打ちでルートエラーになる（postをgetに変更した解消される状態）
-    post 'line_events/about' => 'line_events#about'
     resources :programs, only: [:index, :show] do
       resource :favorite, only: [:create, :destroy]
       resources :reviews, only: [:create, :edit, :update, :destroy]
@@ -30,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :contacts, only: [:new, :index, :create]
     resources :program_notifications, only: [:index]
+    delete 'notification_delete' => 'program_notifications#destroy_all', as: :notification_destroy_all
     post 'contacts/confirm' => 'contacts#confirm'
     post 'contacts/back'=> 'contacts#back'
     get 'contacts/thanks' => 'contacts#thanks'

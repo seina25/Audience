@@ -1,6 +1,4 @@
 class Members::ContactsController < ApplicationController
-  # protect_from_forgery with: :null_session
-  # protect_from_forgery
 
   def index
     @contacts = current_member.contacts.all
