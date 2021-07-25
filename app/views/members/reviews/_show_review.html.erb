@@ -1,7 +1,7 @@
 <div class="reviews">
   <p>コメント件数：<%= reviews.count %></p>
   <% if reviews.present? %>
-    <% reviews.each do |review| %>
+    <% reviews.includes(:member).each do |review| %>
     <div class="row review">
 
       <div class="col-md-4 review-member">

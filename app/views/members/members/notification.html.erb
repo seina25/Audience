@@ -10,7 +10,7 @@
       </p>
 
       <p>（現在の事前通知は<%= current_member.notification_time %>時間前で設定されています）</p>
-      <%= form_with model: current_member, url:member_path, local: true, method: :put do |f| %>
+      <%= form_with model: current_member, url:notification_update_path, local: true, method: :put do |f| %>
 
       <div class="form-group row">
         <div class="col-md-3 d-flex align-items-center">

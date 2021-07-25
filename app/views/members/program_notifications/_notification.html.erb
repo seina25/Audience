@@ -8,24 +8,24 @@
     </tr>
   </thead>
   <tbody>
-    <% @notifications.each do |notification| %>
-    <tr>
-      <td>
-        <%= link_to program_path(notification) do %>
-         <%=  notification.program.title %>
-        <% end %>
-      </td>
-      <td>
-        <%= notification.program.start_datetime.strftime("%-m月%-d日 %-H時%-M分") %>
-      </td>
-      <td>
-        <%= notification.program.talent %>
-      </td>
-    </tr>
+    <%  programs.each do | program| %>
+        <tr>
+          <td>
+            <%= link_to program_path( program) do %>
+             <%=  program.title %>
+            <% end %>
+          </td>
+          <td>
+            <%= program.start_datetime.strftime("%-m月%-d日 %-H時%M分") %>
+          </td>
+          <td>
+            <%=program.talent %>
+          </td>
+        </tr>
     <% end %>
   </tbody>
 </table>
-<%#= link_to destroy_all_program_notifications_path, method: :delete do %>
+<%= link_to notification_destroy_all_path, method: :delete do %>
   <i class="fas fa-trash" style="color: black;"></i>
   <h7 style="color: black;">全削除</h7>
-<%# end %>
+<% end %>

@@ -18,8 +18,24 @@ class Member < ApplicationRecord
   validates :gender, presence: true
   validates :prefecture, presence: true
 
-
   enum gender: { man: 0, woman: 1, other: 2 }
+
+
+  # 放送前の通知時間の設定
+  def today_favorite_programs
+    from = DateTime.now
+    to = DateTime.now + Rational(notification_time,24)
+    fav_programs.where(start_datetime: from..to)
+  end
+
+  # 通知マークの表示切り替え
+  def favorite_checked_update
+    favorites.includes([:program]).each do |favorite|
+      favorite.update(checked: true)
+    end
+  end
+
+
 
   # ユーザの退会フラグ：is_validが有効であればtrueを返す
   enum is_valid: { '有効': true, '退会済': false }
@@ -29,9 +45,4 @@ class Member < ApplicationRecord
 
   attachment :profile_image
 
-  # 引数(通知対象)の番組を'お気に入り'したことがある
-  
-  scope :has_favprogram_id, -> program_id {
-    joins(:program).merge(Program.id_is program_id)
-  }
 end

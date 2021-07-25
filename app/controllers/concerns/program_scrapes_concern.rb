@@ -59,7 +59,7 @@ extend ActiveSupport::Concern
     end
 
     begin
-    category = driver.find_element(:class, "programOtherDataListText").text.split(' ')
+    category = driver.find_element(:class, "programOtherDataListText").text
     rescue Selenium::WebDriver::Error::NoSuchElementError
     category = ""
     end
@@ -116,7 +116,7 @@ extend ActiveSupport::Concern
 
     # データをデータベースに保存
     @programs.each do |program|
-      @program = Program.find_or_initialize_by(channel: program[:channel], start_datetime: program[:start_datetime] )
+      @program = Program.find_or_initialize_by(channel: program[:channel], start_datetime: program[:start_datetime])
       if @program.new_record?
       Program.create(program)
       else
@@ -148,7 +148,7 @@ extend ActiveSupport::Concern
     # ARGV.each do | argv |
     #   search_date =  (Date.today + argv.to_i).strftime('%Y-%m-%d')
     #   puts "search:" + search_date
-       search_date =  (Date.today).strftime('%Y-%m-%d')
+       search_date =  (Date.today + 3).strftime('%Y-%m-%d')
 
       # 番組表のページを開く
       driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")

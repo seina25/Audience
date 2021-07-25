@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_21_085216) do
+ActiveRecord::Schema.define(version: 2021_07_24_051515) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_085216) do
     t.datetime "updated_at", null: false
     t.bigint "member_id"
     t.bigint "program_id"
+    t.boolean "checked", default: false, null: false
     t.index ["member_id"], name: "index_favorites_on_member_id"
     t.index ["program_id"], name: "index_favorites_on_program_id"
   end
@@ -71,18 +72,6 @@ ActiveRecord::Schema.define(version: 2021_07_21_085216) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
-  create_table "program_notifications", force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "program_id", null: false
-    t.integer "favorite_id", null: false
-    t.boolean "checked", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["favorite_id"], name: "index_program_notifications_on_favorite_id"
-    t.index ["member_id"], name: "index_program_notifications_on_member_id"
-    t.index ["program_id"], name: "index_program_notifications_on_program_id"
-  end
-
   create_table "programs", force: :cascade do |t|
     t.string "title", null: false
     t.string "second_title", null: false
@@ -96,6 +85,14 @@ ActiveRecord::Schema.define(version: 2021_07_21_085216) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel", "start_datetime"], name: "index_programs_on_channel_and_start_datetime", unique: true
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.integer "program_id", null: false
+    t.float "score", default: 0.0, null: false
+    t.integer "favorite_sum", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|

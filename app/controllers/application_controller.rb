@@ -1,10 +1,4 @@
 class ApplicationController < ActionController::Base
-  # before_action :check_notifications
-  
-  # 未読のお問合せがあれば通知（表示）される
-  # def check_notifications
-  #   @unchecked_notifications = Notification.where(checked:false)
-  # end
 
    private
 

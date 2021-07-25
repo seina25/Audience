@@ -8,18 +8,13 @@
       <h4 class="">番組詳細</h4>
       <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
         <%= render partial: 'layouts/information', locals: { program: @program } %>
+      <div>
+        いいね数<%= @favorite.count %>
+        レビュー数<%= @program.reviews.count %>
+        レビュー平均値<%= @program.average_score %>
+      </div>
+
       <%= link_to "Back", admins_programs_path, class: "btn btn-sm btn-danger" %>
     </div>
   </div>
 </div>
-
-<!--# 開始時刻-->
-<!--    # 時間-->
-<!--    # hour = datetime.hour-->
-<!--    # # 分-->
-<!--    # minute = datetime.minute-->
-
-<!--    # # 日付-->
-<!--    # year = datetime.year-->
-<!--    # month = datetime.month-->
-<!--    # date = datetime.day-->
