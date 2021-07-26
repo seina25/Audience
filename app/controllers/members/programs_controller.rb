@@ -2,6 +2,7 @@ class Members::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
+
     @programs = Program.all.page(params[:page]).per(5).order(created_at: :desc)
     @member = current_member
   end
@@ -10,6 +11,9 @@ class Members::ProgramsController < ApplicationController
     @time = Time.zone.now
     @member = current_member
     @program = Program.find(params[:id])
+      unless ViewCount.find_by(member_id: current_member.id, program_id: @program.id)
+        current_member.view_counts.create(program_id: @program.id)
+      end
     @review = Review.new
     @reviews = @program.reviews.order(created_at: :desc)
   end

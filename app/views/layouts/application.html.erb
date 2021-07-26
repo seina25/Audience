@@ -12,47 +12,13 @@
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <% if member_signed_in? %>
-            <li><%= link_to "会員側の番組一覧", programs_path, class: 'btn btn-outline-secondary' %></li>
-            <li><%= link_to "トップ", root_path, class: 'btn btn-outline-secondary' %></li>
-          <% elsif admin_signed_in? %>
-            <li>管理者</li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-            <li><%= link_to "番組一覧", admins_programs_path %></li>
-            <li><%= link_to "顧客情報", admins_members_path %></li>
-            <li><%#= link_to "お問い合わせ一覧", admins_contacts_path %></li>
-            <li><%= link_to "統計", admins_analysis_path %></li>
-          <% else %>
-            <li><h4>ゲストユーザー<h4></li>
-            <li><%= link_to "新規登録", new_member_registration_path %></li>
-            <li><%= link_to "ログイン", new_member_session_path %></li>
-            <li><%= link_to "トップ", root_path %></li>
-            <li><%= link_to "アバウト", about_path %></li>
-            <li><%= link_to "(仮)会員側の番組一覧", programs_path %></li>
-            <li><%= link_to "(仮)番組取得ボタン", admins_scrape_path %></li>
-            <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
-            <li><h4>管理者メニュー</h4></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-            <li><%= link_to "管理側番組一覧", admins_programs_path %></li>
-            <li><%= link_to "顧客情報", admins_members_path %></li>
-            <li><%#= link_to "お問い合わせ一覧", admins_contacts_path %></li>
-            <li><%= link_to "統計", admins_analysis_path %></li>
-            <li><h4>ユーザメニュー</h4></li>
-            <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
-            <li><%= link_to "会員側の番組一覧", programs_path %></li>
-            <li><%= link_to "マイページ", my_page_path %></li>
-
-          <% end %>
-        </ul>
-      </nav>
+      <%= render 'layouts/header' %>
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
-
+      <%= render 'layouts/footer' %>
     </footer>
 
   </body>

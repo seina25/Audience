@@ -25,7 +25,7 @@ extend ActiveSupport::Concern
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(1).each do |url|
+    @urls.first(3).each do |url|
     driver.navigate.to(url)
 
     sleep(rand(5))

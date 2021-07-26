@@ -2,13 +2,13 @@ class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
 
   has_many :reviews, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fav_programs, through: :favorites, source: :program
-  has_many :program_notifications, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   validates :last_name, presence: true, length: { in: 1..10 }
   validates :first_name, presence: true, length: { in: 1..10 }

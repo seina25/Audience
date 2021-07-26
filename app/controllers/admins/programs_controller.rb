@@ -2,20 +2,10 @@ class Admins::ProgramsController < ApplicationController
   include ProgramScrapesConcern
 
 
-  def scrape
-    # fivedays_later
-    # threedays_later
-    today_scrape
-    redirect_to admins_programs_path
-  end
-
-  def new
-  end
-
   def index
     @time = Time.zone.now
-    @programs = Program.all.page(params[:page]).per(20).order(params[:sort])
-
+    # selection = params[:sort]
+    @programs = Program.all.page(params[:page]).per(20) #.sort(selection)
   end
 
   def show
@@ -40,6 +30,12 @@ class Admins::ProgramsController < ApplicationController
     redirect_to admins_programs_path
   end
 
+  def scrape
+    # fivedays_later
+    # threedays_later
+    today_scrape
+    redirect_to admins_programs_path
+  end
 
 private
 

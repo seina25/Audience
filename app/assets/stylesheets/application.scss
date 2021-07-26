@@ -21,9 +21,37 @@
   padding: 0;
   margin: 0;
   boxsizing: border-box;
+
 }
 
+ul,
+ol{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
 
+a{
+	color: #333;
+	text-decoration: none;
+    outline: none;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-nav .nav-item {
+    padding:0 1rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar-nav .nav-item {
+    padding:0 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .navbar-nav .nav-item {
+    padding:0 3rem;
+  }
+}
 
 body{
   background-color: #FFDEE9;
@@ -41,3 +69,5 @@ body{
 a:hover{
 　text-decoration: none;
 }
+
+

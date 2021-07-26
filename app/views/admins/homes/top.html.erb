@@ -1,2 +1,16 @@
-<h1>Admins::Homes#top</h1>
-<p>Find me in app/views/admins/homes/top.html.erb</p>
+<div class="container-fluid m-3">
+  <div class="row mt-5 m-3">
+    <div class="col-2">
+      <%= render partial: 'admins/homes/admin_menu' %>
+    </div>
+    <div class="col-10">
+      <h2>各統計</h2>
+      <div>
+        アクセス数：<%= @accesses %>
+        いいね数：<%= @favorites %>
+        レビュー件数：<%= @reviews %>
+        PV数：<%= @view_counts %>
+      </div>
+    </div>
+  </div>
+<>
