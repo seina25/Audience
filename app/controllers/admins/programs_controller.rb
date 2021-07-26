@@ -4,8 +4,9 @@ class Admins::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-    # selection = params[:sort]
-    @programs = Program.all.page(params[:page]).per(20) #.sort(selection)
+    selection = params[:sort]
+    @programs = Program.sort(selection).page(params[:page]).per(20)
+    @sort = Program.program_selected_sort(selection)
   end
 
   def show

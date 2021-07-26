@@ -1,4 +1,5 @@
 class Program < ApplicationRecord
+  extend OrderAsSpecified
 
   has_many :favorites, dependent: :destroy
   has_many :fav_members, through: :favorites, source: :member
@@ -48,7 +49,6 @@ class Program < ApplicationRecord
   end
 
   # ソート機能
-
   # これから開始する番組を特定
   def sort_programs
     where(start_datetime: DateTime.now..Float::INFINITY)
@@ -56,14 +56,39 @@ class Program < ApplicationRecord
 
   def self.sort(selection)
     case selection
-    when 'new'
-      return all.order(created_at: :DESC)
     when 'start_datetime'
-      return where(start_datetime: DateTime.now..Float::INFINITY).order(sort_programs: :ASC)
+      where(start_datetime: DateTime.now..Float::INFINITY).order(sort_programs: :ASC)
+    when 'new'
+      all.order(created_at: :DESC)
     when 'favorite'
-      return find(Favorite.group(:program_id).order(Arel.sql('count(program_id) desc')).pluck(:post_id))
+      ids = find(Favorite.group(:program_id).order(Arel.sql('count(program_id) desc')).pluck(:program_id)).pluck(:id)
+      Program.order_as_specified(id: ids)
     when 'review'
-      return find(Review.group(:program_id).order(Arel.sql('average_score(program_id) desk')).pluck(:post_id))
+      ids = find(Review.group(:score).order('avg(score) desc').pluck(:program_id)).pluck(:id)
+        if ids.empty?
+          all.order(created_at: :DESC)
+        else
+          Program.order_as_specified(id: ids)
+        end
+    when 'view'
+      ids = find(ViewCount.group(:program_id).order(Arel.sql('count(program_id) desc')).pluck(:program_id)).pluck(:id)
+      Program.order_as_specified(id: ids)
+    else
+      where(start_datetime: DateTime.now..Float::INFINITY).order(sort_programs: :ASC)
+    end
+  end
+
+  def self.program_selected_sort(selection)
+    if selection == 'new'
+      sort = ['新着順', 'new']
+    elsif selection == 'favorite'
+      sort = ['お気に入り順', 'favorite']
+    elsif selection == 'review'
+      sort = ['評価が高い順', 'review']
+    elsif selection == 'view'
+      sort = ['PV数', 'view']
+    else
+      sort = ['これからの放送順', 'start_datetime']
     end
   end
 end

@@ -25,7 +25,7 @@
 		  <li>
 		    <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
 		  </li>
-		   <% if current_member.favorites.where(checked: false).any? %>
+		   <% if current_member.new_notificatioin_exsist? %>
 			    <div class="mymenu_notification"></dev>
 			  <% end %>
 		  <li>
