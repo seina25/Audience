@@ -79,6 +79,7 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'selenium-webdriver'
 
 gem 'whenever', require: false
+gem 'order_as_specified'
 
 gem 'dotenv-rails'
 group :production do

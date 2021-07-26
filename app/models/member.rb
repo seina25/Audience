@@ -23,9 +23,7 @@ class Member < ApplicationRecord
 
   # 放送前の通知時間の設定
   def today_favorite_programs
-    from = DateTime.now
-    to = DateTime.now + Rational(notification_time,24)
-    fav_programs.where(start_datetime: from..to)
+    fav_programs.where(start_datetime: from..to(notification_time))
   end
 
   # 通知マークの表示切り替え
@@ -34,6 +32,11 @@ class Member < ApplicationRecord
       favorite.update(checked: true)
     end
   end
+  
+  def new_notificatioin_exsist?
+    fav_programs.includes(:favorites).where(start_datetime: from..to(notification_time)).where(favorites: {checked: false}).any?
+  end
+  
 
 
 
@@ -44,5 +47,18 @@ class Member < ApplicationRecord
   end
 
   attachment :profile_image
+  
+  
+  private
+  
+
+  def from
+    DateTime.now
+  end
+  
+  def to(notification_time)
+     DateTime.now + Rational(notification_time,24)
+  end
+  
 
 end

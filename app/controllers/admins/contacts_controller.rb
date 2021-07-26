@@ -1,12 +1,8 @@
 class Admins::ContactsController < ApplicationController
   # before_action :authenticate_member!
-
   def index
-    @contacts = Contact.all.page(params[:page]).per(20).order(created_at: :desc)
-    @members = Member.all
-
-    # お問合せ新着データの通知としてモデルに定義
-    # Notification.confirmed
+    @contacts = Contact.all.order(created_at: :desc)
+    ContactNotification.contact_confirmed
   end
 
   def show

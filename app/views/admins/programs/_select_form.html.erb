@@ -1,0 +1,14 @@
+<%= form_with model: @program, url:admins_programs_path, method: :get, local: true do |f| %>
+  <div class="form-group">
+    <%= f.select :sort,[
+                       ['これからの放送順', 'start_datetime'],
+                       ['新着順', 'new'],
+                       ['いいねが多い順', 'favorite'],
+                       ['評価が高い順', 'review'] ,
+                       ['PV数', 'view']
+                       ],{selected: sort} ,class: "form-control" %>
+    <%= f.submit '並び替え', class: 'btn btn-primary'%>
+  </div>
+<% end %>
+
+

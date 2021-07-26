@@ -1,19 +1,13 @@
 <div class="conteiner m-5">
   <div class="row mt-4">
-    <div class="col-3">
-      <div class="btn btn-outline-info">番組一覧を表示する</div><br>
-      <%= link_to '番組情報を更新する', admins_scrape_path, class: 'btn btn-outline-danger' %>
+    <div class="col-2">
+      <%= render partial: 'admins/homes/admin_menu' %>
     </div>
-    <div class="col-9">
+    <div class="col-10">
       <h4>番組一覧</h4>
-      <%= form_with model: @program, url:programs_path, remote: true do |f| %>
-      <%= f.select :sort, [ ['新着順', 'new'], ['これからの放送順', 'start_datetime'], ['いいねが多い順', 'favorite'], ['評価が高い順', 'review'] ], class: "form-select" %>
-      <%= f.submit %>
-      <% end %>
       <p>😲<%= @time.strftime("%-H:%M") %>の情報です</p>
-      <div id="programs_area">
-        <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
-      </div>
+      <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+      <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
     </div>
   </div>
 </div>
