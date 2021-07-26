@@ -1,6 +1,10 @@
-<div class="conteiner m-5">
-  <div class="row mt-4">
-    <div class="col-9">
+<div class="container-fluid m-3">
+  <div class="row mt-5 m-3">
+    <div class="col-2">
+      <%= render partial: 'members/programs/search_form', locals: { program: @program } %>
+      <%= render 'members/members/mymenu' %>
+    </div>
+    <div class="col-10">
       <h4>番組一覧</h4>
       <p>😲<%= @time.strftime("%-H:%M") %>の情報です</p>
       <table class="table program">
@@ -52,9 +56,6 @@
         </tboby>
       </table>
       <%= paginate @programs %>
-    </div>
-    <div class="col-3">
-      <%= render partial: 'members/programs/search_form', locals: { program: @program } %>
     </div>
   </div>
 </div>
