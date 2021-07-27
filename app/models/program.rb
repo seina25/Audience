@@ -26,17 +26,15 @@ class Program < ApplicationRecord
   attachment :program_image
 
   # 検索機能
+  # binding.pry
   scope :search, -> (program_search_params) do
-    return if program_search_params.blank?
+    return if program_search_params.blank?  || (program_search_params[:keyword].blank? && program_search_params[:start_datetime_from].blank? && program_search_params[:start_datetime_to].blank? )
     keyword_like(program_search_params[:keyword]).start_datetime_between(program_search_params[:start_datetime_from], program_search_params[:start_datetime_to])
   end
-
   # キーワード検索
-  scope :keyword_like, -> keyword { where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%"]) if keyword.present? }
+  scope :keyword_like, -> search { where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%"]) if search.present? }
   # 放送時間範囲検索
   scope :start_datetime_between, -> from, to {
-    from = DateTime.now
-    to = DateTime.now + 10
     if from.present? && to.present?
       where(start_datetime: from..to)
     elsif from.present?

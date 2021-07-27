@@ -5,7 +5,7 @@
     </div>
     <div class="col-8 mx-auto">
       <h2>お問合せ内容一覧</h2>
-      <table class="table program">
+      <table class="table mt-3">
         <thead>
           <tr>
             <th>受信日</th>
@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-            <% @contacts.each do |contact| %>
+            <% @contacts.includes([:member]).each do |contact| %>
               <tr>
                 <th>
                   <%= contact.created_at.strftime("%Y年%m月%d日 ") %>
@@ -25,7 +25,10 @@
                   <%= contact.member.id %>
                 </th>
                 <th>
-                  <%= contact.member.first_name + contact.member.last_name %>(<%= contact.member.nickname %>) 様
+                  <%= link_to admins_member_path(contact.member.id) do %>
+                    <%= contact.member.first_name + contact.member.last_name %>(<%= contact.member.nickname %>) 様
+                  <% end %>
+
                 </th>
                 <th>
                   <%= contact.title %>

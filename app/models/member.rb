@@ -19,7 +19,9 @@ class Member < ApplicationRecord
   validates :prefecture, presence: true
 
   enum gender: { man: 0, woman: 1, other: 2 }
-  
+
+  attachment :profile_image
+
   def full_name
     [first_name, last_name].join(' ')
   end
@@ -36,13 +38,10 @@ class Member < ApplicationRecord
       favorite.update(checked: true)
     end
   end
-  
+
   def new_notificatioin_exsist?
     fav_programs.includes(:favorites).where(start_datetime: from..to(notification_time)).where(favorites: {checked: false}).any?
   end
-  
-
-
 
   # ユーザの退会フラグ：is_validが有効であればtrueを返す
   enum is_valid: { '有効': true, '退会済': false }
@@ -50,19 +49,24 @@ class Member < ApplicationRecord
     super && self.is_valid == '有効'
   end
 
-  attachment :profile_image
-  
-  
+  def self.search(search)
+    if search != ""
+      Member.where(['first_name LIKE ? OR last_name LIKE ? OR kana_sei LIKE ? OR kana_mei LIKE ? OR nickname LIKE ? OR prefecture LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+    else
+      Member.all
+    end
+  end
+
   private
-  
+
 
   def from
     DateTime.now
   end
-  
+
   def to(notification_time)
      DateTime.now + Rational(notification_time,24)
   end
-  
+
 
 end

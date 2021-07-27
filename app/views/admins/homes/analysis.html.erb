@@ -3,13 +3,25 @@
     <div class="col-2">
       <%= render partial: 'admins/homes/admin_menu' %>
     </div>
-    <div class="col-10">
-      <h2>各統計</h2>
+    <div class="col-8 mx-auto">
+      <h2>各種統計</h2>
       <div>
-        アクセス数：<%= @accesses %>
-        いいね数：<%= @favorites %>
-        レビュー件数：<%= @reviews %>
-        PV数：<%= @view_counts %>
+        <div class="m-5">
+          <h3 class="text-center">お気に入り登録の統計グラフ</h3>
+          <%= render partial: 'admins/homes/favorite_analysis' %>
+        </div>
+        <div class="m-5">
+          <h3 class="text-center">レビュー投稿の統計グラフ</h3>
+          <%= render partial: 'admins/homes/review_analysis' %>
+        </div>
+        <div class="m-5">
+          <h3 class="text-center">会員登録数の統計グラフ</h3>
+          <%= render partial: 'admins/homes/register_analysis' %>
+        </div>
+        <div class="m-5">
+          <h3 class="text-center">番組詳細ページの閲覧数の統計グラフ</h3>
+          <%= render partial: 'admins/homes/view_counts_analysis' %>
+        </div>
       </div>
     </div>
   </div>

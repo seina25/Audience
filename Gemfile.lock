@@ -85,6 +85,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chart-js-rails (0.1.7)
+      railties (> 3.1)
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
@@ -122,6 +124,10 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gon (6.2.1)
+      actionpack (>= 3.0)
+      multi_json
+      request_store (>= 1.0)
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -165,6 +171,7 @@ GEM
     mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.3)
@@ -228,6 +235,8 @@ GEM
       mini_magick (~> 4.0)
       refile (~> 0.5)
     regexp_parser (2.1.1)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -318,12 +327,14 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 2.15)
+  chart-js-rails (~> 0.1.4)
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
   enum_help
   font-awesome-sass (~> 5.13)
+  gon (~> 6.2.0)
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
