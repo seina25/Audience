@@ -25,19 +25,30 @@ class Program < ApplicationRecord
 
   attachment :program_image
 
-  # 番組検索の処理
-  def self.search(search)
-    if search != ""
-      Program.where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?',"%#{search}%", "%#{search}%","%#{search}%","%#{search}%"])
-    else
-      Program.all
-    end
+  # 検索機能
+  scope :search, -> (program_search_params) do
+    return if program_search_params.blank?
+    keyword_like(program_search_params[:keyword]).start_datetime_between(program_search_params[:start_datetime_from], program_search_params[:start_datetime_to])
   end
 
-  # def self.today
-  #   Program.where(start_datetime: Time.zone.now.all_day)
-  # end
+  # キーワード検索
+  scope :keyword_like, -> keyword { where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%"]) if keyword.present? }
+  # 放送時間範囲検索
+  scope :start_datetime_between, -> from, to {
+    from = DateTime.now
+    to = DateTime.now + 10
+    if from.present? && to.present?
+      where(start_datetime: from..to)
+    elsif from.present?
+      where('start_datetime >= ?', from)
+    elsif to.present?
+      where('start_datetime <= ?', to)
+    end
+  }
 
+
+
+  # 評価機能
   # 評価の平均値
   def average_score
     if self.reviews.any?
@@ -91,4 +102,5 @@ class Program < ApplicationRecord
       sort = ['これからの放送順', 'start_datetime']
     end
   end
+
 end

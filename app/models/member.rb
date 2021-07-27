@@ -19,6 +19,10 @@ class Member < ApplicationRecord
   validates :prefecture, presence: true
 
   enum gender: { man: 0, woman: 1, other: 2 }
+  
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 
 
   # 放送前の通知時間の設定
