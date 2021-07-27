@@ -30,6 +30,17 @@
  *
  */
 
+/*global $*/
+
+// top画面のカルーセル
+$(function() {
+    $('.hoge').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+});
+
 /* 星評価の星 */
 
 (function(root, factory) {

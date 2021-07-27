@@ -2,9 +2,9 @@ class Members::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-
     @programs = Program.all.page(params[:page]).per(5).order(created_at: :desc)
     @member = current_member
+    @search_params = program_search_params
   end
 
   def show
@@ -19,7 +19,9 @@ class Members::ProgramsController < ApplicationController
   end
 
   def search
-    @programs = Program.search(params[:keyword])
+    # @programs = Program.search(params[:keyword])
+    @search_params = program_search_params
+    @programs = Program.search(@search_params)
   end
 
   private
@@ -29,10 +31,8 @@ class Members::ProgramsController < ApplicationController
     :start_datetime, :end_datetime, :by_weekday, :program_image, :keyword, :impressionist)
   end
 
+  def program_search_params
+    params.fetch(:search, {}).permit(:keyword, :start_datetime_from, :start_datetime_in_to)
+  end
+
 end
-# indexのviewでlink_to(remote: true)
-# If params[:sort] == “いいね順”
-# @programs = Program.all.いいね潤order
-# Elsif params[:sort] == “pv”
-# @programs = Program.all.pv潤
-# end

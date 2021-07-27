@@ -1,14 +1,24 @@
 <div class="conteiner m-5">
   <div class="row mt-4">
-    <div class="col-9">
-        <h4 class="text-center">top page</h4>
-        <div>
-          <%= link_to '番組情報を取得する', admins_scrape_path %>
-        </div>
+    <div class="col-12">
+      <h4 class="text-center">top</h4>
     </div>
-    <div class="col-3">
-        <p>検索フォーム</p>
-        <%= render 'members/searches/search', search: @search %>
+  </div>
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="hoge">
+        <%#= link_to, program_path(@favorite_top) do %>
+          <%#= image_tag "assets/images/img/pexels-teona-swift-6913383.jpg", size: '100x100' %>
+          <!--お気に入り1位-->
+        <%# end %>
+        <%= link_to "レビュー１位", program_path(@review_top) %>
+        <%= link_to "PV１位", program_path(@pv_top) %>
+        <%= link_to "おすすめ", program_path(@recommendation) %>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-9"></div>
+    <div class="col-3"></div>
   </div>
 </div>
