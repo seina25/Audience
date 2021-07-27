@@ -66,7 +66,7 @@ Rails.application.configure do
     Bullet.console = true #警告をブラウザーのconsole.logに記録
     Bullet.rails_logger = true #警告を直接Railsログに追加
   end
-  
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       port: 587,

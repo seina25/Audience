@@ -2,6 +2,7 @@ class Admins::ContactsController < ApplicationController
   # before_action :authenticate_member!
   def index
     @contacts = Contact.all.order(created_at: :desc)
+    
     ContactNotification.contact_confirmed
   end
 

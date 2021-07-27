@@ -7,6 +7,7 @@ class Admins::ProgramsController < ApplicationController
     selection = params[:sort]
     @programs = Program.sort(selection).page(params[:page]).per(20)
     @sort = Program.program_selected_sort(selection)
+    @search_params = program_search_params
   end
 
   def show
@@ -31,6 +32,12 @@ class Admins::ProgramsController < ApplicationController
     redirect_to admins_programs_path
   end
 
+  def search
+    @search_params = program_search_params
+    @programs = Program.search(@search_params)
+  end
+
+  # スクレイピング用アクション
   def scrape
     # fivedays_later
     # threedays_later
@@ -43,6 +50,10 @@ private
   def program_params
     params.require(:program).permit(:title, :second_title, :category, :talent, :channel,
     :start_datetime, :end_datetime, :by_weekday, :profile_image_id)
+  end
+
+  def program_search_params
+    params.fetch(:search, {}).permit(:keyword, :start_datetime_from, :start_datetime_to)
   end
 
 end

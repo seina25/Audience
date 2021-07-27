@@ -1,12 +1,21 @@
 <div class="conteiner m-5">
   <div class="row mt-4">
     <div class="col-2">
-      <%= render partial: 'admins/homes/admin_menu' %>
+      <div class="mb-3">
+        <%= render partial: 'admins/programs/search_form', locals: { search_params: @search_params } %>
+      </div>
+      <div class="mb-3">
+        <%= render partial: 'admins/homes/admin_menu' %>
+      </div>
     </div>
     <div class="col-10">
-      <h4>番組一覧</h4>
-      <p>😲<%= @time.strftime("%-H:%M") %>の情報です</p>
-      <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+      <h2>番組一覧</h2>
+      <div class="row">
+        <div class="col-6 mx-auto">
+          <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+        </div>
+      </div>
+      <p><%= @time.strftime("%-H:%M") %>の情報です</p>
       <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
     </div>
   </div>

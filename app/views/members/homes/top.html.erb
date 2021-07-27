@@ -1,19 +1,22 @@
 <div class="conteiner m-5">
-  <div class="row mt-4">
-    <div class="col-12">
-      <h4 class="text-center">top</h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 mx-auto">
+  <div class="row mt-5">
+    <div class="col-12 center-block">
       <div class="hoge">
-        <%#= link_to, program_path(@favorite_top) do %>
-          <%#= image_tag "assets/images/img/pexels-teona-swift-6913383.jpg", size: '100x100' %>
-          <!--お気に入り1位-->
-        <%# end %>
-        <%= link_to "レビュー１位", program_path(@review_top) %>
-        <%= link_to "PV１位", program_path(@pv_top) %>
-        <%= link_to "おすすめ", program_path(@recommendation) %>
+        <%= link_to program_path(@favorite_top) do %>
+          <%= image_tag "img/fav_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+
+        <%= link_to program_path(@review_top) do %>
+          <%= image_tag "img/review_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+
+        <%= link_to  program_path(@pv_top) do %>
+          <%= image_tag "img/view_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+
+        <%= link_to program_path(@recommendation) do %>
+          <%= image_tag "img/pickup_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
       </div>
     </div>
   </div>

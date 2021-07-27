@@ -1,0 +1,14 @@
+<h5>会員検索</h5>
+
+<%= form_with  url:admins_member_search_path, local: true, method: :get do |f| %>
+<div class="form-group">
+  <div>
+    <%= f.text_field :keyword, class: "form-control", placeholder: "キーワードを入れてください" %>
+  </div>
+
+  <div class="text-right mt-3">
+    <%= f.submit "検索", class: "btn btn-info" %>
+  </div>
+</div>
+<% end %>
+

@@ -19,7 +19,6 @@ class Members::ProgramsController < ApplicationController
   end
 
   def search
-    # @programs = Program.search(params[:keyword])
     @search_params = program_search_params
     @programs = Program.search(@search_params)
   end
@@ -32,7 +31,7 @@ class Members::ProgramsController < ApplicationController
   end
 
   def program_search_params
-    params.fetch(:search, {}).permit(:keyword, :start_datetime_from, :start_datetime_in_to)
+    params.fetch(:search, {}).permit(:keyword, :start_datetime_from, :start_datetime_to)
   end
 
 end
