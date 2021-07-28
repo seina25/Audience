@@ -49,11 +49,25 @@ class Member < ApplicationRecord
     super && self.is_valid == '有効'
   end
 
+  # 会員情報のキーワード検索
   def self.search(search)
     if search != ""
       Member.where(['first_name LIKE ? OR last_name LIKE ? OR kana_sei LIKE ? OR kana_mei LIKE ? OR nickname LIKE ? OR prefecture LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
     else
       Member.all
+    end
+  end
+
+  # ゲストユーザーの生成
+  def self.guest
+    find_or_create_by!(email: 'guest_member@example.com') do |member|
+      member.password = SecureRandom.urlsafe_base64(8)
+      member.first_name = "ゲストユーザー"
+      member.last_name = "：閲覧用"
+      member.kana_sei = "ゲスト"
+      member.kana_mei = "ユーザー"
+      member.nickname = "ゲスト"
+      member.prefecture = "東京都"
     end
   end
 

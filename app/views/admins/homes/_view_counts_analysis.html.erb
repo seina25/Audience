@@ -1,6 +1,6 @@
 <canvas id="myLineChart_viewcounts"></canvas>
 <script>
-  $(document).on('turbolinks:load', function() {
+  $(function() {
     var ctx = document.getElementById("myLineChart_viewcounts");
     var myLineChart_viewcounts = new Chart(ctx, {
       type: 'line',

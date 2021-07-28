@@ -1,2 +1,27 @@
-<h1>Members::Homes#about</h1>
-<p>Find me in app/views/members/homes/about.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row mt-5">
+    <div class="col-12 center-block">
+      <div class="hoge">
+        <%= link_to program_path(@favorite_top) do %>
+          <%= image_tag "img/fav_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+
+        <%= link_to program_path(@review_top) do %>
+          <%= image_tag "img/review_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+
+        <%= link_to  program_path(@pv_top) do %>
+          <%= image_tag "img/view_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+
+        <%= link_to program_path(@recommendation) do %>
+          <%= image_tag "img/pickup_top1280.jpg",class: 'mx-auto' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9"></div>
+    <div class="col-3"></div>
+  </div>
+</div>

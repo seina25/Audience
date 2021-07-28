@@ -1,27 +1,35 @@
 <div class="conteiner m-5">
   <div class="row mt-5">
-    <div class="col-12 center-block">
-      <div class="hoge">
-        <%= link_to program_path(@favorite_top) do %>
-          <%= image_tag "img/fav_top1280.jpg",class: 'mx-auto' %>
-        <% end %>
-
-        <%= link_to program_path(@review_top) do %>
-          <%= image_tag "img/review_top1280.jpg",class: 'mx-auto' %>
-        <% end %>
-
-        <%= link_to  program_path(@pv_top) do %>
-          <%= image_tag "img/view_top1280.jpg",class: 'mx-auto' %>
-        <% end %>
-
-        <%= link_to program_path(@recommendation) do %>
-          <%= image_tag "img/pickup_top1280.jpg",class: 'mx-auto' %>
-        <% end %>
+    <div class="col-12">
+      <div class="card-deck" style="width:100%">
+        <div class="card mb-3">
+          <%= link_to members_guest_sign_in_path, method: :post, class: "card-body text-dark"  do %>
+            <%= image_tag "img/home1.jpg", class: 'card-img', alt: '...' %>
+            <div class="card-img-overlay">
+              <h1 class="card-title"><strong>ゲストログイン</strong></h1>
+              <p class="card-text">ゲストユーザーとしてログインできます<br>新規登録は不要です。</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="card mb-3">
+          <%= link_to member_session_path, class: "card-body text-dark" do %>
+            <%= image_tag "img/home2.jpg", class: 'card-img', alt: '...' %>
+            <div class="card-img-overlay">
+              <h1 class="card-title"><strong>会員ログイン</strong></h1>
+              <p class="card-text">既に登録済みの方はこちら</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="card mb-3">
+          <%= link_to new_member_registration_path, class: "card-body text-dark" do %>
+            <%= image_tag "img/home3.jpg", class: 'card-img', alt: '...' %>
+            <div class="card-img-overlay">
+              <h1 class="card-title"><strong>新規ログイン</strong></h1>
+              <p class="card-text">まだ登録がお済みで無い方はこちら</p>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-9"></div>
-    <div class="col-3"></div>
   </div>
 </div>

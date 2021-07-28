@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     registrations: 'members/registrations'
   }
 
+  devise_scope :member do
+    post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
+  end
+
   scope module: :members do
     root 'homes#top'
     get 'about' => 'homes#about', as: :about
