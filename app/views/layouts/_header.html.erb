@@ -12,7 +12,7 @@
         <%= link_to "ABOUT", about_path %>
       </li>
       <div class="navbar-brand nav-item" href="#">
-        <%= link_to image_tag('img/log.png'), '/' %>
+        <%= link_to image_tag('img/log.png'), '/about' %>
       </div>
       <li class="nav-item">
         <%= link_to "TV PROGRAMS", programs_path %>
@@ -32,7 +32,7 @@
         <%#= link_to "CONTACT", admins_contacts_path %>
       </li>
       <div class="navbar-brand nav-item" href="#">
-        <%= link_to image_tag('img/log.png'), '/' %>
+        <%= link_to image_tag('img/log.png'), '/about' %>
       </div>
       <li class="nav-item">
         <%= link_to "ANALISIS", admins_analysis_path %>
@@ -45,25 +45,19 @@
       </li>
     <% else %>
       <li class="nav-item">
-        <h4>ゲストユーザー<h4>
-      </li>
-      <li class="nav-item">
-        <%= link_to "SIGN IN", new_member_registration_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "LOG IN", new_member_session_path %>
-      </li>
-      <div class="navbar-brand nav-item" href="#">
-        <%= link_to image_tag('img/log.png'), '/' %>
-      </div>
-      <li class="nav-item">
         <%= link_to "TOP", root_path %>
       </li>
       <li class="nav-item">
         <%= link_to "ABOUT", about_path %>
       </li>
+      <div class="navbar-brand nav-item" href="#">
+        <%= link_to image_tag('img/log.png'), '/about' %>
+      </div>
       <li class="nav-item">
-        <%= link_to "PROGRAMS", programs_path %>
+        <%= link_to "SIGN IN", new_member_registration_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "LOG IN", new_member_session_path %>
       </li>
     <% end %>
     </ul>
