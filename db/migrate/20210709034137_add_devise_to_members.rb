@@ -15,11 +15,11 @@ class AddDeviseToMembers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at
 
       ## Trackable
-      # t.integer  :sign_in_count, default: 0, null: false
-      # t.datetime :current_sign_in_at
-      # t.datetime :last_sign_in_at
-      # t.string   :current_sign_in_ip
-      # t.string   :last_sign_in_ip
+      t.integer  :sign_in_count, default: 0, null: false
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.string   :current_sign_in_ip
+      t.string   :last_sign_in_ip
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -43,15 +43,12 @@ class AddDeviseToMembers < ActiveRecord::Migration[5.2]
       t.integer :gender, null: false, default: 0
       t.string :profile_image_id
       t.string :prefecture
-      t.string :line_id
-      t.datetime :deleted_at
+      t.integer :notification_time, null: false, default: 3
+      t.boolean :is_valid, null: false, default: true
     end
 
     add_index :members, :email,                unique: true
     add_index :members, :reset_password_token, unique: true
-    add_index :members, [:last_name, :first_name]
-    add_index :members, [:kana_sei, :kana_mei]
-    add_index :members, [:nickname, :prefecture, :deleted_at]
     # add_index :members, :confirmation_token,   unique: true
     # add_index :members, :unlock_token,         unique: true
   end

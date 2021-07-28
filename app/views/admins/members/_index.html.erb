@@ -1,0 +1,39 @@
+<table class="table program">
+  <thead>
+    <tr>
+      <th></th>
+      <th>氏名(ニックネーム)</th>
+      <th>フリガナ</th>
+      <th>出身地</th>
+      <th>いいねクリック数</th>
+      <th>アクセス数</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% members.each do |member| %>
+    <tr>
+      <th class="align-middle">
+        <%= attachment_image_tag member, :profile_image, format: 'png', fallback: "img/noimage1.png", size: "60x60"%>
+      </th>
+      <th class="align-middle">
+        <%= link_to  admins_member_path(member.id)  do %>
+          <%= member.first_name + member.last_name %>(<%= member.nickname %>)
+        <% end %>
+      </th>
+      <th class="align-middle">
+        <%= member.kana_sei + member.kana_mei %>
+      </th>
+      <th class="align-middle">
+        <%= member.prefecture %>
+      </th>
+      <th class="align-middle">
+        <%= member.favorites.count %>いいね
+      </th>
+      <th class="align-middle">
+        <%= member.sign_in_count %>回
+      </th>
+    </tr>
+    <% end %>
+  </tboby>
+</table>
+<%= paginate members %>

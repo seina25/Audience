@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_034215) do
+ActiveRecord::Schema.define(version: 2021_07_26_062157) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,23 +24,11 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "cast_favorites", force: :cascade do |t|
+  create_table "contact_notifications", force: :cascade do |t|
+    t.integer "contact_id"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "member_id"
-    t.bigint "cast_id"
-    t.index ["cast_id"], name: "index_cast_favorites_on_cast_id"
-    t.index ["member_id"], name: "index_cast_favorites_on_member_id"
-  end
-
-  create_table "casts", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "affiliation"
-    t.string "occupation", null: false
-    t.string "cast_image_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "affiliation", "occupation"], name: "index_casts_on_name_and_affiliation_and_occupation"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -52,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.index ["member_id"], name: "index_contacts_on_member_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "member_id"
+    t.bigint "program_id"
+    t.boolean "checked", default: false, null: false
+    t.index ["member_id"], name: "index_favorites_on_member_id"
+    t.index ["program_id"], name: "index_favorites_on_program_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,6 +58,11 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "last_name"
     t.string "first_name"
     t.string "kana_sei"
@@ -68,47 +71,33 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.integer "gender", default: 0, null: false
     t.string "profile_image_id"
     t.string "prefecture"
-    t.string "line_id"
-    t.datetime "deleted_at"
+    t.integer "notification_time", default: 3, null: false
+    t.boolean "is_valid", default: true, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
-    t.index ["kana_sei", "kana_mei"], name: "index_members_on_kana_sei_and_kana_mei"
-    t.index ["last_name", "first_name"], name: "index_members_on_last_name_and_first_name"
-    t.index ["nickname", "prefecture", "deleted_at"], name: "index_members_on_nickname_and_prefecture_and_deleted_at"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
-  end
-
-  create_table "program_casts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "program_id"
-    t.bigint "cast_id"
-    t.index ["cast_id"], name: "index_program_casts_on_cast_id"
-    t.index ["program_id"], name: "index_program_casts_on_program_id"
-  end
-
-  create_table "program_favorites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "member_id"
-    t.bigint "program_id"
-    t.index ["member_id"], name: "index_program_favorites_on_member_id"
-    t.index ["program_id"], name: "index_program_favorites_on_program_id"
   end
 
   create_table "programs", force: :cascade do |t|
     t.string "title", null: false
     t.string "second_title", null: false
     t.string "category", null: false
-    t.string "cast"
+    t.string "talent"
     t.string "channel", null: false
     t.datetime "start_datetime", null: false
     t.datetime "end_datetime", null: false
     t.integer "by_weekday", default: 0, null: false
     t.string "program_image_id"
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel", "start_datetime"], name: "index_programs_on_channel_and_start_datetime", unique: true
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.integer "program_id", null: false
+    t.float "score", default: 0.0, null: false
+    t.integer "favorite_sum", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -120,6 +109,13 @@ ActiveRecord::Schema.define(version: 2021_07_09_034215) do
     t.bigint "program_id"
     t.index ["member_id"], name: "index_reviews_on_member_id"
     t.index ["program_id"], name: "index_reviews_on_program_id"
+  end
+
+  create_table "view_counts", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

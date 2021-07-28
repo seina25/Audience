@@ -16,9 +16,85 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import "slick-theme";
+@import "slick";
 
 *{
   padding: 0;
   margin: 0;
   boxsizing: border-box;
+
 }
+
+ul,
+ol{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a{
+	color: #333;
+	text-decoration: none;
+  outline: none;
+}
+
+a:visited{
+  color: #333;
+	text-decoration: none;
+  outline: none;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #333;
+  background-color: transparent;
+  outline: none;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-nav .nav-item {
+    padding: 0 1rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar-nav .nav-item {
+    padding: 0 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .navbar-nav .nav-item {
+    padding: 0 3rem;
+  }
+}
+
+body{
+  background-color: #FFDEE9;
+  background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+  font-family: 'Sawarabi Gothic', sans-serif;
+	color: #333;
+	font-size: 1rem;
+	line-height: 1.85;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	word-wrap: break-word;
+}
+
+.card{
+  width: 640px;
+  height: 340px;
+}
+
+.card-img{
+  opacity: 0.7;
+}
+
+/* 文字を中央に揃える */
+.card-img-overlay{
+  padding: 0;
+  top: calc(50% - 1.6rem);
+  text-align: center;
+  font-weight: bold;
+}
+

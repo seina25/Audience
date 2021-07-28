@@ -1,2 +1,28 @@
-<h1>Admins::Homes#analysis</h1>
-<p>Find me in app/views/admins/homes/analysis.html.erb</p>
+<div class="container-fluid m-3">
+  <div class="row mt-5 m-3">
+    <div class="col-2">
+      <%= render partial: 'admins/homes/admin_menu' %>
+    </div>
+    <div class="col-8 mx-auto">
+      <h2>各種統計</h2>
+      <div>
+        <div class="m-5">
+          <h3 class="text-center">お気に入り登録の統計グラフ</h3>
+          <%= render partial: 'admins/homes/favorite_analysis' %>
+        </div>
+        <div class="m-5">
+          <h3 class="text-center">レビュー投稿の統計グラフ</h3>
+          <%= render partial: 'admins/homes/review_analysis' %>
+        </div>
+        <div class="m-5">
+          <h3 class="text-center">会員登録数の統計グラフ</h3>
+          <%= render partial: 'admins/homes/register_analysis' %>
+        </div>
+        <div class="m-5">
+          <h3 class="text-center">番組詳細ページの閲覧数の統計グラフ</h3>
+          <%= render partial: 'admins/homes/view_counts_analysis' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@ Audience　=　視聴者
 視聴者の目線に立って、番組情報を確認することができます！
 
 
-見逃し防止のLINE通知機能やキーワードひとつで番組が見つけられたり、好きな番組の閲覧案内情報がくる！？
+見逃し防止の通知機能やキーワードひとつで番組が見つけられたり、好きな番組の閲覧案内情報がくる！？
 
 これまでになかったけどあったらいいなを実現してみました。
 
@@ -40,7 +40,7 @@ Audience　=　視聴者
 
 ## 設計書
 ER図
-![ER図](https://user-images.githubusercontent.com/82795561/125033899-e8484c80-e0ca-11eb-9621-bac5b3291e39.png)
+![ER図](https://user-images.githubusercontent.com/82795561/126084218-12c8a575-58b1-4ece-804a-19d7dd3aa44a.png)
 
 テーブル定義書
 https://docs.google.com/spreadsheets/d/1Df6zRwkIvCw0OX-CbGG-QQCWzKroyov41UnnDpSktmY/edit?usp=sharing

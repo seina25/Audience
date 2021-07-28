@@ -1,1 +1,20 @@
-<h1>program#show</h1>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+    <div class="col-3">
+      <%= link_to '番組情報を編集する', edit_admins_program_path(@program), class: 'btn btn-outline-info' %>
+      <%= link_to '番組情報を削除する', admins_program_path(@program), method: :delete, class: 'btn btn-outline-secondary' %>
+    </div>
+    <div class="col-9">
+      <h4 class="">番組詳細</h4>
+      <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
+        <%= render partial: 'layouts/information', locals: { program: @program } %>
+      <div>
+        いいね数<%= @favorite.count %>
+        レビュー数<%= @program.reviews.count %>
+        レビュー平均値<%= @program.average_score %>
+      </div>
+
+      <%= link_to "Back", admins_programs_path, class: "btn btn-sm btn-danger" %>
+    </div>
+  </div>
+</div>

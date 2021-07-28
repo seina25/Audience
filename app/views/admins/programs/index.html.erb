@@ -1,17 +1,22 @@
 <div class="conteiner m-5">
   <div class="row mt-4">
-    <div class="col-3">
-      <div class="btn btn-outline-info">番組一覧を表示する</div><br>
-      <%= link_to '番組情報を更新する', admins_scrape_path, class: 'btn btn-outline-danger' %>
-      <%#= link_to "番組情報を取得する", '#', id: 'display-program-list' %>
-      <%#= link_to "番組情報を取得する", admins_scrape_path, remote: true, id: 'get-data', style: 'display:none;' %>
-    </div>
-    <div class="col-9">
-      <h4 class="">番組一覧</h4>
-      <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
-      <div id="programs_area">
-        <%= render partial: 'admins/programs/information', locals: { programs: @programs } %>
+    <div class="col-2">
+      <div class="mb-3">
+        <%= render partial: 'admins/programs/search_form', locals: { search_params: @search_params } %>
       </div>
+      <div class="mb-3">
+        <%= render partial: 'admins/homes/admin_menu' %>
+      </div>
+    </div>
+    <div class="col-10">
+      <h2>番組一覧</h2>
+      <div class="row">
+        <div class="col-6 mx-auto">
+          <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+        </div>
+      </div>
+      <p><%= @time.strftime("%-H:%M") %>の情報です</p>
+      <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
     </div>
   </div>
 </div>

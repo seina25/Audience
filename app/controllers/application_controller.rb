@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+
+  def check_notifications
+    @unchecked_notifications = ContactNotification.where(checked:false)
+  end
+
+
+
    private
 
   # ログイン後のリダイレクト先

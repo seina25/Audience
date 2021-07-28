@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-2 mx-auto">
+      <%= link_to '一覧へ戻る', programs_path, class: 'btn btn-danger' %>
+      <%= render partial: 'members/admins/search_form', locals: { search_params: @search_params } %>
+      <%= render partial: 'admins/homes/admin_menu' %>
+    </div>
+    <div class="col-8 mx-auto">
+      <h2 class="text-center">検索結果</h2>
+      <div class="mt-3">
+      <% if @programs.count == 0 %>
+        <h2 class="text-center mt-5">検索結果はありません</h2>
+      <% else %>
+      <table class="table program">
+        <thead>
+          <tr>
+            <th class="col-2">放送状況</th>
+            <th class="col-2">番組名</th>
+            <th class="col-2">放送局</th>
+            <th class="col-2">放送日時</th>
+            <th class="col-2">カテゴリー</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @programs.each do |program| %>
+          <tr>
+            <th>
+              <% if Time.zone.now <= program.start_datetime %>
+                <%= "放送予定" %>
+              <% elsif Time.zone.now.between?(program.start_datetime, program.end_datetime) %>
+              　<%= "放送中" %>
+              <% elsif program.end_datetime <= Time.zone.now %>
+              　<%= "放送終了" %>
+              <% end %>
+            </th>
+            <th>
+              <%= link_to program.title, admins_program_path(program) %>
+            </th>
+            <th>
+              <%= program.channel %>
+            </th>
+            <th>
+              <% weeks = ["月","火","水","木","金","土","日"] %>
+              <% index = program.start_datetime.strftime("%u").to_i %>
+              <%= program.start_datetime.strftime("%Y年%m月%d日(#{weeks[index - 1]}) %-H:%M") %> 〜 <%= program.start_datetime.strftime("%-H:%M") %>
+            </th>
+            <th>
+              <%= program.category %>
+            </th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

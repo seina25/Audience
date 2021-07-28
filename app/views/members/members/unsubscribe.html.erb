@@ -1,2 +1,20 @@
-<h1>member#unsubscribe</h1>
-<p>退会確認画面</p>
+<div class="container-fluid">
+  <div class="col-5 mx-auto">
+    <h2>退会手続き</h2>
+  </div>
+  <div class="row m-5">
+    <div class="col-2">
+      <%= render 'members/members/mymenu' %>
+    </div>
+    <div class="col-7 mx-auto">
+      <h2>本当に退会しますか？</h2>
+      <div>
+        <h4>退会する場合は、『退会する』をクリックしてください。</h4>
+      </div>
+      <div class="col-12 mt-5">
+        <%= link_to '退会しない', my_page_path(@member) , class: 'btn btn-outline-info'%>
+        <%= link_to "退会する", withdraw_path(@member), method: :patch, class: 'btn btn-outline-danger ml-5' %>
+      </div>
+    </div>
+  </div>
+</div>

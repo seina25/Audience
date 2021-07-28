@@ -5,39 +5,25 @@
     <meta charset="utf-8" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= Gon::Base.render_data %>
     <script src="https://kit.fontawesome.com/c5c1bb451e.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <% if member_signed_in? %>
-            <li>ユーザー</li>
-            <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
-          <% elsif admin_signed_in? %>
-            <li>管理者</li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-          <% else %>
-            <li>ゲストユーザー</li>
-            <li><%= link_to "新規登録", new_member_registration_path %></li>
-            <li><%= link_to "ログイン", new_member_session_path %></li>
-            <li><%= link_to "トップ", root_path %></li>
-            <li><%= link_to "アバウト", about_path %></li>
-            <li><%= link_to "仮program index", admins_programs_path %></li>
-            <li><%= link_to "仮番組取得画面", admins_scrape_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+      <%= render 'layouts/header' %>
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
-
+      <%= render 'layouts/footer' %>
     </footer>
-
   </body>
 </html>

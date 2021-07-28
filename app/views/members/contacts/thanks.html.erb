@@ -1,2 +1,28 @@
-<h1>Members::Contacts#thanks</h1>
-<p>Find me in app/views/members/contacts/thanks.html.erb</p>
+<div class="container-fluid">
+  <div class="col-5 mx-auto">
+  </div>
+  <div class="row m-5">
+    <div class="col-2">
+      <%= render 'members/members/mymenu' %>
+    </div>
+    <div class="col-10 d-flex justify-content-center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2>お問い合わせフォーム</h2>
+        </div>
+        <div class="col-12 text-center">
+          <h1>送信完了しました</h1>
+          <h3>ご意見・ご感想ありがとうございます</h3>
+        </div>
+        <div class="col-10 d-flex justify-content-end">
+          <div>
+            <%= link_to '新規投稿へ戻る', new_contact_path, class: 'btn btn-info' %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

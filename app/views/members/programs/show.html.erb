@@ -1,2 +1,28 @@
-<h1>Members::Programs#show</h1>
-<p>Find me in app/views/members/programs/show.html.erb</p>
+<div class="conteiner m-5">
+  <div class="row mt-4">
+
+    <div class="col-9">
+      <h4 class="">番組詳細</h4>
+      <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
+      <div id="programs_area">
+        <%= render partial: 'layouts/information', locals: { program: @program } %>
+      </div>
+
+      <div id="favorite_buttons_<%= @program.id %>">
+        <%= render partial: 'members/favorites/favorite', locals: { program: @program, member: @member } %>
+      </div>
+
+      <!--レビュー一覧-->
+      <div id="comments_area">
+        <%= render partial: 'members/reviews/show_review', locals: { program: @program, member: @member, reviews: @reviews } %>
+      </div>
+      <!--レビュー新規投稿-->
+      <%= render partial: 'members/reviews/new_review', locals: { program: @program, review: @review } %>
+
+      <%= link_to "Back", programs_path, class: "btn btn-sm btn-danger" %>
+    </div>
+
+    <div class="col-3">
+    </div>
+  </div>
+</div>
