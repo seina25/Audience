@@ -57,7 +57,7 @@ set :environment, :production
 # end
 
 # 毎日 日本時間am02:15のスケジューリング
-every 1.day, at: '14:20 pm' do
+every 1.day, at: '15:10 pm' do
   begin
     runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
   rescue => e
@@ -67,7 +67,7 @@ every 1.day, at: '14:20 pm' do
 end
 
 # 毎日 日本時間am02:35のスケジューリング
-every 1.day, at: '14:40 pm' do
+every 1.day, at: '15:30 pm' do
   begin
     runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
   rescue => e
