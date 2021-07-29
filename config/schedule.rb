@@ -24,7 +24,7 @@ ENV.each { |k, v| env(k, v) }
 # 実際にやる予定==========================================
 
 # 毎日 日本時間 01:00のスケジューリング(5日後のデータ取得)
-every 1.day, at: '16:45 pm' do
+every 1.day, at: '16:00 pm' do
   runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
 rescue StandardError => e
   Rails.logger.error('aborted rails runner')
