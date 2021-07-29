@@ -18,6 +18,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require toastr
+//= require turbolinks
 //= require_tree .
 
 /*!
@@ -34,13 +35,17 @@
 /*global $*/
 
 // top画面のカルーセル
-$(function() {
-    $('.hoge').slick({
-        dots: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
+
+$(document).on('turbolinks:load', function() {
+      $(function() {
+        $('.hoge').slick({
+            dots: true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
     });
 });
+
 
 /* 星評価の星 */
 
