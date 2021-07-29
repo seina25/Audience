@@ -41,7 +41,7 @@ set :output, 'log/cron.log'
 # set :environment, :production
 rails_env = ENV['RAILS_ENV'] ||= 'production'
 set :environment, rails_env
-ENV.each { |k, v| env(k, v) } 
+ENV.each { |k, v| env(k, v) }
 
 
 # =======================================================
@@ -52,34 +52,34 @@ ENV.each { |k, v| env(k, v) }
 
 # 毎日 日本時間am01:25のスケジューリング
 
-every 1.minute do
+# every 1.minute do
+#   begin
+#     runner 'Batch::Test.test'
+#   rescue => e
+#     Rails.logger.error("aborted rails runner")
+#     raise e
+#   end
+# end
+
+# 毎日 日本時間 13:40のスケジューリング
+every 1.day, at: '04:40 am' do
   begin
-    runner 'Batch::Test.test'
+    runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e
   end
 end
 
-# 毎日 日本時間am02:15のスケジューリング
-# every 1.day, at: '00:43 am' do
-#   begin
-#     runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
-#   rescue => e
-#     Rails.logger.error("aborted rails runner")
-#     raise e
-#   end
-# end
-
-# # 毎日 日本時間am02:35のスケジューリング
-# every 1.day, at: '00:52 am' do
-#   begin
-#     runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
-#   rescue => e
-#     Rails.logger.error("aborted rails runner")
-#     raise e
-#   end
-# end
+# 毎日 日本時間 13:52のスケジューリング
+every 1.day, at: '04:52 am' do
+  begin
+    runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
+  rescue => e
+    Rails.logger.error("aborted rails runner")
+    raise e
+  end
+end
 
 
 
