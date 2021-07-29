@@ -87,7 +87,7 @@
         <h3>お気に入り番組情報</h3>
         <p>
           現在、放送時間の<%= current_member.notification_time %>時間前に通知が来るように設定されています。
-          <%= link_to '通知時間の設定を変更する', notification_path %>
+          <%= link_to '通知時間の設定を変更する', notification_path, class: 'btn btn-outline-info btn-sm' %>
         </p>
         <% current_member.fav_programs.each do |program| %>
         <div class="row ml-5">
@@ -109,22 +109,24 @@
 
     <section id="myreview">
       <div class="col-8 mx-auto">
-        <h3>口コミ一覧 （<%= @reviews.count %>件）</h3>
-        <% @reviews.includes([:program]).each do |review| %>
-          <div class="row ml-5">
-            <div class="col-8">
-              <%= link_to program_path(review.program) do %>
-                <%= review.program.title %>
-              <% end %>
+        <div class="mt-5 mb-5">
+          <h3>口コミ一覧 （<%= @reviews.count %>件）</h3>
+          <% @reviews.includes([:program]).each do |review| %>
+            <div class="row ml-5">
+              <div class="col-8">
+                <%= link_to program_path(review.program) do %>
+                  <%= review.program.title %>
+                <% end %>
+              </div>
+              <div class="col-3">
+                <%= review.comment %>
+              </div>
+              <div class="col-1">
+                |  <%= review.score %>
+              </div>
             </div>
-            <div class="col-3">
-              <%= review.comment %>
-            </div>
-            <div class="col-1">
-              |  <%= review.score %>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </section>
     </div>

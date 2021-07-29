@@ -1,8 +1,13 @@
-<div class="conteiner m-5">
-  <div class="row mt-4">
-
-    <div class="col-9">
-      <h4 class="">番組詳細</h4>
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-2 mx-auto">
+      <%= link_to '番組一覧へ戻る', programs_path, class: 'btn btn-primary btn-block' %>
+      <div class="mt-5">
+        <%= render partial: 'members/members/mymenu' %>
+      </div>
+    </div>
+    <div class="col-8 mx-auto">
+      <h2 class="">番組詳細</h2>
       <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
       <div id="programs_area">
         <%= render partial: 'layouts/information', locals: { program: @program } %>
@@ -20,9 +25,6 @@
       <%= render partial: 'members/reviews/new_review', locals: { program: @program, review: @review } %>
 
       <%= link_to "Back", programs_path, class: "btn btn-sm btn-danger" %>
-    </div>
-
-    <div class="col-3">
     </div>
   </div>
 </div>
