@@ -39,8 +39,8 @@ class Admins::ProgramsController < ApplicationController
 
   # スクレイピング用アクション
   def scrape
-    fivedays_later
-    # threedays_later
+    # fivedays_later
+    threedays_later
     # today_scrape
     redirect_to admins_programs_path
   end
