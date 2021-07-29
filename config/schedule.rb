@@ -61,8 +61,8 @@ ENV.each { |k, v| env(k, v) }
 #   end
 # end
 
-# 毎日 日本時間 13:40のスケジューリング
-every 1.day, at: '04:45 am' do
+# 毎日 日本時間 01:00のスケジューリング
+every 1.day, at: '16:45 pm' do
   begin
     runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
   rescue => e
@@ -71,8 +71,8 @@ every 1.day, at: '04:45 am' do
   end
 end
 
-# 毎日 日本時間 13:52のスケジューリング
-every 1.day, at: '04:55 am' do
+# 毎日 日本時間 03:00のスケジューリング
+every 1.day, at: '05:15 am' do
   begin
     runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
   rescue => e

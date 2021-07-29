@@ -41,7 +41,7 @@ require 'selenium-webdriver'
       @programs = []
       elements = driver.find_elements(:class, 'programListItemTitleLink')
       @urls = elements.map { |element| element.attribute('href') }
-      @urls.first(1).each do |url|
+      @urls.each do |url|
         driver.navigate.to(url)
 
         sleep(rand(5))
