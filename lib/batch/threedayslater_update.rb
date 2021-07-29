@@ -19,7 +19,7 @@ require 'selenium-webdriver'
     driver = Selenium::WebDriver.for :chrome, options: options
     driver.manage.timeouts.implicit_wait = @timeout
 
-    search_date =  (Date.today + 3).strftime('%Y-%m-%d')
+    search_date =  (Date.today + 4).strftime('%Y-%m-%d')
 
     # 番組表のページを開く
     driver.navigate.to("https://tv.yahoo.co.jp/search?t=3&g=&d=" + search_date + "&ob=&oc=%2B3000&dts=0&dtse=0&q=&a=&s=00")

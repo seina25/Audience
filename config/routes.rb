@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     end
     resources :members, only: [:index, :show, :edit, :update]
     get 'member/search' => 'members#search', as: :member_search
-    resources :contacts, only: [:index, :show]
+    resources :contacts, only: [:index]
   end
 
    # ===========================================================================
