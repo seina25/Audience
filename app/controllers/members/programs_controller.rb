@@ -21,7 +21,7 @@ class Members::ProgramsController < ApplicationController
 
   def search
     @search_params = program_search_params
-    @programs = Program.search(@search_params)
+    @programs = Program.search(@search_params).page(params[:page]).per(5).order(created_at: :desc)
   end
 
   private
