@@ -58,15 +58,11 @@ class Program < ApplicationRecord
   end
 
   # ソート機能
-  # これから開始する番組を特定
-  def sort_programs
-    where(start_datetime: DateTime.now..Float::INFINITY)
-  end
 
   def self.sort(selection)
     case selection
     when 'start_datetime'
-      where(start_datetime: DateTime.now..Float::INFINITY).order(sort_programs: :ASC)
+      where(start_datetime: DateTime.now..Float::INFINITY).order(start_datetime: :ASC)
     when 'new'
       all.order(created_at: :DESC)
     when 'favorite'
@@ -83,7 +79,7 @@ class Program < ApplicationRecord
       ids = find(ViewCount.group(:program_id).order(Arel.sql('count(program_id) desc')).pluck(:program_id)).pluck(:id)
       Program.order_as_specified(id: ids)
     else
-      where(start_datetime: DateTime.now..Float::INFINITY).order(sort_programs: :ASC)
+      where(start_datetime: DateTime.now..Float::INFINITY).order(start_datetime: :ASC)
     end
   end
 
