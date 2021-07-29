@@ -64,7 +64,7 @@ rescue StandardError => e
 end
 
 # 毎日 日本時間 03:00のスケジューリング
-every 1.day, at: '14:40 pm' do
+every 1.day, at: '15:03 pm' do
   runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
 rescue StandardError => e
   Rails.logger.error('aborted rails runner')
