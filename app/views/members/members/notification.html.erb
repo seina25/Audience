@@ -1,10 +1,10 @@
-<div class="container m-5">
-  <div class="row justify-content-center">
-    <div class="col-2">
+<div class="container-fuild">
+  <div class="row mb-5">
+    <div class="col-2 mx-auto">
       <%= render 'members/members/mymenu' %>
     </div>
-    <div class="col-10 mx-auto">
-      <h1>通知設定</h1>
+    <div class="col-8 mx-auto">
+      <h2>通知設定</h2>
       <p>お気に入りした番組の放送前に通知がきます！<br>
       1時間前〜24時間前の範囲で設定できます。
       </p>
@@ -16,14 +16,13 @@
         <div class="col-md-3 d-flex align-items-center">
           <%= f.label "通知時間", class: "form-group-label" %>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-3">
           <%= f.number_field :notification_time, class: "form-control", min: 1, max: 24 %>時間前
         </div>
       </div>
 
-
       <div class="form-group-row">
-        <div class="col-10 text-right">
+        <div class="col-10 text-center">
         <%= f.submit "更新する", class: "btn btn-info" %>
         </div>
       </div>
