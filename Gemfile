@@ -86,6 +86,7 @@ gem 'whenever', require: false
 gem 'order_as_specified'
 
 gem 'listen', '>= 3.0.5', '< 3.2'
+gem "toastr-rails"
 
 gem 'dotenv-rails'
 group :production do

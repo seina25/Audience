@@ -20,8 +20,16 @@
       <%= render 'layouts/header' %>
     </header>
     <main>
-      <%= flash[:notice] %>
-      <%= flash[:error] %>
+      <% if flash.any? %>
+      <script type="text/javascript">
+        <% flash.each do |key, value| %>
+          <% key = "success" if key == "notice" %>
+          <% key = "error" if key == "alert" %>
+          toastr['<%= key %>']('<%= value %>');
+        <% end %>
+      </script>
+    <% end %>
+
       <%= yield %>
     </main>
     <footer>
