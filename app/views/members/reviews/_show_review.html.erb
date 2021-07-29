@@ -42,7 +42,7 @@
       <div class="col-md-12">
         <% if review.member == current_member %>
         <div class="review-delete">
-          <%= link_to "削除", program_review_path(review.program, review), method: :delete, remote: true %>
+          <%= link_to "削除", program_review_path(review.program, review), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } %>
         </div>
         <div class="review-delete">
           <%= link_to "編集", edit_program_review_path(review.program, review) %>

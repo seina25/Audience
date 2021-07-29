@@ -60,20 +60,20 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.after_initialize do
-    Bullet.enable = true #Bullet gemを有効
-    Bullet.alert = true #ブラウザにJavaScriptアラートをポップアップ
-    Bullet.bullet_logger = true #Bulletログファイル（Rails.root/log/bullet.log）に記録
-    Bullet.console = true #警告をブラウザーのconsole.logに記録
-    Bullet.rails_logger = true #警告を直接Railsログに追加
+    Bullet.enable = true # Bullet gemを有効
+    Bullet.alert = true # ブラウザにJavaScriptアラートをポップアップ
+    Bullet.bullet_logger = true # Bulletログファイル（Rails.root/log/bullet.log）に記録
+    Bullet.console = true # 警告をブラウザーのconsole.logに記録
+    Bullet.rails_logger = true # 警告を直接Railsログに追加
   end
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      port: 587,
-      address: 'smtp.gmail.com',
-      domain: 'smtp.gmail.com',
-      user_name: ENV['SMTP_USERNAME'],
-      password: ENV['SMTP_PASSWORD'],
-      enable_starttls_auto: true
+    port: 587,
+    address: 'smtp.gmail.com',
+    domain: 'smtp.gmail.com',
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
+    enable_starttls_auto: true
   }
 end

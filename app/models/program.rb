@@ -7,11 +7,9 @@ class Program < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :view_counts, dependent: :destroy
 
-
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
   end
-
 
   validates :title, presence: true
   validates :second_title, presence: true
@@ -27,14 +25,21 @@ class Program < ApplicationRecord
 
   # 検索機能
   # binding.pry
-  scope :search, -> (program_search_params) do
-    return if program_search_params.blank?  || (program_search_params[:keyword].blank? && program_search_params[:start_datetime_from].blank? && program_search_params[:start_datetime_to].blank? )
+  scope :search, lambda { |program_search_params|
+    if program_search_params.blank? || (program_search_params[:keyword].blank? && program_search_params[:start_datetime_from].blank? && program_search_params[:start_datetime_to].blank?)
+      return
+    end
+
     keyword_like(program_search_params[:keyword]).start_datetime_between(program_search_params[:start_datetime_from], program_search_params[:start_datetime_to])
-  end
+  }
   # キーワード検索
-  scope :keyword_like, -> search { where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?',"%#{search}%","%#{search}%","%#{search}%","%#{search}%"]) if search.present? }
+  scope :keyword_like, lambda { |search|
+                         if search.present?
+                           where(['title LIKE ? OR channel LIKE ? OR category LIKE ? OR talent LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+                         end
+                       }
   # 放送時間範囲検索
-  scope :start_datetime_between, -> from, to {
+  scope :start_datetime_between, lambda { |from, to|
     if from.present? && to.present?
       where(start_datetime: from..to)
     elsif from.present?
@@ -44,16 +49,14 @@ class Program < ApplicationRecord
     end
   }
 
-
-
   # 評価機能
   # 評価の平均値
   def average_score
-    if self.reviews.any?
-      average_score = self.reviews.map{ |x| x.score }.sum / self.reviews.count
+    if reviews.any?
+      average_score = reviews.map { |x| x.score }.sum / reviews.count
       average_score.round(2)
     else
-      return "レビューなし"
+      'レビューなし'
     end
   end
 
@@ -70,11 +73,11 @@ class Program < ApplicationRecord
       Program.order_as_specified(id: ids)
     when 'review'
       ids = find(Review.group(:score).order('avg(score) desc').pluck(:program_id)).pluck(:id)
-        if ids.empty?
-          all.order(created_at: :DESC)
-        else
-          Program.order_as_specified(id: ids)
-        end
+      if ids.empty?
+        all.order(created_at: :DESC)
+      else
+        Program.order_as_specified(id: ids)
+      end
     when 'view'
       ids = find(ViewCount.group(:program_id).order(Arel.sql('count(program_id) desc')).pluck(:program_id)).pluck(:id)
       Program.order_as_specified(id: ids)
@@ -84,17 +87,16 @@ class Program < ApplicationRecord
   end
 
   def self.program_selected_sort(selection)
-    if selection == 'new'
-      sort = ['新着順', 'new']
-    elsif selection == 'favorite'
-      sort = ['お気に入り順', 'favorite']
-    elsif selection == 'review'
-      sort = ['評価が高い順', 'review']
-    elsif selection == 'view'
-      sort = ['PV数', 'view']
-    else
-      sort = ['これからの放送順', 'start_datetime']
-    end
+    sort = if selection == 'new'
+             %w[新着順 new]
+           elsif selection == 'favorite'
+             %w[お気に入り順 favorite]
+           elsif selection == 'review'
+             %w[評価が高い順 review]
+           elsif selection == 'view'
+             %w[PV数 view]
+           else
+             %w[これからの放送順 start_datetime]
+           end
   end
-
 end

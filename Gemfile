@@ -41,11 +41,11 @@ gem 'gon', '~> 6.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -64,29 +64,33 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # 追加gem
-gem 'devise'
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
-gem 'kaminari','~> 1.2.1'
 gem 'bootstrap', '~> 4.5'
-gem 'jquery-rails'
-gem 'font-awesome-sass', '~> 5.13'
-gem 'rails-i18n'
+gem 'devise'
 gem 'enum_help'
+gem 'font-awesome-sass', '~> 5.13'
+gem 'jquery-rails'
+gem 'kaminari', '~> 1.2.1'
+gem 'rails-i18n'
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+gem 'refile-mini_magick'
+
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
 
 gem 'selenium-webdriver'
 
-gem 'whenever', require: false
 gem 'order_as_specified'
+gem 'whenever', require: false
 
 gem 'listen', '>= 3.0.5', '< 3.2'
-gem "toastr-rails"
+gem 'toastr-rails'
 
 gem 'dotenv-rails'
 group :production do

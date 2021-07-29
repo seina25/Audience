@@ -11,9 +11,7 @@ class Members::ContactsController < ApplicationController
 
   def confirm
     @contact = current_member.contacts.new(contact_params)
-    if @contact.invalid?
-      render :new
-    end
+    render :new if @contact.invalid?
   end
 
   def back
@@ -25,19 +23,18 @@ class Members::ContactsController < ApplicationController
     @contact = current_member.contacts.new(contact_params)
     @contact.member_id = current_member.id
     if @contact.save
-      redirect_to contacts_thanks_path
+      redirect_to contacts_thanks_path, notice: "送信しました。"
     else
+      flash[:alert] = "送信できませんでした。"
       render :new
     end
   end
 
-  def thanks
-  end
+  def thanks; end
 
   private
 
   def contact_params
     params.require(:contact).permit(:title, :message)
   end
-
 end

@@ -18,7 +18,9 @@ class Admins::MembersController < ApplicationController
     if @member.update(member_params)
       redirect_to admins_member_path(@member), notice: '会員情報を更新しました'
     else
+      flash.now[:alert] = '更新に失敗しました。'
       render :edit
+
     end
   end
 
@@ -29,7 +31,7 @@ class Admins::MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:last_name, :first_name, :kana_sei, :kana_mei, :nickname, :prefecture, :gender, :email, :password, :password_confirmation, :profile_image, :is_valid, :line_id)
+    params.require(:member).permit(:last_name, :first_name, :kana_sei, :kana_mei, :nickname, :prefecture, :gender,
+    :email, :password, :password_confirmation, :profile_image, :is_valid, )
   end
-
 end

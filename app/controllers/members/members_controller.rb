@@ -1,6 +1,6 @@
 class Members::MembersController < ApplicationController
   before_action :authenticate_member!
-  
+
   def show
     @member = current_member
     @favorites = Favorite.where(member_id: @member.id)
@@ -14,8 +14,9 @@ class Members::MembersController < ApplicationController
   def update
     @member = current_member
     if @member.update(member_params)
-      redirect_to my_page_path # notice: '会員情報を更新しました。'
+      redirect_to my_page_path, notice: '会員情報を更新しました。'
     else
+      flash.now[:alert] = '会員情報の更新に失敗しました。'
       render :edit
     end
   end
@@ -28,6 +29,7 @@ class Members::MembersController < ApplicationController
     @member = current_member
     @member.update(is_valid: '退会済')
     reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 
@@ -37,16 +39,18 @@ class Members::MembersController < ApplicationController
 
   def notification_update
     @member = current_member
-    @member.update(member_params)
-    redirect_to my_page_path
+    if @member.update(member_params)
+      redirect_to my_page_path, notice: '通知時間を変更しました。'
+    else
+      flash.now[:alert] = '通知の更新に失敗しました。'
+      render :notification
+    end
   end
 
   private
 
   def member_params
     params.require(:member).permit(:last_name, :first_name, :kana_sei, :kana_mei, :nickname,
-    :prefecture, :gender, :email, :password, :password_confirmation, :profile_image, :notification_time)
+                                   :prefecture, :gender, :email, :password, :password_confirmation, :profile_image, :notification_time)
   end
-
-
 end

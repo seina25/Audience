@@ -1,6 +1,24 @@
-<div class="edit-review">
-<%= form_with model: @review, url: program_review_path(id: @review.id, program_id: @review.program_id), local: true, method: :put do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "感想をここに" %>
-  <%= f.submit "更新する" %>
-<% end %>
+<div class="container-fluid">
+  <div class="col-5 mx-auto">
+    <h2>コメント編集</h2>
+  </div>
+  <div class="row m-5">
+    <div class="col-2">
+      <%= render 'members/members/mymenu' %>
+    </div>
+    <div class="col-7 mx-auto">
+      <div class="mt-5">
+        <%= form_with model: @review, url: program_review_path(id: @review.id, program_id: @review.program_id), local: true, method: :put do |f| %>
+          <div class="form-group">
+            <%= f.label :comment, 'コメント' %>
+            <%= f.text_area :comment, size: '10x10', class: 'form-control',placeholder: "感想をここに" %>
+          </div>
+
+          <div>
+            <%= f.submit "更新する", class: "btn btn-info" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

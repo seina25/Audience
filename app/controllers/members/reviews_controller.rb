@@ -1,5 +1,4 @@
 class Members::ReviewsController < ApplicationController
-
   def create
     @program = Program.find(params[:program_id])
     @comment = current_member.reviews.new(review_params)
@@ -14,8 +13,12 @@ class Members::ReviewsController < ApplicationController
 
   def update
     @review = Review.find_by(id: params[:id], program_id: params[:program_id])
-    @review.update(review_params)
-    redirect_to program_path(params[:program_id])
+    if @review.update(review_params)
+      redirect_to program_path(params[:program_id]), notice: "コメントを変更しました。"
+    else
+      flash.now[:alert] = '更新に失敗しました。'
+      render :edit
+    end
   end
 
   def destroy

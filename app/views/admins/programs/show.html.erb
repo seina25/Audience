@@ -13,7 +13,7 @@
       <strong>😲<%= @time.strftime("%-H:%M") %>の情報です</strong>
       <div class="mt-3">
         <%= link_to '番組情報を編集する', edit_admins_program_path(@program), class: 'btn btn-outline-info' %>
-        <%= link_to '番組情報を削除する', admins_program_path(@program), method: :delete, class: 'btn btn-outline-secondary' %>
+        <%= link_to '番組情報を削除する', admins_program_path(@program), method: :delete, class: 'btn btn-outline-secondary',data: { confirm: '本当に削除しますか？' } %>
       </div>
         <%= render partial: 'layouts/information', locals: { program: @program } %>
         <table class="table">

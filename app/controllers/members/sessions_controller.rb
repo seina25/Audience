@@ -35,11 +35,9 @@ class Members::SessionsController < Devise::SessionsController
   def reject_inactive_member
     # 入力されたメールアドレスに対応するユーザーが存在するかを確認する
     @member = Member.find_by(email: params[:member][:email])
-    if @member
+    if @member && (@member.valid_password?(params[:member][:password]) && !@member.is_valid)
       # 入力されたパスワードが正しい場合かつ、modelで定義したメソッドの返り値がtrueだった場合は、ログイン処理を行わずにログイン画面に遷移する。
-      if @member.valid_password?(params[:member][:password]) && !@member.is_valid
-        redirect_to new_user_session_path
-      end
+      redirect_to new_user_session_path
     end
   end
 end

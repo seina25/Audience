@@ -21,6 +21,8 @@
         <p><%= @time.strftime("%-H:%M") %>の情報です</p>
         <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
       </div>
+      <!--バッチ処理時以外で使用する（scrapeアクションで取得日変更）-->
+      <%= link_to '番組情報を取得する',admins_scrape_path %>
     </div>
   </div>
 </div>

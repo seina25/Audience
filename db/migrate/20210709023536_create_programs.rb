@@ -1,7 +1,6 @@
 class CreatePrograms < ActiveRecord::Migration[5.2]
   def change
     create_table :programs do |t|
-
       t.string :title, null: false
       t.string :second_title, null: false
       t.string :category, null: false
@@ -14,6 +13,6 @@ class CreatePrograms < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-      add_index :programs, [:channel, :start_datetime], unique: true
+    add_index :programs, %i[channel start_datetime], unique: true
   end
 end

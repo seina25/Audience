@@ -2,7 +2,6 @@ class Admins::ProgramsController < ApplicationController
   before_action :authenticate_admin!
   include ProgramScrapesConcern
 
-
   def index
     @time = Time.zone.now
     selection = params[:sort]
@@ -23,14 +22,22 @@ class Admins::ProgramsController < ApplicationController
 
   def update
     @program = Program.find(params[:id])
-    @program.update(program_params)
-    redirect_to admins_program_path(@program)
+    if @program.update(program_params)
+      redirect_to admins_program_path(@program), notice: "番組情報を更新しました。"
+    else
+      flash.now[:alert] = '更新に失敗しました。'
+      render :edit
+    end
   end
 
   def destroy
     @program = Program.find(params[:id])
-    @program.destroy
-    redirect_to admins_programs_path
+    if @program.destroy
+      redirect_to admins_programs_path, notice: "番組情報を削除しました。"
+    else
+      flash.now[:alert] = '番組情報の削除ができませんでした。'
+      render :show
+    end
   end
 
   def search
@@ -41,13 +48,12 @@ class Admins::ProgramsController < ApplicationController
   # スクレイピング用アクション
   def scrape
     # fivedays_later
-    threedays_later
-    # today_scrape
+    # threedays_later
+    today_scrape
     redirect_to admins_programs_path
   end
 
-private
-
+  private
   def program_params
     params.require(:program).permit(:title, :second_title, :category, :talent, :channel,
     :start_datetime, :end_datetime, :by_weekday, :profile_image_id)
@@ -56,5 +62,4 @@ private
   def program_search_params
     params.fetch(:search, {}).permit(:keyword, :start_datetime_from, :start_datetime_to)
   end
-
 end

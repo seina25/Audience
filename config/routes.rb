@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
   # ==== 会員側 =================================================================
 
-  devise_for :members, controllers:{
+  devise_for :members, controllers: {
     sessions: 'members/sessions',
     passwords: 'members/passwords',
     registrations: 'members/registrations'
@@ -22,18 +21,18 @@ Rails.application.routes.draw do
     resource :member, only: [:update]
     get 'unsubscribe' => 'members#unsubscribe', as: :unsubscribe
     patch 'withdraw' => 'members#withdraw', as: :withdraw
-    resources :programs, only: [:index, :show] do
-      resource :favorite, only: [:create, :destroy]
-      resources :reviews, only: [:create, :edit, :update, :destroy]
+    resources :programs, only: %i[index show] do
+      resource :favorite, only: %i[create destroy]
+      resources :reviews, only: %i[create edit update destroy]
       collection do
-      get 'search'
+        get 'search'
       end
     end
-    resources :contacts, only: [:new, :index, :create]
+    resources :contacts, only: %i[new index create]
     resources :program_notifications, only: [:index]
     delete 'notification_delete' => 'program_notifications#destroy_all', as: :notification_destroy_all
     post 'contacts/confirm' => 'contacts#confirm'
-    post 'contacts/back'=> 'contacts#back'
+    post 'contacts/back' => 'contacts#back'
     get 'contacts/thanks' => 'contacts#thanks'
   end
 
@@ -50,18 +49,17 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'analysis' => 'homes#analysis', as: :analysis
     get 'programs/scrape' => 'programs#scrape', as: :scrape
-    resources :programs, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
+    resources :programs, only: %i[index new create edit update show destroy] do
       collection do
-      get 'search'
+        get 'search'
       end
     end
-    resources :members, only: [:index, :show, :edit, :update]
+    resources :members, only: %i[index show edit update]
     get 'member/search' => 'members#search', as: :member_search
     resources :contacts, only: [:index]
   end
 
-   # ===========================================================================
-
+  # ===========================================================================
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

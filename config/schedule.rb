@@ -19,14 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-
-
 # 設定===================================================
 
-
-
 # wheneverの読込時にrailsを起動するためrootパス取得
-require File.expand_path(File.dirname(__FILE__) + "/environment")
+require File.expand_path(File.dirname(__FILE__) + '/environment')
 
 # 出力先のログファイルの指定（エラー内容）
 set :output, 'log/cron.log'
@@ -36,13 +32,11 @@ set :output, 'log/cron.log'
 # rails_env = Rails.env.to_sym
 # set :environment, rails_env
 
-
 # 本番環境
 # set :environment, :production
 rails_env = ENV['RAILS_ENV'] ||= 'production'
 set :environment, rails_env
 ENV.each { |k, v| env(k, v) }
-
 
 # =======================================================
 
@@ -63,29 +57,21 @@ ENV.each { |k, v| env(k, v) }
 
 # 毎日 日本時間 01:00のスケジューリング
 every 1.day, at: '16:45 pm' do
-  begin
-    runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
+  runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
+rescue StandardError => e
+  Rails.logger.error('aborted rails runner')
+  raise e
 end
 
 # 毎日 日本時間 03:00のスケジューリング
 every 1.day, at: '09:50 am' do
-  begin
-    runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
+  runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
+rescue StandardError => e
+  Rails.logger.error('aborted rails runner')
+  raise e
 end
 
-
-
 # ========================================================
-
-
 
 # 実際にやる予定==========================================
 
@@ -110,7 +96,6 @@ end
 #   end
 # end
 
-
 # # 毎日 am2:30とam4:00のスケジューリング
 # every 1.day,  at: ['2:30 am', '4:00 am'] do
 #   begin
@@ -121,7 +106,3 @@ end
 #   end
 # end
 # ========================================================
-
-
-
-

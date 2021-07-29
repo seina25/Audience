@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class Members::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_permitted_parameters , if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :authenticate_customer!, only: [:top, :about]
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: 
+  # before_action :configure_account_update_params, only:
   before_action :ensure_normal_user, only: %i[update destroy]
-  
+
   def ensure_normal_member
-    if resource.email == 'guest_member@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
-    end
+    redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。' if resource.email == 'guest_member@example.com'
   end
 
   # GET /resource/sign_up
@@ -69,8 +67,11 @@ class Members::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   private
+
   # 新規登録・顧客情報更新時
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :kana_sei, :kana_mei, :nickname, :prefecture, :gender, :line_id])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[last_name first_name kana_sei kana_mei nickname prefecture gender
+                                               line_id])
   end
 end

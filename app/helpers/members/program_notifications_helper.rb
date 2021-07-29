@@ -1,3 +1,2 @@
 module Members::ProgramNotificationsHelper
-
 end
