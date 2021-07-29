@@ -72,7 +72,7 @@ every 1.day, at: '16:45 pm' do
 end
 
 # 毎日 日本時間 03:00のスケジューリング
-every 1.day, at: '08:00 am' do
+every 1.day, at: '08:25 am' do
   begin
     runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
   rescue => e
