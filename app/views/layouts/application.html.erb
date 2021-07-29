@@ -20,6 +20,8 @@
       <%= render 'layouts/header' %>
     </header>
     <main>
+      <%= flash[:notice] %>
+      <%= flash[:error] %>
       <%= yield %>
     </main>
     <footer>

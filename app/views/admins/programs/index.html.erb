@@ -8,7 +8,7 @@
         <%= render partial: 'admins/homes/admin_menu' %>
       </div>
     </div>
-    <div class="col-10 mx-auto">
+    <div class="col-9 mx-auto">
       <h2>番組一覧</h2>
       <div class="row">
         <div class="col-12">
@@ -20,7 +20,6 @@
       <div class="row">
         <p><%= @time.strftime("%-H:%M") %>の情報です</p>
         <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
-        <%= link_to "番組取得ボタン", admins_scrape_path, class: 'btn btn-sn btn-primary' %>
       </div>
     </div>
   </div>

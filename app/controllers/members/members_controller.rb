@@ -1,4 +1,6 @@
 class Members::MembersController < ApplicationController
+  before_action :authenticate_member!
+  
   def show
     @member = current_member
     @favorites = Favorite.where(member_id: @member.id)

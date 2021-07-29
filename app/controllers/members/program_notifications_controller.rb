@@ -1,4 +1,5 @@
 class Members::ProgramNotificationsController < ApplicationController
+  before_action :authenticate_member!
 
   def index
     @programs =  current_member.today_favorite_programs

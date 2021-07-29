@@ -1,4 +1,5 @@
 class Members::ContactsController < ApplicationController
+  before_action :authenticate_member!
 
   def index
     @contacts = current_member.contacts.all

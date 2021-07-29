@@ -1,4 +1,5 @@
 class Members::ProgramsController < ApplicationController
+  before_action :authenticate_member!
 
   def index
     @time = Time.zone.now

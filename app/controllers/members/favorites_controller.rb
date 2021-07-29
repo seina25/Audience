@@ -1,4 +1,6 @@
 class Members::FavoritesController < ApplicationController
+  before_action :authenticate_member!
+  
   def create
     @program = Program.find(params[:program_id])
     favorite = current_member.favorites.new(program_id: @program.id)

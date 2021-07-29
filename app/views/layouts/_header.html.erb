@@ -1,60 +1,64 @@
+<div class="m-5">
   <nav class="navbar navbar-expand-lg p-1">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-    <ul class="navbar-nav d-flex align-items-center">
-    <% if member_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "TOP", root_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ABOUT", about_path %>
-      </li>
-      <div class="navbar-brand nav-item" href="#">
-        <%= link_to image_tag('img/logo.png'), '/about' %>
-      </div>
-      <li class="nav-item">
-        <%= link_to "TV PROGRAMS", programs_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "SEARCH", search_programs_path %>
-      </li>
-      <% elsif admin_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "PROGRAMS", admins_programs_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "MEMBERS", admins_members_path %>
-      </li>
-      <div class="navbar-brand nav-item text-center" href="#">
-        <%= link_to image_tag('img/logo.png',width: '70%', height: '100%'), '/about' %>
-      </div>
-      <li class="nav-item">
-        <%= link_to "ANALISIS", admins_analysis_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "LOG OUT", destroy_admin_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to "TOP", root_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ABOUT", about_path %>
-      </li>
-      <div class="navbar-brand nav-item" href="#">
-        <%= link_to image_tag('img/logo.png'), '/about' %>
-      </div>
-      <li class="nav-item">
-        <%= link_to "SIGN IN", new_member_registration_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "LOG IN", new_member_session_path %>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-</nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav d-flex align-items-center">
+      <% if member_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "TOP", root_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ABOUT", about_path %>
+        </li>
+        <div class="navbar-brand nav-item" href="#">
+          <%= link_to image_tag('img/logo.png'), '/about' %>
+        </div>
+        <li class="nav-item">
+          <%= link_to "TV PROGRAMS", programs_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "SEARCH", search_programs_path %>
+        </li>
+        <% elsif admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "PROGRAMS", admins_programs_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "MEMBERS", admins_members_path %>
+        </li>
+        <div class="navbar-brand nav-item text-center" href="#">
+          <%= link_to image_tag('img/logo.png',width: '70%', height: '100%'), '/about' %>
+        </div>
+        <li class="nav-item">
+          <%= link_to "ANALISIS", admins_analysis_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "LOG OUT", destroy_admin_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "TOP", root_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ABOUT", about_path %>
+        </li>
+        <div class="navbar-brand nav-item" href="#">
+          <%= link_to image_tag('img/logo.png'), '/about' %>
+        </div>
+        <li class="nav-item">
+          <%= link_to "SIGN IN", new_member_registration_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "LOG IN", new_member_session_path %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
 
 
