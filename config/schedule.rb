@@ -30,7 +30,6 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 
 # 出力先のログファイルの指定（エラー内容）
 set :output, 'log/cron.log'
-set :runner_command, "rails runner"
 
 # ジョブの実行環境の指定（環境で切り替える）
 # 開発環境(本番環境行ったらOFFにする)
@@ -41,7 +40,8 @@ set :runner_command, "rails runner"
 # 本番環境
 # set :environment, :production
 rails_env = ENV['RAILS_ENV'] ||= 'production'
-ENV.each { |k, v| env(k, v) }
+set :environment, rails_env
+ENV.each { |k, v| env(k, v) } 
 
 
 # =======================================================
