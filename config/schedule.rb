@@ -23,6 +23,8 @@
 
 # 設定===================================================
 
+
+
 # wheneverの読込時にrailsを起動するためrootパス取得
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 
@@ -37,7 +39,10 @@ set :runner_command, "rails runner"
 
 
 # 本番環境
-set :environment, :production
+# set :environment, :production
+rails_env = ENV['RAILS_ENV'] ||= 'production'
+ENV.each { |k, v| env(k, v) }
+
 
 # =======================================================
 
