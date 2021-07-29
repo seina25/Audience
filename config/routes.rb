@@ -50,8 +50,11 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'analysis' => 'homes#analysis', as: :analysis
     get 'programs/scrape' => 'programs#scrape', as: :scrape
-    resources :programs, only: [:index, :new, :create, :edit, :update, :show, :destroy]
-    get 'program/search' => 'program#search', as: :program_search
+    resources :programs, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
+      collection do
+      get 'search'
+      end
+    end
     resources :members, only: [:index, :show, :edit, :update]
     get 'member/search' => 'members#search', as: :member_search
     resources :contacts, only: [:index, :show]

@@ -17,10 +17,10 @@
 		    <%= link_to "会員検索", admins_member_search_path %>
 		  </li>
 		  <li>
-		  	<%# if @unchecked_notifications.any? %>
-	        <!--<span style="background-color: gold;width:10px;height:10px;top:14px;left:10px;position:absolute;border-radius:50%;"></span>-->
-	      <%# end %>
 		    <%= link_to "お問合せ一覧", admins_contacts_path %>
+		  </li>
+		  <li>
+		    <%= link_to "番組情報関連", admins_programs_path %>
 		  </li>
 		  <li>
 		    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>

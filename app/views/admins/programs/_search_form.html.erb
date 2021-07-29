@@ -1,6 +1,6 @@
 <h5>番組検索</h5>
 
-<%= form_with(scope: :search, url:admins_program_search_path, local: true, method: :get) do |f| %>
+<%= form_with(scope: :search, url:search_admins_programs_path, local: true, method: :get) do |f| %>
 <div class="form-group">
   <div>
     <%= f.text_field :keyword, value: @search_params[:keyword], placeholder: "投稿を検索する", class: "form-control", placeholder: "キーワードを入れてください" %>

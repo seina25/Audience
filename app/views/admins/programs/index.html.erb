@@ -8,15 +8,20 @@
         <%= render partial: 'admins/homes/admin_menu' %>
       </div>
     </div>
-    <div class="col-10">
+    <div class="col-10 mx-auto">
       <h2>番組一覧</h2>
       <div class="row">
-        <div class="col-6 mx-auto">
-          <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+        <div class="col-12">
+          <div class="float-right">
+            <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+          </div>
         </div>
       </div>
-      <p><%= @time.strftime("%-H:%M") %>の情報です</p>
-      <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
+      <div class="row">
+        <p><%= @time.strftime("%-H:%M") %>の情報です</p>
+        <%= render partial: 'admins/programs/index', locals: { programs: @programs } %>
+        <%= link_to "番組取得ボタン", admins_scrape_path, class: 'btn btn-sn btn-primary' %>
+      </div>
     </div>
   </div>
 </div>

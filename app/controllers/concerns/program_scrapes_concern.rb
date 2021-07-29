@@ -25,7 +25,7 @@ extend ActiveSupport::Concern
     @programs = []
     elements = driver.find_elements(:class, "listingTablesTextLink")
     @urls = elements.map { |element| element.attribute('href') }
-    @urls.first(3).each do |url|
+    @urls.first(15).each do |url|
     driver.navigate.to(url)
 
     sleep(rand(5))
@@ -108,7 +108,8 @@ extend ActiveSupport::Concern
     @programs.push('title': title, 'second_title': second_title, 'talent': talent, 'channel': channel, 'category': category,
     'start_datetime': start_datetime, 'end_datetime': end_datetime, 'by_weekday': by_weekday )
 
-    p talent
+    p title
+    p start_datetime
     end
 
     # ドライバーを閉じる

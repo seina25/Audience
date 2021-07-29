@@ -5,7 +5,7 @@ class Admins::ProgramsController < ApplicationController
   def index
     @time = Time.zone.now
     selection = params[:sort]
-    @programs = Program.sort(selection).page(params[:page]).per(20)
+    @programs = Program.sort(selection).page(params[:page]).per(10)
     @sort = Program.program_selected_sort(selection)
     @search_params = program_search_params
   end
@@ -34,14 +34,14 @@ class Admins::ProgramsController < ApplicationController
 
   def search
     @search_params = program_search_params
-    @programs = Program.search(@search_params)
+    @programs = Program.search(@search_params).page(params[:page]).per(10)
   end
 
   # スクレイピング用アクション
   def scrape
-    # fivedays_later
+    fivedays_later
     # threedays_later
-    today_scrape
+    # today_scrape
     redirect_to admins_programs_path
   end
 
