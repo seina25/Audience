@@ -28,15 +28,16 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 
 # 出力先のログファイルの指定（エラー内容）
 set :output, 'log/cron.log'
+set :runner_command, "rails runner"
 
 # ジョブの実行環境の指定（環境で切り替える）
 # 開発環境(本番環境行ったらOFFにする)
-rails_env = Rails.env.to_sym
-set :environment, rails_env
+# rails_env = Rails.env.to_sym
+# set :environment, rails_env
 
 
 # 本番環境
-# set :environment, :production
+set :environment, :production
 
 # =======================================================
 
@@ -46,34 +47,34 @@ set :environment, rails_env
 
 # 毎日 日本時間am01:25のスケジューリング
 
-# every 1.day, at: '16:25 pm' do
+every 1.minute do
+  begin
+    runner 'Batch::Test.test'
+  rescue => e
+    Rails.logger.error("aborted rails runner")
+    raise e
+  end
+end
+
+# 毎日 日本時間am02:15のスケジューリング
+# every 1.day, at: '00:43 am' do
 #   begin
-#     runner 'Batch::Test.test'
+#     runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
 #   rescue => e
 #     Rails.logger.error("aborted rails runner")
 #     raise e
 #   end
 # end
 
-# 毎日 日本時間am02:15のスケジューリング
-every 1.day, at: '00:43 am' do
-  begin
-    runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
-end
-
-# 毎日 日本時間am02:35のスケジューリング
-every 1.day, at: '00:52 am' do
-  begin
-    runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
-end
+# # 毎日 日本時間am02:35のスケジューリング
+# every 1.day, at: '00:52 am' do
+#   begin
+#     runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
+#   rescue => e
+#     Rails.logger.error("aborted rails runner")
+#     raise e
+#   end
+# end
 
 
 
