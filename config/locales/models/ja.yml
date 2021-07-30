@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      member: 会員様情報
+    attributes:
+      member:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        password: パスワード
+        first_name: 氏名(名)
+        last_name: 氏名(性)
+        kana_sei: カナ(性)
+        kana_mei: カナ(名)
+        prefecture: 都道府県
+        nickname: ニックネーム
+        email: メールアドレス
