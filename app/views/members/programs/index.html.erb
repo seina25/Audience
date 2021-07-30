@@ -5,7 +5,14 @@
       <%= render 'members/members/mymenu' %>
     </div>
     <div class="col-10">
-      <h4>番組一覧</h4>
+      <h2>番組一覧</h2>
+      <div class="row">
+        <div class="col-12">
+          <div class="float-right">
+            <%= render partial: 'admins/programs/select_form', locals: { programs: @programs, sort: @sort } %>
+          </div>
+        </div>
+      </div>
       <p>😲<%= @time.strftime("%-H:%M") %>の情報です</p>
       <%= render partial: 'members/programs/index', locals: { programs: @programs, member: @member } %>
       <%= paginate @programs %>

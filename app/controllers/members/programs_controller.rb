@@ -3,7 +3,9 @@ class Members::ProgramsController < ApplicationController
 
   def index
     @time = Time.zone.now
-    @programs = Program.all.page(params[:page]).per(5).order(created_at: :desc)
+    selection = params[:sort]
+    @programs = Program.sort(selection).page(params[:page]).per(10)
+    @sort = Program.program_selected_sort(selection)
     @member = current_member
     @search_params = program_search_params
   end
