@@ -94,6 +94,34 @@ body{
 	word-wrap: break-word;
 }
 
+.top-row{
+  height: 400px;
+}
+
+.top-image-left{
+  background-image: url("<%= asset_path('guest.png') %>");
+  height: 300px;
+  background-size: cover;
+}
+
+.top-image-center{
+  background-image: url("<%= asset_path('login.png') %>");
+  height: 300px;
+  background-size: cover;
+}
+
+.top-image-right{
+  background-image: url("<%= asset_path('sign_in.png') %>");
+  height: 300px;
+  background-size: cover;
+}
+
+.top-link {
+  border:  solid 1px;
+  display:  inline-block;
+  padding: 10px 20px;
+}
+
 .card{
   width: 640px;
   height: 340px;
