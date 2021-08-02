@@ -1,19 +1,24 @@
 <div class="conteiner-fluid">
-  <div class="row top-row">
-    <div class="col-3 top-link">
-      <div class="image-left-text"></div>
-      <%#= link_to members_guest_sign_in_path, method: :post do %>
-      <%# end %>
+  <div class="row m-3 top-row">
+    <div class="col-4 top-link">
+      <%= link_to members_guest_sign_in_path, method: :post do %>
+        <div class="image-left">
+          <h1 class="image-left-text"><b>ゲストログイン</b></h1>
+          <p class="image-left-text-p"></p>
+        </div>
+      <% end %>
     </div>
-    <div class="col-3 top-link">
-      <div class="image-center-text"></div>
+    <div class="col-4 top-link">
+      <div class="image-center"></div>
       <%#= link_to member_session_path do %>
       <%# end %>
     </div>
-    <div class="col-3 top-link">
-      <div class="image-right-text"></div>
+    <div class="col-4 top-link">
+      <div class="image-right"></div>
       <%#= link_to new_member_registration_path do %>
       <%# end %>
     </div>
+  </div>
+  <div class="row top-buttom">
   </div>
 </div>

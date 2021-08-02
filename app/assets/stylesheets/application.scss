@@ -98,46 +98,44 @@ body{
   height: 400px;
 }
 
-.top-image-left{
-  background-image: url("<%= asset_path('guest.png') %>");
-  height: 300px;
-  background-size: cover;
+.image-left{
+  height: 80%;
+  margin: 60px auto;
+	border: solid 5px #FFDDFF;
+	background-image: url(img/guest.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.image-center{
+  height: 80%;
+  margin: 60px auto;
+	border: solid 5px #E6FFE9;
+	background-image: url(img/login.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.image-right{
+  height: 80%;
+  margin: 60px auto;
+	border: solid 5px #FFDBC9;
+	background-image: url(img/sign_in.png);
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
-.top-image-center{
-  background-image: url("<%= asset_path('login.png') %>");
-  height: 300px;
-  background-size: cover;
+.image-left-text{
+  text-align: right;
+  padding: 38% 7%;
 }
 
-.top-image-right{
-  background-image: url("<%= asset_path('sign_in.png') %>");
-  height: 300px;
-  background-size: cover;
+.image-left-text b{
+  background-color: #ff9;
 }
 
-.top-link {
-  border:  solid 1px;
-  display:  inline-block;
-  padding: 10px 20px;
+.top-buttom{
+  margin-bottom: 100px;
 }
 
-.card{
-  width: 640px;
-  height: 340px;
-}
-
-.card-img{
-  opacity: 0.7;
-}
-
-/* 文字を中央に揃える */
-.card-img-overlay{
-  padding: 0;
-  top: calc(50% - 1.6rem);
-  text-align: center;
-  font-weight: bold;
-}
 
 footer{
   background-color: #FFFFFF;
