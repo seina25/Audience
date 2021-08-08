@@ -101,21 +101,21 @@ body{
 .image-left{
   height: 80%;
   margin: 60px auto;
-	background-image: url(img/home1.jpg);
+	background-image: image-url("img/home1.jpg");
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 .image-center{
   height: 80%;
   margin: 60px auto;
-	background-image: url(img/home2.jpg);
+	background-image: image-url("img/home2.jpg");
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 .image-right{
   height: 80%;
   margin: 60px auto;
-	background-image: url(img/home3.jpg);
+	background-image:image-url("img/home3.jpg");
 	background-repeat: no-repeat;
 	background-size: contain;
 }
