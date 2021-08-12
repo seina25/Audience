@@ -20,11 +20,27 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-    		  <p><%= link_to "SIGN IN", new_member_registration_path %></p>
-		      <p><%= link_to "LOG IN", new_member_session_path %></p>
-		      <p><%= link_to "TOP", root_path %></p>
-		      <p><%= link_to "ABOUT", about_path %></p>
-		      <p><%= link_to "PROGRAMS", programs_path %></p>
+              <% if member_signed_in? %>
+              <p><%= link_to "TOP", root_path %></p>
+              <p><%= link_to "ABOUT", about_path %></p>
+    		      <p><%= link_to "PROGRAMS", programs_path %></p>
+    		      <p><%= link_to "SEARCH", search_programs_path %></p>
+    		      <p><%= link_to "LOG OUT", destroy_member_session_path, method: :delete %></p>
+
+    		      <% elsif admin_signed_in? %>
+    		      <p><%= link_to "TOP", root_path %></p>
+    		      <p><%= link_to "ABOUT", about_path %></p>
+    		      <p><%= link_to "PROGRAMS", admins_programs_path %></p>
+    		      <p><%= link_to "MEMBERS", admins_members_path %></p>
+    		      <p><%= link_to "ANALISIS", admins_analysis_path %></p>
+    		      <p><%= link_to "LOG OUT", destroy_admin_session_path, method: :delete %></p>
+
+    		      <% else %>
+    		      <p><%= link_to "TOP", root_path %></p>
+    		      <p><%= link_to "ABOUT", about_path %></p>
+    		      <p><%= link_to "SIGN IN", new_member_registration_path %></p>
+    		      <p><%= link_to "LOG IN", new_member_session_path %></p>
+    		      <% end %>
             </div>
           </div>
         </div>
