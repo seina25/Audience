@@ -3,20 +3,20 @@
       <div class="row pt-5">
         <div class="col-md-4 footer-about text-center">
           <h3>About</h3>
-    	  <p><%= link_to "© Audience Inc.", about_path %></p>
+    	    <p><%= link_to "© Audience Inc.", about_path %></p>
         </div>
-    	<div class="col-md-4 footer-contact">
-    	<h3>Contact</h3>
-    	  <p><i class="fas fa-map-marker-alt"></i> 2-308-10 Hirakawacho, Chiyoda ku, Tokyo, Japan</p>
-    	  <p><i class="fas fa-phone"></i> Phone: (03) 0000 0000</p>
-    	  <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hello@domain.com">hello@domain.com</a></p>
-    	  <p><i class="fab fa-skype"></i> Skype: you_online</p>
+    	  <div class="col-md-4 footer-contact">
+    	    <h3>Contact</h3>
+      	  <p><i class="fas fa-map-marker-alt"></i> 2-308-10 Hirakawacho, Chiyoda ku, Tokyo, Japan</p>
+      	  <p><i class="fas fa-phone"></i> Phone: (03) 0000 0000</p>
+      	  <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hello@domain.com">hello@domain.com</a></p>
+      	  <p><i class="fab fa-skype"></i> Skype: you_online</p>
         </div>
         <div class="col-md-4 footer-links">
           <div class="row">
             <div class="col">
         	  <h3>Links</h3>
-        	</div>
+        	  </div>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -28,12 +28,12 @@
     		      <p><%= link_to "LOG OUT", destroy_member_session_path, method: :delete %></p>
 
     		      <% elsif admin_signed_in? %>
-    		      <p><%= link_to "TOP", root_path %></p>
+  		        <p><%= link_to "TOP", root_path %></p>
     		      <p><%= link_to "ABOUT", about_path %></p>
     		      <p><%= link_to "PROGRAMS", admins_programs_path %></p>
-    		      <p><%= link_to "MEMBERS", admins_members_path %></p>
-    		      <p><%= link_to "ANALISIS", admins_analysis_path %></p>
-    		      <p><%= link_to "LOG OUT", destroy_admin_session_path, method: :delete %></p>
+  		        <p><%= link_to "MEMBERS", admins_members_path %></p>
+  		        <p><%= link_to "ANALISIS", admins_analysis_path %></p>
+  		        <p><%= link_to "LOG OUT", destroy_admin_session_path, method: :delete %></p>
 
     		      <% else %>
     		      <p><%= link_to "TOP", root_path %></p>
