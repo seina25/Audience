@@ -23,16 +23,16 @@ ENV.each { |k, v| env(k, v) }
 
 # 実際にやる予定==========================================
 
-# 毎日 日本時間 01:00のスケジューリング(5日後のデータ取得)
-every 1.day, at: '16:00 pm' do
+# 毎日 日本時間 12:30のスケジューリング(5日後のデータ取得)
+every 1.day, at: '03:30 am' do
   runner 'Batch::FivedayslaterUpdate.fivedayslater_update'
 rescue StandardError => e
   Rails.logger.error('aborted rails runner')
   raise e
 end
 
-# 毎日 日本時間 03:00のスケジューリング（3日後のデータ取得）
-every 1.day, at: '18:00 pm' do
+# 毎日 日本時間 13:30のスケジューリング（3日後のデータ取得）
+every 1.day, at: '04:30 am' do
   runner 'Batch::ThreedayslaterUpdate.threedayslater_update'
 rescue StandardError => e
   Rails.logger.error('aborted rails runner')
