@@ -29,7 +29,7 @@
 
     		      <% elsif admin_signed_in? %>
   		        <p><%= link_to "TOP", root_path %></p>
-    		      <p><%#= link_to "ABOUT", about_path %></p>
+    		      <p><%= link_to "ABOUT", root_path %></p>
     		      <p><%= link_to "PROGRAMS", admins_programs_path %></p>
   		        <p><%= link_to "MEMBERS", admins_members_path %></p>
   		        <p><%= link_to "ANALISIS", admins_analysis_path %></p>
@@ -37,7 +37,7 @@
 
     		      <% else %>
     		      <p><%= link_to "TOP", root_path %></p>
-    		      <p><%#= link_to "ABOUT", about_path %></p>
+    		      <p><%= link_to "ABOUT", root_path %></p>
     		      <p><%= link_to "SIGN IN", new_member_registration_path %></p>
     		      <p><%= link_to "LOG IN", new_member_session_path %></p>
     		      <% end %>
