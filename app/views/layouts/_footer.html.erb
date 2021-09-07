@@ -26,7 +26,6 @@
     		      <p><%= link_to "PROGRAMS", programs_path %></p>
     		      <p><%= link_to "SEARCH", search_programs_path %></p>
     		      <p><%= link_to "LOG OUT", destroy_member_session_path, method: :delete %></p>
-
     		      <% elsif admin_signed_in? %>
   		        <p><%= link_to "TOP", root_path %></p>
     		      <p><%= link_to "ABOUT", root_path %></p>
@@ -34,7 +33,6 @@
   		        <p><%= link_to "MEMBERS", admins_members_path %></p>
   		        <p><%= link_to "ANALISIS", admins_analysis_path %></p>
   		        <p><%= link_to "LOG OUT", destroy_admin_session_path, method: :delete %></p>
-
     		      <% else %>
     		      <p><%= link_to "TOP", root_path %></p>
     		      <p><%= link_to "ABOUT", root_path %></p>
