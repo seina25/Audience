@@ -6,6 +6,7 @@
     <div class="col-2">
       <%= render 'members/members/mymenu' %>
     </div>
+    
     <div class="col-7 mx-auto">
       <div class="mt-5">
         <%= form_with model: @review, url: program_review_path(id: @review.id, program_id: @review.program_id), local: true, method: :put do |f| %>
